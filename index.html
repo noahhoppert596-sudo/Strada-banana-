@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Strada Banana – Beach Bar Koh Phangan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,400&family=Manrope:wght@300;400;500;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#120b08; --night2:#1d120c; --sand:#f6e7c8; --sand2:#efd9ad;
+  --banana:#ffd23f; --sun:#ff7a3d; --coral:#ff5e7e; --sea:#1fb5a8;
+  --ink:#2a1a10; --muted:rgba(246,231,200,.62);
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Manrope',system-ui,sans-serif; --script:'Caveat',cursive;
+  --safe-top:env(safe-area-inset-top,0px); --safe-bot:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--night);color:var(--sand);font-family:var(--sans);overflow-x:hidden;line-height:1.55}
+body.locked{overflow:hidden;height:100vh}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{width:min(1200px,92vw);margin:0 auto}
+.eyebrow{font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--banana);font-weight:700}
+.h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.4rem,6vw,4.6rem);line-height:1;letter-spacing:-.01em}
+.h2 em{font-style:italic;color:var(--banana)}
+.script{font-family:var(--script);color:var(--banana)}
+.btn{display:inline-flex;align-items:center;gap:.6em;padding:1em 1.6em;border-radius:999px;font-weight:700;font-size:.9rem;letter-spacing:.04em;transition:transform .3s,background .3s,color .3s,box-shadow .3s}
+.btn-y{background:var(--banana);color:var(--ink);box-shadow:0 10px 30px -10px rgba(255,210,63,.7)}
+.btn-y:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px rgba(255,210,63,.9)}
+.btn-o{border:1.5px solid rgba(246,231,200,.5)}
+.btn-o:hover{background:var(--sand);color:var(--ink)}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* ---------- LOADER ---------- */
+#loader{position:fixed;inset:0;z-index:100;background:var(--sand);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;transition:opacity .8s,visibility .8s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .num{font-family:var(--serif);font-size:4.5rem;font-weight:600;line-height:1}
+#loader .lbl{font-size:.7rem;letter-spacing:.3em;font-weight:800}
+#loader .lbl i{font-family:var(--script);font-style:normal;font-size:1.3rem;letter-spacing:0;color:var(--sun);text-transform:none}
+#loader svg.wave{width:min(340px,80vw);height:70px;overflow:visible}
+#loader .fact{position:absolute;bottom:calc(9vh + var(--safe-bot));text-align:center;font-size:.85rem;max-width:300px}
+#loader .fact b{display:block;font-size:.68rem;letter-spacing:.25em;margin-bottom:.4rem}
+
+/* ---------- INTRO / LOCK ---------- */
+#intro{position:fixed;inset:0;z-index:90;overflow:hidden;transition:opacity 1.1s ease,visibility 1.1s}
+#intro.gone{opacity:0;visibility:hidden}
+#intro .bg{position:absolute;inset:-30px;background:url(img/hero.webp) center/cover;filter:blur(16px) brightness(.5) saturate(1.2);transform:scale(1.08);transition:filter 1.6s ease,transform 6s ease}
+#intro.open .bg{filter:blur(0) brightness(.8) saturate(1.1);transform:scale(1)}
+.pad{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(300px,82vw);padding:26px 22px 20px;border-radius:30px;background:rgba(30,18,12,.38);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);border:1px solid rgba(255,255,255,.14);box-shadow:0 40px 80px -30px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.12);text-align:center;transition:transform .9s cubic-bezier(.7,0,.2,1),opacity .7s}
+#intro.open .pad{transform:translate(-50%,-50%) scale(.6) translateY(-30px);opacity:0;pointer-events:none}
+.pad .lg{width:46px;margin:0 auto 8px}
+.pad h3{font-family:var(--serif);font-weight:500;font-size:1.35rem}
+.pad p{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dots{display:flex;gap:14px;justify-content:center;margin:18px 0 18px}
+.dots span{width:12px;height:12px;border-radius:50%;border:1.5px solid rgba(246,231,200,.6);transition:.25s}
+.dots span.on{background:var(--banana);border-color:var(--banana);transform:scale(1.15)}
+.dots.ok span{background:#5fe08a;border-color:#5fe08a}
+.dots.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;justify-items:center}
+.keys button{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.08);font-size:1.5rem;font-weight:300;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;transition:background .15s,transform .15s}
+.keys button small{font-size:.48rem;letter-spacing:.2em;margin-top:3px;opacity:.6;font-weight:600}
+.keys button:active,.keys button.hit{background:rgba(255,210,63,.55);transform:scale(.93)}
+.keys .ghost{background:none;border:0;font-size:.75rem;font-weight:600;letter-spacing:.05em}
+.pad .hint{margin-top:14px;font-size:.68rem;color:var(--muted)}
+.pad .hint b{color:var(--banana)}
+.welcome{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;text-align:center}
+.welcome h1{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,10vw,7rem);letter-spacing:.6em;margin-right:-.6em;opacity:0;filter:blur(12px);transition:all 1.8s cubic-bezier(.2,.7,.2,1) .5s}
+#intro.open .welcome h1{letter-spacing:.28em;margin-right:-.28em;opacity:1;filter:blur(0)}
+.welcome p{font-family:var(--script);font-size:clamp(1.5rem,4vw,2.4rem);color:var(--banana);opacity:0;transform:translateY(16px);transition:all 1s 1.4s}
+#intro.open .welcome p{opacity:1;transform:none}
+.skip{position:absolute;right:20px;top:calc(18px + var(--safe-top));font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;opacity:.7;padding:8px 14px;border:1px solid rgba(255,255,255,.25);border-radius:99px}
+
+/* ---------- NAV ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:50;padding:calc(14px + var(--safe-top)) 4vw 14px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,padding .4s,backdrop-filter .4s}
+header.solid{background:rgba(18,11,8,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);padding-top:calc(10px + var(--safe-top));padding-bottom:10px;border-bottom:1px solid rgba(246,231,200,.08)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{width:40px;height:40px}
+.brand b{font-family:var(--serif);font-size:1.25rem;font-weight:600;letter-spacing:.06em;line-height:1}
+.brand small{display:block;font-size:.52rem;letter-spacing:.32em;color:var(--banana);font-weight:700;margin-top:3px}
+nav.links{display:flex;gap:28px;font-size:.82rem;font-weight:500}
+nav.links a{text-decoration:none;opacity:.8;position:relative}
+nav.links a::after{content:'';position:absolute;left:0;bottom:-5px;height:1.5px;width:0;background:var(--banana);transition:width .3s}
+nav.links a:hover{opacity:1}nav.links a:hover::after{width:100%}
+.hd-r{display:flex;align-items:center;gap:10px}
+.cartbtn{position:relative;width:46px;height:46px;border-radius:50%;background:var(--banana);color:var(--ink);display:flex;align-items:center;justify-content:center;transition:transform .3s}
+.cartbtn:hover{transform:rotate(-8deg) scale(1.06)}
+.cartbtn.bump{animation:bump .5s}
+@keyframes bump{40%{transform:scale(1.25)}}
+.cartbtn .n{position:absolute;top:-4px;right:-4px;background:var(--coral);color:#fff;font-size:.66rem;font-weight:800;min-width:20px;height:20px;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:0 5px}
+.burger{display:none;width:46px;height:46px;border-radius:50%;border:1px solid rgba(246,231,200,.3);flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.burger i{width:18px;height:1.5px;background:var(--sand);transition:.3s}
+#mnav{position:fixed;inset:0;z-index:49;background:var(--night);display:flex;flex-direction:column;justify-content:center;padding:0 9vw;gap:6px;clip-path:circle(0 at calc(100% - 50px) 40px);transition:clip-path .8s cubic-bezier(.7,0,.2,1)}
+#mnav.open{clip-path:circle(150% at calc(100% - 50px) 40px)}
+#mnav a{font-family:var(--serif);font-size:2.8rem;text-decoration:none;line-height:1.15}
+#mnav a:nth-child(odd){font-style:italic;color:var(--banana)}
+#mnav .mi{margin-top:30px;font-size:.8rem;color:var(--muted)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;display:flex;align-items:flex-end}
+.hero .bgimg{position:absolute;inset:0;background:url(img/hero.webp) center/cover;filter:brightness(.8) saturate(1.1);animation:kb 22s ease-in-out infinite alternate;will-change:transform}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.14) translate(-1.5%,-1%)}}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,11,8,.35) 0%,rgba(18,11,8,0) 30%,rgba(18,11,8,.25) 55%,var(--night) 100%)}
+.hero .in{position:relative;z-index:2;padding-bottom:calc(9vh + var(--safe-bot));width:100%}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(3.2rem,11vw,10rem);line-height:.88;letter-spacing:-.02em}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln span{display:inline-block;transform:translateY(110%);transition:transform 1.3s cubic-bezier(.2,.8,.2,1)}
+.hero h1 em{font-style:italic;color:var(--banana)}
+body.ready .hero h1 .ln span{transform:none}
+body.ready .hero h1 .ln:nth-child(2) span{transition-delay:.15s}
+.hero .sub{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between;margin-top:30px}
+.hero .sub p{max-width:400px;color:var(--muted);font-size:1rem}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero .live{position:absolute;right:4vw;top:calc(110px + var(--safe-top));z-index:2;display:flex;align-items:center;gap:10px;background:rgba(18,11,8,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:10px 16px;border-radius:99px;font-size:.75rem;border:1px solid rgba(255,255,255,.12)}
+.pulse{width:9px;height:9px;border-radius:50%;background:#5fe08a;box-shadow:0 0 0 0 rgba(95,224,138,.7);animation:pl 1.8s infinite}
+.pulse.off{background:var(--coral);animation:none}
+@keyframes pl{70%{box-shadow:0 0 0 12px rgba(95,224,138,0)}100%{box-shadow:0 0 0 0 rgba(95,224,138,0)}}
+.scrollcue{position:absolute;left:50%;bottom:calc(18px + var(--safe-bot));z-index:3;width:24px;height:40px;border:1.5px solid rgba(246,231,200,.6);border-radius:14px;transform:translateX(-50%)}
+.scrollcue::after{content:'';position:absolute;left:50%;top:8px;width:3px;height:8px;border-radius:2px;background:var(--banana);transform:translateX(-50%);animation:sc 1.6s infinite}
+@keyframes sc{to{transform:translate(-50%,14px);opacity:0}}
+
+/* ---------- MARQUEE ---------- */
+.marquee{background:var(--banana);color:var(--ink);overflow:hidden;white-space:nowrap;padding:16px 0;transform:rotate(-1.5deg);margin:-10px -2vw 0;position:relative;z-index:3}
+.marquee .tr{display:inline-flex;animation:mq 32s linear infinite}
+.marquee span{font-family:var(--serif);font-size:1.6rem;font-weight:600;font-style:italic;padding:0 22px;display:inline-flex;align-items:center;gap:22px}
+.marquee span::after{content:'';width:12px;height:12px;background:var(--sun);border-radius:50%}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- ABOUT ---------- */
+section{position:relative}
+.about{padding:150px 0 120px}
+.about .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:7vw;align-items:center}
+.about .pics{position:relative;height:620px}
+.about .pics figure{position:absolute;overflow:hidden;border-radius:22px}
+.about .pics figure img{width:100%;height:115%;object-fit:cover;will-change:transform}
+.about .p1{inset:0 22% 18% 0}
+.about .p2{width:52%;height:46%;right:0;bottom:0;border:6px solid var(--night)}
+.about .stamp{position:absolute;right:6%;top:4%;width:120px;height:120px;animation:spin 18s linear infinite;z-index:2}
+@keyframes spin{to{transform:rotate(360deg)}}
+.about p.lead{font-family:var(--serif);font-size:1.6rem;line-height:1.3;margin:24px 0 18px}
+.about p{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px;border-top:1px solid rgba(246,231,200,.15);padding-top:28px}
+.stats b{display:block;font-family:var(--serif);font-size:2.6rem;font-weight:600;color:var(--banana);line-height:1}
+.stats small{font-size:.72rem;color:var(--muted)}
+
+/* ---------- SIGNATURE (sticky scene) ---------- */
+.sig{height:420vh}
+.sig .stick{position:sticky;top:0;height:100svh;overflow:hidden}
+.sig .ph3{position:absolute;inset:0;background-size:cover;background-position:center;transition:opacity .2s}
+#gl3{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 1s;display:block}
+#gl3.on{opacity:1}
+.sig .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,11,8,.6) 0%,rgba(18,11,8,.25) 40%,rgba(18,11,8,0) 60%);pointer-events:none}
+@media(max-width:900px){.sig .shade{background:linear-gradient(180deg,rgba(18,11,8,.7) 0%,rgba(18,11,8,.35) 38%,rgba(18,11,8,0) 55%)}}
+.sig .ui{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;align-items:center;width:min(1200px,92vw);margin:0 auto;left:0;right:0}
+.sig .steps{position:relative;height:300px}
+.sig .step{position:absolute;inset:0;opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s;pointer-events:none}
+.sig .step.on{opacity:1;transform:none;pointer-events:auto}
+.sig .step .k{font-family:var(--script);font-size:1.8rem;color:var(--banana)}
+.sig .step h3{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.8rem);font-weight:500;line-height:1;margin:6px 0 14px;text-shadow:0 4px 30px rgba(0,0,0,.35)}
+.sig .step p{max-width:380px;text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.sig .glasswrap{justify-self:center;width:min(340px,70vw)}
+.sig .glasswrap svg{width:100%;overflow:visible;filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}
+.sig .bar{position:absolute;left:50%;bottom:calc(26px + var(--safe-bot));transform:translateX(-50%);width:160px;height:3px;background:rgba(255,255,255,.2);border-radius:3px;overflow:hidden}
+.sig .bar i{display:block;height:100%;width:0;background:var(--banana)}
+
+/* ---------- MENU ---------- */
+.menu{padding:140px 0 80px;background:linear-gradient(180deg,var(--night),var(--night2))}
+.sechead{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:46px}
+.sechead p{max-width:380px;color:var(--muted)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px;position:relative}
+.tabs button{padding:.7em 1.3em;border-radius:99px;border:1px solid rgba(246,231,200,.22);font-size:.82rem;font-weight:600;transition:.3s}
+.tabs button.on{background:var(--sand);color:var(--ink);border-color:var(--sand)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px}
+.card{background:rgba(246,231,200,.04);border:1px solid rgba(246,231,200,.09);border-radius:22px;overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),border-color .4s,opacity .5s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-8px);border-color:rgba(255,210,63,.45)}
+.card .ph{aspect-ratio:4/3.4;overflow:hidden;position:relative}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.card:hover .ph img{transform:scale(1.09)}
+.card .tag{position:absolute;left:14px;top:14px;background:var(--banana);color:var(--ink);font-size:.62rem;font-weight:800;letter-spacing:.12em;padding:5px 10px;border-radius:99px;text-transform:uppercase}
+.card .bd{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h4{font-family:var(--serif);font-size:1.6rem;font-weight:600;line-height:1.05}
+.card .ds{font-size:.82rem;color:var(--muted);flex:1}
+.card .ft{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.card .pr{font-weight:800;font-size:1.1rem}
+.card .pr small{font-weight:500;color:var(--muted);font-size:.7rem;margin-left:4px}
+.add{width:44px;height:44px;border-radius:50%;background:var(--banana);color:var(--ink);font-size:1.4rem;font-weight:400;display:flex;align-items:center;justify-content:center;transition:transform .3s,background .3s}
+.add:hover{transform:rotate(90deg) scale(1.08)}
+.add.ok{background:#5fe08a}
+.flyer{position:fixed;z-index:200;width:22px;height:22px;border-radius:50%;background:var(--banana);pointer-events:none;box-shadow:0 0 20px var(--banana)}
+
+/* ---------- EVENTS ---------- */
+.events{padding:120px 0}
+.hscroll{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4vw 30px;scrollbar-width:none}
+.hscroll::-webkit-scrollbar{display:none}
+.ev{flex:0 0 min(340px,78vw);height:470px;border-radius:24px;overflow:hidden;position:relative;scroll-snap-align:start;cursor:default}
+.ev img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s}
+.ev:hover img{transform:scale(1.08)}
+.ev::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(10,6,4,.92))}
+.ev .c{position:absolute;inset:auto 0 0 0;padding:24px;z-index:2}
+.ev .day{font-family:var(--script);font-size:1.7rem;color:var(--banana);line-height:1}
+.ev h4{font-family:var(--serif);font-size:2rem;font-weight:600;line-height:1;margin:6px 0 8px}
+.ev p{font-size:.82rem;color:var(--muted)}
+.ev .tm{position:absolute;top:18px;right:18px;z-index:2;background:rgba(18,11,8,.55);backdrop-filter:blur(8px);padding:6px 12px;border-radius:99px;font-size:.72rem;font-weight:700}
+.ev.today{outline:2px solid var(--banana);outline-offset:-2px}
+.ev.today .tm{background:var(--banana);color:var(--ink)}
+.navarrows{display:flex;gap:10px}
+.navarrows button{width:50px;height:50px;border-radius:50%;border:1px solid rgba(246,231,200,.3);font-size:1.2rem;transition:.3s}
+.navarrows button:hover{background:var(--banana);color:var(--ink);border-color:var(--banana)}
+
+/* ---------- BEDS / PRICES ---------- */
+.beds{padding:110px 0;background:var(--sand);color:var(--ink)}
+.beds .eyebrow{color:var(--sun)}
+.beds .h2 em{color:var(--sun)}
+.beds .sechead p{color:rgba(42,26,16,.7)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pc{background:#fff8ea;border-radius:26px;padding:34px 30px;position:relative;overflow:hidden;transition:transform .5s,box-shadow .5s;border:1px solid rgba(42,26,16,.08);display:flex;flex-direction:column}
+.pc:hover{transform:translateY(-10px);box-shadow:0 40px 60px -30px rgba(42,26,16,.35)}
+.pc.hot{background:var(--ink);color:var(--sand)}
+.pc.hot .feat li::before{background:var(--banana)}
+.pc .ribbon{position:absolute;top:22px;right:-38px;background:var(--coral);color:#fff;font-size:.62rem;font-weight:800;letter-spacing:.15em;padding:6px 44px;transform:rotate(45deg)}
+.pc h4{font-family:var(--serif);font-size:2.1rem;font-weight:600;line-height:1}
+.pc .who{font-size:.8rem;opacity:.65;margin-top:4px}
+.pc .big{font-family:var(--serif);font-size:3.6rem;font-weight:600;margin:20px 0 4px;line-height:1}
+.pc .big small{font-family:var(--sans);font-size:.8rem;font-weight:500;opacity:.6}
+.feat{list-style:none;margin:20px 0 28px;display:grid;gap:10px;font-size:.88rem;flex:1}
+.feat li{display:flex;gap:10px;align-items:flex-start}
+.feat li::before{content:'';flex:0 0 8px;height:8px;border-radius:50%;background:var(--sun);margin-top:7px}
+.pc .btn{justify-content:center}
+.pc .btn-d{background:var(--ink);color:var(--sand)}
+.pc.hot .btn-d{background:var(--banana);color:var(--ink)}
+.pc .btn-d:hover{transform:translateY(-3px)}
+
+/* ---------- GALLERY ---------- */
+.gallery{padding:120px 0}
+.mason{columns:3 280px;column-gap:16px}
+.mason figure{break-inside:avoid;margin-bottom:16px;border-radius:18px;overflow:hidden;position:relative;cursor:zoom-in}
+.mason img{width:100%;transition:transform 1.2s,filter .6s;filter:saturate(1.05)}
+.mason figure:hover img{transform:scale(1.06);filter:saturate(1.3)}
+.mason figcaption{position:absolute;left:14px;bottom:12px;font-family:var(--script);font-size:1.4rem;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.6);opacity:0;transform:translateY(10px);transition:.4s}
+.mason figure:hover figcaption{opacity:1;transform:none}
+#lb{position:fixed;inset:0;z-index:120;background:rgba(10,6,4,.94);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:.4s;padding:4vw}
+#lb.open{opacity:1;visibility:visible}
+#lb img{max-height:86vh;border-radius:14px;transform:scale(.92);transition:transform .5s}
+#lb.open img{transform:none}
+#lb .x{position:absolute;top:calc(20px + var(--safe-top));right:20px;width:48px;height:48px;border-radius:50%;background:var(--sand);color:var(--ink);font-size:1.4rem}
+
+/* ---------- REVIEWS ---------- */
+.reviews{padding:100px 0;overflow:hidden;background:var(--night2)}
+.rtrack{display:flex;gap:20px;width:max-content;animation:mq 60s linear infinite}
+.reviews:hover .rtrack{animation-play-state:paused}
+.rv{width:340px;background:rgba(246,231,200,.05);border:1px solid rgba(246,231,200,.1);border-radius:22px;padding:26px}
+.rv .st{color:var(--banana);letter-spacing:3px}
+.rv p{font-family:var(--serif);font-size:1.25rem;line-height:1.35;margin:12px 0 16px}
+.rv .who{display:flex;align-items:center;gap:10px;font-size:.8rem}
+.rv .av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--ink)}
+.rating{display:flex;align-items:center;gap:16px;margin-bottom:40px}
+.rating b{font-family:var(--serif);font-size:4rem;line-height:1;color:var(--banana)}
+
+/* ---------- FAQ ---------- */
+.faq{padding:120px 0}
+.faq .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:6vw}
+.qa{border-bottom:1px solid rgba(246,231,200,.14)}
+.qa button{width:100%;text-align:left;padding:24px 0;display:flex;justify-content:space-between;gap:20px;font-family:var(--serif);font-size:1.45rem;font-weight:500}
+.qa button i{flex:0 0 30px;height:30px;border-radius:50%;border:1px solid rgba(246,231,200,.35);position:relative;transition:.4s}
+.qa button i::before,.qa button i::after{content:'';position:absolute;left:50%;top:50%;width:11px;height:1.5px;background:currentColor;transform:translate(-50%,-50%)}
+.qa button i::after{transform:translate(-50%,-50%) rotate(90deg);transition:.4s}
+.qa.open button i{background:var(--banana);color:var(--ink);border-color:var(--banana)}
+.qa.open button i::after{transform:translate(-50%,-50%) rotate(0)}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s}
+.qa.open .ans{grid-template-rows:1fr}
+.qa .ans>div{overflow:hidden;color:var(--muted)}
+.qa .ans p{padding-bottom:24px}
+
+/* ---------- VISIT ---------- */
+.visit{padding:120px 0;background:linear-gradient(180deg,var(--night),#0d1a1c)}
+.visit .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:stretch}
+.map{position:relative;border-radius:26px;overflow:hidden;background:#0f2a2c;min-height:440px}
+.map svg{width:100%;height:100%;position:absolute;inset:0}
+.map .pin{position:absolute;left:23%;top:30%;transform:translate(-50%,-100%);text-align:center}
+.map .pin .lab{background:var(--banana);color:var(--ink);font-size:.72rem;font-weight:800;padding:6px 12px;border-radius:99px;white-space:nowrap;box-shadow:0 10px 20px rgba(0,0,0,.3)}
+.map .pin .dot{width:16px;height:16px;border-radius:50%;background:var(--coral);margin:8px auto 0;box-shadow:0 0 0 0 rgba(255,94,126,.7);animation:pl2 2s infinite}
+@keyframes pl2{70%{box-shadow:0 0 0 22px rgba(255,94,126,0)}100%{box-shadow:0 0 0 0 rgba(255,94,126,0)}}
+.map .boat{position:absolute;font-size:0;width:34px;height:14px;animation:boat 16s linear infinite}
+@keyframes boat{0%{left:-10%;top:66%}100%{left:105%;top:58%}}
+.info{display:grid;gap:18px}
+.box{background:rgba(246,231,200,.05);border:1px solid rgba(246,231,200,.1);border-radius:22px;padding:24px 26px}
+.box h5{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--banana);margin-bottom:12px}
+.hours{display:grid;grid-template-columns:1fr auto;gap:6px 20px;font-size:.88rem}
+.hours .now{color:var(--banana);font-weight:800}
+.openst{display:flex;align-items:center;gap:10px;font-weight:700;margin-bottom:14px}
+.contact{padding:110px 0 120px}
+.cform{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+.cform .full{grid-column:1/-1}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld label{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.fld input,.fld select,.fld textarea{background:rgba(246,231,200,.06);border:1px solid rgba(246,231,200,.18);border-radius:14px;padding:14px 16px;color:var(--sand);font:inherit;font-size:16px;outline:none;transition:border-color .3s,background .3s;width:100%}
+.fld select option{color:#000}
+.fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--banana);background:rgba(246,231,200,.1)}
+.fld .err{border-color:var(--coral)!important}
+.sent{display:none;padding:22px;border-radius:18px;background:rgba(95,224,138,.12);border:1px solid rgba(95,224,138,.4);margin-top:20px}
+
+/* ---------- FOOTER ---------- */
+footer{background:#0a0604;padding:90px 0 calc(40px + var(--safe-bot));overflow:hidden}
+.bigname{font-family:var(--serif);font-size:clamp(4rem,17vw,16rem);line-height:.8;font-weight:500;letter-spacing:-.03em;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(255,210,63,.45);margin-bottom:60px}
+.fgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:30px;font-size:.85rem;color:var(--muted)}
+.fgrid h6{color:var(--sand);font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;margin-bottom:14px}
+.fgrid a{display:block;text-decoration:none;margin-bottom:8px}
+.fgrid a:hover{color:var(--banana)}
+.legal{margin-top:50px;padding-top:24px;border-top:1px solid rgba(246,231,200,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.72rem;color:rgba(246,231,200,.4)}
+
+/* ---------- DRAWER / CHECKOUT ---------- */
+.scrim{position:fixed;inset:0;z-index:80;background:rgba(5,3,2,.6);opacity:0;visibility:hidden;transition:.4s;backdrop-filter:blur(4px)}
+.scrim.on{opacity:1;visibility:visible}
+#drawer{position:fixed;top:0;right:0;bottom:0;z-index:81;width:min(440px,100vw);background:var(--sand);color:var(--ink);transform:translateX(100%);transition:transform .6s cubic-bezier(.7,0,.2,1);display:flex;flex-direction:column;padding-top:var(--safe-top)}
+#drawer.on{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:24px 24px 16px;border-bottom:1px solid rgba(42,26,16,.1)}
+.dh h3{font-family:var(--serif);font-size:2rem;font-weight:600}
+.xb{width:42px;height:42px;border-radius:50%;background:var(--ink);color:var(--sand);font-size:1.2rem}
+.dl{flex:1;overflow:auto;padding:10px 24px}
+.ci{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px dashed rgba(42,26,16,.14);animation:ciIn .5s}
+@keyframes ciIn{from{opacity:0;transform:translateX(30px)}}
+.ci img{width:64px;height:64px;border-radius:14px;object-fit:cover}
+.ci h5{font-family:var(--serif);font-size:1.2rem;font-weight:600;line-height:1.1}
+.ci .u{font-size:.75rem;opacity:.6}
+.qty{display:flex;align-items:center;gap:6px;margin-top:6px}
+.qty button{width:28px;height:28px;border-radius:50%;border:1px solid rgba(42,26,16,.25);font-weight:700}
+.qty span{min-width:20px;text-align:center;font-weight:800}
+.ci .rm{font-size:.7rem;text-decoration:underline;opacity:.55;margin-top:6px}
+.ci .lt{font-weight:800;text-align:right}
+.empty{text-align:center;padding:60px 10px;opacity:.7}
+.empty svg{width:90px;margin:0 auto 14px}
+.df{padding:18px 24px calc(22px + var(--safe-bot));border-top:1px solid rgba(42,26,16,.1);background:#fff8ea}
+.row{display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:6px}
+.row.tot{font-size:1.2rem;font-weight:800;margin:10px 0 16px}
+.df .btn{width:100%;justify-content:center;background:var(--ink);color:var(--sand)}
+.df .btn:disabled{opacity:.35;cursor:not-allowed}
+
+#co{position:fixed;inset:0;z-index:95;display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;visibility:hidden;transition:.4s}
+#co.on{opacity:1;visibility:visible}
+#co .modal{width:min(560px,100%);max-height:92vh;overflow:auto;background:var(--sand);color:var(--ink);border-radius:28px;padding:30px 28px;transform:translateY(40px) scale(.97);transition:transform .5s cubic-bezier(.2,.7,.2,1);position:relative}
+#co.on .modal{transform:none}
+.stepper{display:flex;gap:8px;margin:14px 0 24px}
+.stepper i{flex:1;height:4px;border-radius:2px;background:rgba(42,26,16,.12);position:relative;overflow:hidden}
+.stepper i.on::after{content:'';position:absolute;inset:0;background:var(--sun);animation:fillb .5s forwards}
+@keyframes fillb{from{transform:translateX(-100%)}}
+#co h3{font-family:var(--serif);font-size:2.1rem;font-weight:600;line-height:1}
+#co .fld label{color:rgba(42,26,16,.6)}
+#co .fld input,#co .fld select,#co .fld textarea{background:#fff8ea;border-color:rgba(42,26,16,.18);color:var(--ink)}
+#co .fld input:focus,#co .fld select:focus{border-color:var(--sun)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.g2 .full{grid-column:1/-1}
+.pays{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.pays label{border:1.5px solid rgba(42,26,16,.15);border-radius:16px;padding:14px 8px;text-align:center;font-size:.78rem;font-weight:700;cursor:pointer;transition:.3s;display:flex;flex-direction:column;align-items:center;gap:6px}
+.pays input{display:none}
+.pays input:checked+label{border-color:var(--sun);background:#fff3df;box-shadow:0 0 0 3px rgba(255,122,61,.18)}
+.pays svg{width:30px;height:30px}
+.cc{border-radius:20px;padding:22px;background:linear-gradient(135deg,#ff7a3d,#ff5e7e 55%,#7b3fe4);color:#fff;margin-bottom:18px;aspect-ratio:1.7;max-width:340px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 20px 40px -20px rgba(123,63,228,.6);position:relative;overflow:hidden}
+.cc::before{content:'';position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.12);right:-60px;top:-80px}
+.cc .num{font-size:1.25rem;letter-spacing:.12em;font-weight:600}
+.cc .bt{display:flex;justify-content:space-between;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em}
+.qr{display:flex;gap:18px;align-items:center;background:#fff8ea;border-radius:18px;padding:16px;margin-bottom:18px}
+.qr svg{width:120px;height:120px;flex:0 0 120px}
+.sumline{background:#fff8ea;border-radius:16px;padding:14px 16px;margin:18px 0;font-size:.85rem}
+.coact{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.coact .btn{flex:1;justify-content:center}
+.coact .back{background:transparent;border:1.5px solid rgba(42,26,16,.25)}
+.coact .go{background:var(--ink);color:var(--sand)}
+.proc{text-align:center;padding:40px 0}
+.spin{width:60px;height:60px;border-radius:50%;border:4px solid rgba(42,26,16,.12);border-top-color:var(--sun);margin:0 auto 18px;animation:spin .8s linear infinite}
+.done{text-align:center}
+.done .ck{width:90px;height:90px;margin:0 auto 14px}
+.done .ck circle{stroke-dasharray:260;stroke-dashoffset:260;animation:draw .9s forwards}
+.done .ck path{stroke-dasharray:60;stroke-dashoffset:60;animation:draw .5s .7s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.ordno{display:inline-block;font-family:monospace;font-size:1.1rem;background:var(--ink);color:var(--banana);padding:8px 16px;border-radius:10px;margin:14px 0}
+.conf{position:fixed;z-index:130;pointer-events:none;top:-40px;font-size:0}
+.toast{position:fixed;left:50%;bottom:calc(24px + var(--safe-bot));transform:translate(-50%,120px);z-index:140;background:var(--ink);color:var(--sand);padding:12px 20px;border-radius:99px;font-size:.85rem;font-weight:600;border:1px solid rgba(255,210,63,.4);transition:transform .5s cubic-bezier(.2,.8,.2,1);white-space:nowrap}
+.toast.on{transform:translate(-50%,0)}
+.cursor{position:fixed;z-index:300;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--banana);pointer-events:none;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s;mix-blend-mode:difference;display:none}
+.cursor.big{width:70px;height:70px;background:rgba(255,210,63,.25)}
+@media(hover:hover) and (pointer:fine){.cursor{display:block}}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  nav.links{display:none}.burger{display:flex}
+  .about .grid,.faq .grid,.visit .grid{grid-template-columns:1fr}
+  .about .pics{height:460px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .pgrid{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .sig .ui{grid-template-columns:1fr;grid-template-rows:auto 1fr;align-items:start;padding-top:calc(100px + var(--safe-top))}
+  .sig .steps{height:210px}
+  .sig .glasswrap{width:min(230px,58vw);align-self:end;margin-bottom:calc(70px + var(--safe-bot))}
+  .hero .live{top:auto;bottom:auto;left:4vw;right:auto;top:calc(86px + var(--safe-top))}
+  .cform,.g2{grid-template-columns:1fr}
+  .about{padding:110px 0 80px}
+}
+@media(max-width:520px){
+  .keys button{width:58px;height:58px}
+  .pays{grid-template-columns:1fr 1fr 1fr}
+  .brand small{display:none}
+  .marquee span{font-size:1.25rem}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
+</style>
+</head>
+<body class="locked">
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="logo" viewBox="0 0 100 100">
+      <defs>
+        <linearGradient id="lgSun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f"/><stop offset=".55" stop-color="#ff7a3d"/><stop offset="1" stop-color="#ff5e7e"/></linearGradient>
+        <clipPath id="lgClip"><circle cx="50" cy="50" r="38"/></clipPath>
+      </defs>
+      <circle cx="50" cy="50" r="38" fill="url(#lgSun)"/>
+      <g clip-path="url(#lgClip)" fill="#120b08">
+        <rect x="0" y="60" width="100" height="3.5"/><rect x="0" y="68" width="100" height="5"/><rect x="0" y="78" width="100" height="8"/><rect x="0" y="90" width="100" height="12"/>
+      </g>
+      <path d="M22 36 C30 62 64 70 82 46 C80 44 77 44 75 46 C62 60 38 58 28 34 Z" fill="#ffd23f" stroke="#120b08" stroke-width="2.4" stroke-linejoin="round"/>
+      <path d="M22 36 l-4 -6 l6 2 z" fill="#3b2a12" stroke="#120b08" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M82 46 l5 -1 l-3 4 z" fill="#3b2a12"/>
+      <circle cx="50" cy="50" r="46" fill="none" stroke="#ffd23f" stroke-width="1.4" stroke-dasharray="2 4"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- LOADER -->
+<div id="loader" aria-hidden="true">
+  <svg class="lg" width="64" height="64"><use href="#logo"/></svg>
+  <div class="num"><span id="pct">0</span></div>
+  <div class="lbl">LOADING <i>the</i> SUNSET</div>
+  <svg class="wave" viewBox="0 0 340 70">
+    <path id="wv" d="M5 55 C40 55 50 20 85 25 S130 60 170 45 S230 10 260 22 S310 40 335 15" fill="none" stroke="#2a1a10" stroke-width="1.6" stroke-dasharray="400" stroke-dashoffset="400"/>
+    <circle cx="5" cy="55" r="5" fill="none" stroke="#2a1a10" stroke-width="1.6"/>
+    <circle id="wdot" cx="5" cy="55" r="5" fill="#ff7a3d"/>
+  </svg>
+  <div class="fact"><b>WUSSTEST DU?</b><span id="fact">Koh Phangan hat über 30 Strände – unserer hat die beste Sicht auf den Sonnenuntergang.</span></div>
+</div>
+
+<!-- INTRO LOCK -->
+<div id="intro">
+  <div class="bg"></div>
+  <button class="skip" id="skip">Überspringen</button>
+  <div class="pad" role="dialog" aria-label="Beach-Code eingeben">
+    <svg class="lg" width="46" height="46"><use href="#logo"/></svg>
+    <h3>Willkommen am Strand</h3>
+    <p>Gib deinen Beach-Code ein</p>
+    <div class="dots" id="dots"><span></span><span></span><span></span><span></span></div>
+    <div class="keys" id="keys">
+      <button data-k="1">1<small>&nbsp;</small></button><button data-k="2">2<small>ABC</small></button><button data-k="3">3<small>DEF</small></button>
+      <button data-k="4">4<small>GHI</small></button><button data-k="5">5<small>JKL</small></button><button data-k="6">6<small>MNO</small></button>
+      <button data-k="7">7<small>PQRS</small></button><button data-k="8">8<small>TUV</small></button><button data-k="9">9<small>WXYZ</small></button>
+      <button class="ghost" data-k="sun">Sunset</button><button data-k="0">0<small>+</small></button><button class="ghost" data-k="del">Löschen</button>
+    </div>
+    <div class="hint">Kein Code? Tipp einfach <b>4 beliebige Zahlen</b>.</div>
+  </div>
+  <div class="welcome">
+    <h1>WELCOME</h1>
+    <p>to Strada Banana</p>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- HEADER -->
+<header id="hd">
+  <a href="#top" class="brand" aria-label="Strada Banana Startseite">
+    <svg><use href="#logo"/></svg>
+    <div><b>STRADA BANANA</b><small>BEACH BAR · KOH PHANGAN</small></div>
+  </a>
+  <nav class="links">
+    <a href="#about">Story</a><a href="#menu">Drinks &amp; Food</a><a href="#events">Events</a><a href="#beds">Liegen</a><a href="#visit">Anfahrt</a><a href="#faq">FAQ</a>
+  </nav>
+  <div class="hd-r">
+    <button class="cartbtn" id="cartBtn" aria-label="Warenkorb öffnen">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      <span class="n" id="cartN">0</span>
+    </button>
+    <button class="burger" id="burger" aria-label="Menü"><i></i><i></i></button>
+  </div>
+</header>
+<div id="mnav">
+  <a href="#about">Story</a><a href="#menu">Drinks &amp; Food</a><a href="#events">Events</a><a href="#beds">Liegen</a><a href="#visit">Anfahrt</a><a href="#contact">Kontakt</a>
+  <div class="mi">Täglich 11:00 – 02:00 · Haad Yao Beach</div>
+</div>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="bgimg" id="heroImg"></div>
+  <div class="live"><span class="pulse" id="pulse"></span><span id="liveTxt">Jetzt geöffnet</span></div>
+  <div class="in wrap">
+    <div class="eyebrow">Beach Bar · Haad Yao · Thailand</div>
+    <h1><span class="ln"><span>Barfuß bis</span></span><span class="ln"><span>der <em>Mond</em> kommt.</span></span></h1>
+    <div class="sub">
+      <p>Cocktails aus frischen Früchten, Thai-Streetfood vom Grill, Sunset-DJ und Feuershows – direkt im Sand von Koh Phangan.</p>
+      <div class="cta"><a class="btn btn-y" href="#menu">Drinks bestellen →</a><a class="btn btn-o" href="#beds">Liege reservieren</a></div>
+    </div>
+  </div>
+  <div class="scrollcue"></div>
+</section>
+
+<div class="marquee"><div class="tr" id="mq"></div></div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap grid">
+    <div class="pics reveal">
+      <figure class="p1"><img src="img/stilt.webp" alt="Bar auf Stelzen im Sonnenuntergang" data-par="0.12"></figure>
+      <figure class="p2"><img src="img/lights.webp" alt="Lichterketten am Strand" data-par="0.2"></figure>
+      <svg class="stamp" viewBox="0 0 120 120">
+        <defs><path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+        <circle cx="60" cy="60" r="58" fill="#ffd23f"/>
+        <text font-family="Manrope" font-size="10.5" font-weight="800" letter-spacing="3.2" fill="#2a1a10"><textPath href="#circ">SINCE 2016 · NO SHOES · NO STRESS · </textPath></text>
+        <use href="#logo" x="38" y="38" width="44" height="44"/>
+      </svg>
+    </div>
+    <div>
+      <div class="eyebrow reveal">Unsere Story</div>
+      <h2 class="h2 reveal d1">Eine Hütte, ein Mixer &amp; <em>zu viele Bananen.</em></h2>
+      <p class="lead reveal d2">2016 haben Malee und Luca am Haad Yao Beach eine Bambushütte gebaut – mit einem Mixer und einer Kiste Bananen vom Nachbarn.</p>
+      <p class="reveal d3">Heute ist Strada Banana der Treffpunkt der Westküste: 40 Sitzplätze im Sand, Daybeds unter Palmen und jeden Abend ein Sonnenuntergang, den man nicht fotografieren kann, so schön ist er. Unsere Früchte kommen von Bauern aus Surat Thani, der Rum aus Chiang Mai und die Musik vom DJ, der zufällig auch unser Barkeeper ist.</p>
+      <div class="stats reveal">
+        <div><b data-count="2016">0</b><small>gegründet</small></div>
+        <div><b data-count="42">0</b><small>Signature Drinks</small></div>
+        <div><b data-count="365">0</b><small>Sunsets im Jahr</small></div>
+        <div><b data-count="0">0</b><small>Schuhe nötig</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE SCROLL SCENE -->
+<section class="sig" id="sig">
+  <div class="stick">
+    <div class="ph3" style="background-image:url(img/bg_day.webp)"></div><div class="ph3" style="background-image:url(img/stilt.webp);opacity:0"></div><div class="ph3" style="background-image:url(img/night.webp);opacity:0"></div>
+    <canvas id="gl3" aria-hidden="true"></canvas>
+    <div class="shade"></div>
+    <div class="ui">
+      <div class="steps">
+        <div class="step on" data-s="0"><div class="k">Signature Drink</div><h3>Der Sunset<br>im Glas.</h3><p>Scroll weiter und schau zu, wie unser Strada Sunset entsteht – während draußen die Sonne untergeht.</p></div>
+        <div class="step" data-s="1"><div class="k">Schritt 1</div><h3>Banane, <br>reif &amp; süß.</h3><p>Frische Hom-Bananen aus Surat Thani, mit Kokosmilch und einem Schuss hellem Rum gemixt.</p></div>
+        <div class="step" data-s="2"><div class="k">Schritt 2</div><h3>Mango &amp;<br>Maracuja.</h3><p>Die goldene Mitte – pürierte Nam-Dok-Mai-Mango und Passionsfrucht vom Markt in Thong Sala.</p></div>
+        <div class="step" data-s="3"><div class="k">Schritt 3</div><h3>Der Horizont<br>in Pink.</h3><p>Hausgemachte Grenadine sinkt langsam nach unten – genau wie die Sonne gerade.</p></div>
+        <div class="step" data-s="4"><div class="k">Fertig</div><h3>Strada Sunset<br>· 220 ฿</h3><p style="margin-bottom:18px">Mit Bananenscheibe, Schirmchen und Blick aufs Meer.</p><button class="btn btn-y" data-add="sunset">In den Warenkorb +</button></div>
+      </div>
+    </div>
+    <div class="bar"><i id="sigBar"></i></div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="sechead">
+      <div><div class="eyebrow reveal">Karte</div><h2 class="h2 reveal d1">Drinks &amp; <em>Food</em></h2></div>
+      <p class="reveal d2">Bestell direkt an deine Liege oder hol's an der Bar ab. Preise in Thai Baht (฿) inkl. 7 % MwSt.</p>
+    </div>
+    <div class="tabs reveal" id="tabs">
+      <button class="on" data-c="sig">Signature</button><button data-c="classic">Klassiker</button><button data-c="free">Alkoholfrei</button><button data-c="food">Thai Food</button>
+    </div>
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events" id="events">
+  <div class="wrap sechead">
+    <div><div class="eyebrow reveal">Jede Woche</div><h2 class="h2 reveal d1">Nach Sonnenuntergang <em>geht's los.</em></h2></div>
+    <div class="navarrows"><button id="evL" aria-label="zurück">←</button><button id="evR" aria-label="weiter">→</button></div>
+  </div>
+  <div class="hscroll" id="evs"></div>
+</section>
+
+<!-- BEDS -->
+<section class="beds" id="beds">
+  <div class="wrap">
+    <div class="sechead">
+      <div><div class="eyebrow reveal">Preise</div><h2 class="h2 reveal d1">Dein Platz <em>im Sand.</em></h2></div>
+      <p class="reveal d2">Reservier eine Liege, Cabana oder unsere Sala für den ganzen Tag. Der Preis wird komplett als Guthaben für Drinks &amp; Food angerechnet.</p>
+    </div>
+    <div class="pgrid">
+      <div class="pc reveal"><h4>Sunbed</h4><div class="who">1–2 Personen</div><div class="big">400 ฿<small> / Tag</small></div>
+        <ul class="feat"><li>Liege mit Auflage &amp; Sonnenschirm</li><li>Handtuch-Service</li><li>400 ฿ Getränkeguthaben</li><li>Bestellung per Fähnchen</li></ul>
+        <button class="btn btn-d" data-add="bed1">Reservieren</button></div>
+      <div class="pc hot reveal d1"><span class="ribbon">BELIEBT</span><h4>Banana Cabana</h4><div class="who">bis 4 Personen</div><div class="big">1.800 ฿<small> / Tag</small></div>
+        <ul class="feat"><li>Daybed mit Vorhängen in der ersten Reihe</li><li>Eimer Chang + Obstplatte zur Begrüßung</li><li>1.800 ฿ Guthaben</li><li>Bester Sunset-Blick</li></ul>
+        <button class="btn btn-d" data-add="bed2">Reservieren</button></div>
+      <div class="pc reveal d2"><h4>VIP Sala</h4><div class="who">bis 10 Personen</div><div class="big">6.500 ฿<small> / Abend</small></div>
+        <ul class="feat"><li>Private Bambus-Sala mit Lounge</li><li>Flasche Mekhong oder Sang Som + Mixer</li><li>Eigener Kellner, Fire-Show-Platz</li><li>Ideal für Geburtstage</li></ul>
+        <button class="btn btn-d" data-add="bed3">Reservieren</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sechead"><div><div class="eyebrow reveal">Galerie</div><h2 class="h2 reveal d1">So sieht ein <em>Dienstag</em> aus.</h2></div><p class="reveal d2">Tippe auf ein Bild für die große Ansicht.</p></div>
+    <div class="mason" id="mason"></div>
+  </div>
+</section>
+<div id="lb"><button class="x" aria-label="Schließen">×</button><img alt=""></div>
+
+<!-- REVIEWS -->
+<section class="reviews">
+  <div class="wrap rating reveal"><b>4,8</b><div><div style="color:var(--banana);letter-spacing:4px">★★★★★</div><small style="color:var(--muted)">aus 1.240 Bewertungen auf Google &amp; Tripadvisor</small></div></div>
+  <div class="rtrack" id="rtrack"></div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap grid">
+    <div><div class="eyebrow reveal">FAQ</div><h2 class="h2 reveal d1">Gute <em>Fragen.</em></h2><p class="reveal d2" style="color:var(--muted);margin-top:18px">Noch was offen? Schreib uns auf WhatsApp – wir antworten meistens schneller als die Bananen reifen.</p></div>
+    <div id="qas"></div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="visit" id="visit">
+  <div class="wrap">
+    <div class="sechead"><div><div class="eyebrow reveal">Anfahrt</div><h2 class="h2 reveal d1">Finde uns am <em>Haad Yao.</em></h2></div><p class="reveal d2">Westküste von Koh Phangan, 15 Minuten mit dem Roller vom Pier in Thong Sala.</p></div>
+    <div class="grid">
+      <div class="map reveal">
+        <svg viewBox="0 0 600 440" preserveAspectRatio="xMidYMid slice">
+          <rect width="600" height="440" fill="#0f2a2c"/>
+          <g stroke="#1b4446" stroke-width="1" fill="none" opacity=".7">
+            <path d="M0 80 Q300 50 600 90"/><path d="M0 160 Q300 130 600 170"/><path d="M0 240 Q300 210 600 250"/><path d="M0 320 Q300 290 600 330"/><path d="M0 400 Q300 370 600 410"/>
+          </g>
+          <path d="M150 60 C230 20 330 30 400 70 C470 110 520 170 500 240 C485 300 520 350 470 395 C410 440 320 420 260 400 C200 380 150 360 135 300 C120 240 90 200 105 140 C112 100 120 75 150 60Z" fill="#2c5d4c" stroke="#ffd23f" stroke-width="1.5" stroke-dasharray="4 5"/>
+          <path d="M200 120 C250 160 300 150 340 200 C370 240 420 260 450 300" stroke="#e8c98f" stroke-width="3" fill="none" stroke-dasharray="1 8" stroke-linecap="round"/>
+          <path d="M260 380 C250 320 220 260 200 120" stroke="#e8c98f" stroke-width="3" fill="none" stroke-dasharray="1 8" stroke-linecap="round"/>
+          <circle cx="262" cy="384" r="6" fill="#e8c98f"/><text x="276" y="390" fill="#f6e7c8" font-family="Manrope" font-size="13" font-weight="700">Thong Sala Pier</text>
+          <circle cx="452" cy="300" r="5" fill="#e8c98f"/><text x="380" y="330" fill="#f6e7c8" font-family="Manrope" font-size="12" opacity=".7">Haad Rin</text>
+          <text x="330" y="110" fill="#f6e7c8" font-family="Manrope" font-size="12" opacity=".7">Thong Nai Pan</text>
+          <text x="410" y="200" fill="#f6e7c8" font-family="Cormorant Garamond" font-size="22" font-style="italic" opacity=".5">Koh Phangan</text>
+          <text x="20" y="420" fill="#1fb5a8" font-family="Manrope" font-size="11" letter-spacing="3" font-weight="700">GOLF VON THAILAND</text>
+        </svg>
+        <div class="pin"><div class="lab">Strada Banana</div><div class="dot"></div></div>
+        <svg class="boat" viewBox="0 0 34 14"><path d="M0 6 H34 L28 14 H6Z" fill="#e8c98f"/><path d="M14 6 V0 L22 6Z" fill="#f6e7c8"/></svg>
+      </div>
+      <div class="info">
+        <div class="box reveal">
+          <div class="openst"><span class="pulse" id="pulse2"></span><span id="openTxt">Jetzt geöffnet</span></div>
+          <h5>Öffnungszeiten</h5>
+          <div class="hours" id="hours"></div>
+        </div>
+        <div class="box reveal d1"><h5>Adresse</h5><p>Strada Banana Beach Bar<br>44/7 Moo 8, Haad Yao Beach<br>Ko Pha-ngan, Surat Thani 84280, Thailand</p></div>
+        <div class="box reveal d2"><h5>Kontakt</h5><p>WhatsApp / Tel.: +66 81 234 5678<br>hello@stradabanana.co.th<br>Instagram: @stradabanana</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap" style="max-width:820px">
+    <div class="eyebrow reveal">Kontakt</div>
+    <h2 class="h2 reveal d1">Geburtstag, Hochzeit, <em>Crew-Party?</em></h2>
+    <p class="reveal d2" style="color:var(--muted);margin-top:14px">Schreib uns, wir bauen dir den Abend – mit Feuershow, DJ und einem Drink, der deinen Namen trägt.</p>
+    <form class="cform reveal" id="cform" novalidate>
+      <div class="fld"><label>Name</label><input name="n" required></div>
+      <div class="fld"><label>E-Mail</label><input name="e" type="email" required></div>
+      <div class="fld"><label>Anlass</label><select name="a"><option>Geburtstag</option><option>Hochzeit / Verlobung</option><option>Firmen-Event</option><option>Sonstiges</option></select></div>
+      <div class="fld"><label>Personen</label><input name="p" type="number" min="1" value="8"></div>
+      <div class="fld full"><label>Nachricht</label><textarea name="m" rows="4"></textarea></div>
+      <div class="full"><button class="btn btn-y" type="submit">Anfrage senden →</button></div>
+    </form>
+    <div class="sent" id="sent">Danke! Das ist eine Demo-Seite, deshalb wurde nichts verschickt. Bei einer echten Seite käme die Anfrage jetzt bei der Bar an.</div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="bigname">Strada Banana</div>
+  <div class="wrap">
+    <div class="fgrid">
+      <div><div class="brand" style="margin-bottom:16px"><svg><use href="#logo"/></svg><div><b>STRADA BANANA</b><small>BEACH BAR · KOH PHANGAN</small></div></div><p>Cocktails, Thai Food &amp; Sunsets seit 2016. Täglich 11:00 – 02:00.</p></div>
+      <div><h6>Entdecken</h6><a href="#menu">Karte</a><a href="#events">Events</a><a href="#beds">Liegen &amp; Preise</a><a href="#gallery">Galerie</a></div>
+      <div><h6>Infos</h6><a href="#visit">Anfahrt</a><a href="#faq">FAQ</a><a href="#contact">Events buchen</a><a href="#contact">Jobs</a></div>
+      <div><h6>Rechtliches</h6><a href="#top">Impressum (Platzhalter)</a><a href="#top">Datenschutz (Platzhalter)</a><a href="#top">AGB (Platzhalter)</a></div>
+    </div>
+    <div class="legal"><span>© 2026 Strada Banana Co., Ltd. – Demo-Website, fiktives Unternehmen.</span><span>Fotos: Unsplash (Unsplash-Lizenz)</span></div>
+  </div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="scrim" id="scrim"></div>
+<aside id="drawer" aria-label="Warenkorb">
+  <div class="dh"><h3>Dein Tab</h3><button class="xb" id="dClose" aria-label="Schließen">×</button></div>
+  <div class="dl" id="dl"></div>
+  <div class="df">
+    <div class="row"><span>Zwischensumme</span><span id="sub">0 ฿</span></div>
+    <div class="row"><span>Service (10 %)</span><span id="svc">0 ฿</span></div>
+    <div class="row tot"><span>Gesamt</span><span id="tot">0 ฿</span></div>
+    <button class="btn" id="toCo" disabled>Zur Kasse →</button>
+  </div>
+</aside>
+
+<!-- CHECKOUT -->
+<div id="co" aria-modal="true" role="dialog">
+  <div class="modal" id="coM"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const fmt=n=>n.toLocaleString('de-DE')+' ฿';
+
+/* ---------- DATA ---------- */
+const P={
+ sunset:{n:'Strada Sunset',p:220,img:'img/c_mango.webp',c:'sig',d:'Banane, Kokos, Mango, Maracuja, Grenadine, heller Rum.',t:'Bestseller'},
+ coco:{n:'Coco Loco',p:240,img:'img/c_coco.webp',c:'sig',d:'Direkt in der jungen Kokosnuss: Rum, Kokoswasser, Limette.',t:'In der Nuss'},
+ ruby:{n:'Ruby Tide',p:230,img:'img/c_rubyrum.webp',c:'sig',d:'Wassermelone, Thai-Basilikum, Gin, Chili-Salzrand.'},
+ lychee:{n:'Lychee Breeze',p:210,img:'img/c_lychee.webp',c:'sig',d:'Litschi, Zitronengras, Wodka, Soda & Minze.'},
+ trio:{n:'Sunset Flight',p:590,img:'img/c_trio.webp',c:'sig',d:'Drei Mini-Signatures zum Teilen – perfekt zum Sonnenuntergang.',t:'Zum Teilen'},
+ mojito:{n:'Mojito',p:190,img:'img/c_mojito.webp',c:'classic',d:'Weißer Rum, Limette, frische Minze, Rohrzucker.'},
+ sour:{n:'Mekhong Sour',p:200,img:'img/c_sour.webp',c:'classic',d:'Thailands Kult-Spirit mit Zitrone, Eiweiß und Bitters.'},
+ duo:{n:'Margarita & Daiquiri',p:360,img:'img/c_bar.webp',c:'classic',d:'Die zwei Klassiker als Duo – frisch geshaked.'},
+ pine:{n:'Piña Colada',p:200,img:'img/c_pineapple.webp',c:'classic',d:'Ananas aus Pattaya, Kokoscreme, Rum.'},
+ passion:{n:'Passion Cooler',p:120,img:'img/c_passion.webp',c:'free',d:'Maracuja, Orange, Soda – ohne Alkohol, mit viel Eis.',t:'0 %'},
+ mangoss:{n:'Mango Shake',p:110,img:'img/c_pineapple.webp',c:'free',d:'Reife Mango, Eis, ein Hauch Limette.',t:'0 %'},
+ nojito:{n:'Nojito',p:110,img:'img/c_mojito.webp',c:'free',d:'Minze, Limette, Soda, Rohrzucker – alles außer Rum.',t:'0 %'},
+ padthai:{n:'Pad Thai Goong',p:180,img:'img/f_padthai.webp',c:'food',d:'Reisnudeln mit Garnelen, Tamarinde, Erdnüssen.',t:'Hausrezept'},
+ padveg:{n:'Pad Thai Jay',p:150,img:'img/f_padthai2.webp',c:'food',d:'Vegane Version mit Tofu und Sprossen.',t:'Vegan'},
+ noodles:{n:'Spicy Drunken Noodles',p:190,img:'img/f_noodles.webp',c:'food',d:'Breite Nudeln, Thai-Basilikum, Chili, Garnelen.'},
+ satay:{n:'Beach BBQ Spieße',p:160,img:'img/f_satay.webp',c:'food',d:'6 Spieße vom Grill mit Erdnusssauce und Sticky Rice.'},
+ bed1:{n:'Sunbed (Tagesreservierung)',p:400,img:'img/g_palms.webp',c:'res',d:''},
+ bed2:{n:'Banana Cabana (Tag)',p:1800,img:'img/night.webp',c:'res',d:''},
+ bed3:{n:'VIP Sala (Abend)',p:6500,img:'img/lights.webp',c:'res',d:''}
+};
+const EV=[
+ {d:'Montag',n:'Reggae Sunset',t:'17:30',p:'Roots, Rum & Hängematten. Happy Hour bis 19 Uhr.',i:'img/sunsetcrowd.webp'},
+ {d:'Dienstag',n:'Thai BBQ Night',t:'18:00',p:'Ganzer Fisch vom Grill, Spieße und Live-Akustik.',i:'img/g_crowd.webp'},
+ {d:'Mittwoch',n:'Ladies Night',t:'20:00',p:'2-für-1 auf alle Signatures für die Ladies.',i:'img/dance.webp'},
+ {d:'Donnerstag',n:'Acoustic Waves',t:'19:00',p:'Lokale Bands im Sand, Lagerfeuer, Marshmallows.',i:'img/lights.webp'},
+ {d:'Freitag',n:'Fire Show',t:'21:00',p:'Unsere Fire-Crew zeigt Poi, Staff und Feuerseil-Springen.',i:'img/fire.webp'},
+ {d:'Samstag',n:'Moon Warm-up',t:'22:00',p:'Deep House bis 2 Uhr, Neon-Bodypaint inklusive.',i:'img/firespark.webp'},
+ {d:'Sonntag',n:'Sunday Sessions',t:'16:00',p:'Lazy Beats, Bloody Marys und Bootstour um 16 Uhr.',i:'img/g_boats.webp'}
+];
+const GAL=[['g_bay','Ao Ton Sai'],['firecircle','Freitags'],['c_trio','Sunset Flight'],['g_lagoon','Hidden Lagoon'],['night','Abends'],['g_boats','Longtails'],['dance','Mittwoch'],['f_satay','Grill'],['g_longtail','Bootstour'],['c_lychee','Lychee Breeze']];
+const RV=[
+ ['Lena','Hamburg','Der Strada Sunset war der beste Cocktail meiner ganzen Reise. Und dieser Sonnenuntergang…','#ffd23f'],
+ ['Tom','Sydney','Fire show on Friday was insane. Staff remembered our names on day two.','#ff7a3d'],
+ ['Aylin','Köln','Cabana gebucht, den ganzen Tag nicht mehr aufgestanden. Pad Thai 10/10.','#ff5e7e'],
+ ['Marco','Milano','Atmosfera perfetta, musica giusta, prezzi onesti. Torneremo!','#1fb5a8'],
+ ['Sophie','Wien','Barfuß, Lichterketten, Lagerfeuer – genau so stellt man sich Thailand vor.','#ffd23f'],
+ ['Jake','London','Ordered drinks to my sunbed via the website. Arrived in 6 minutes. Legend.','#ff7a3d']
+];
+const FAQ=[
+ ['Muss ich reservieren?','Für Tische an der Bar nicht. Cabanas und die VIP Sala sind abends oft weg – reservier sie am besten online oder per WhatsApp.'],
+ ['Kann ich direkt an meine Liege bestellen?','Ja! Leg deine Drinks hier in den Warenkorb, gib deine Liegen-Nummer an und wir bringen alles vorbei.'],
+ ['Gibt es vegane und vegetarische Gerichte?','Klar – Pad Thai Jay, Papaya-Salat ohne Fischsauce, Tofu-Spieße und alle Smoothies sind vegan.'],
+ ['Wie komme ich hin?','Mit dem Roller oder Songthaew 15 Minuten vom Pier Thong Sala. Parkplätze direkt an der Straße oberhalb des Strands.'],
+ ['Welche Zahlungsmittel nehmt ihr?','Bar (Baht), Karte (Visa/Mastercard) und PromptPay-QR. Ab 1.000 ฿ ohne Kartengebühr.'],
+ ['Sind Kinder willkommen?','Tagsüber sehr gerne, wir haben Mocktails und Sandspielzeug. Ab 21 Uhr nur noch Erwachsene.']
+];
+
+/* ---------- LOADER ---------- */
+const facts=['Koh Phangan hat über 30 Strände – unserer hat die beste Sicht auf den Sonnenuntergang.','In Thailand gibt es mehr als 28 Bananensorten.','Unser erster Mixer hat 3 Saisons überlebt.'];
+$('#fact').textContent=facts[Math.floor(Math.random()*facts.length)];
+const wv=$('#wv'),wlen=wv.getTotalLength();wv.style.strokeDasharray=wlen;
+let imgReady=false;const pre=new Image();pre.onload=pre.onerror=()=>imgReady=true;pre.src='img/hero.webp';
+let pct=0;const t0=performance.now();
+(function tick(now){
+  const target=Math.min(100,((now-t0)/1700)*100);
+  pct+= (target-pct)*.12; if(!imgReady&&pct>92)pct=92;
+  const v=Math.round(pct);$('#pct').textContent=v;
+  wv.style.strokeDashoffset=wlen*(1-v/100);
+  const pt=wv.getPointAtLength(wlen*v/100);$('#wdot').setAttribute('cx',pt.x);$('#wdot').setAttribute('cy',pt.y);
+  if(v>=100&&imgReady){$('#pct').textContent=100;setTimeout(()=>$('#loader').classList.add('done'),250);return}
+  requestAnimationFrame(tick);
+})(t0);
+
+/* ---------- INTRO KEYPAD ---------- */
+let code='';const dots=$$('#dots span');let unlocked=false;
+function press(k){
+  if(unlocked)return;
+  if(k==='del'){code=code.slice(0,-1)}
+  else if(k==='sun'){code='2626'}
+  else if(code.length<4){code+=k}
+  dots.forEach((d,i)=>d.classList.toggle('on',i<code.length));
+  if(code.length===4)setTimeout(unlock,260);
+}
+function unlock(){
+  if(unlocked)return;unlocked=true;
+  $('#dots').classList.add('ok');
+  setTimeout(()=>{
+    $('#intro').classList.add('open');
+    setTimeout(()=>{$('#intro').classList.add('gone');document.body.classList.remove('locked');document.body.classList.add('ready');},3300);
+  },350);
+}
+$('#keys').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;b.classList.add('hit');setTimeout(()=>b.classList.remove('hit'),140);press(b.dataset.k)});
+document.addEventListener('keydown',e=>{if(unlocked)return;if(/^[0-9]$/.test(e.key))press(e.key);if(e.key==='Backspace')press('del')});
+$('#skip').onclick=()=>{code='0000';dots.forEach(d=>d.classList.add('on'));unlock()};
+
+/* ---------- NAV ---------- */
+const hd=$('#hd');
+$('#burger').onclick=()=>{$('#mnav').classList.toggle('open')};
+$$('#mnav a').forEach(a=>a.onclick=()=>$('#mnav').classList.remove('open'));
+
+/* ---------- MARQUEE ---------- */
+const mqT=['Sunset DJ ab 17:30','Happy Hour 16–18 Uhr','Fire Show Fr & Sa','Bestell an deine Liege','Fresh Fruit Only','No Shoes, No Stress'];
+$('#mq').innerHTML=[...mqT,...mqT,...mqT,...mqT].map(t=>`<span>${t}</span>`).join('');
+
+/* ---------- MENU ---------- */
+function renderCards(c){
+  const cards=$('#cards');
+  cards.style.opacity=0;
+  setTimeout(()=>{
+    cards.innerHTML=Object.entries(P).filter(([k,v])=>v.c===c).map(([k,v],i)=>`
+      <article class="card reveal" style="transition-delay:${i*.07}s">
+        <div class="ph"><img src="${v.img}" alt="${v.n}" loading="lazy">${v.t?`<span class="tag">${v.t}</span>`:''}</div>
+        <div class="bd"><h4>${v.n}</h4><div class="ds">${v.d}</div>
+        <div class="ft"><div class="pr">${fmt(v.p)}</div><button class="add" data-add="${k}" aria-label="${v.n} hinzufügen">+</button></div></div>
+      </article>`).join('');
+    cards.style.opacity=1;
+    $$('#cards .reveal').forEach(el=>io.observe(el));
+  },220);
+}
+$('#cards').style.transition='opacity .25s';
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;$$('#tabs button').forEach(x=>x.classList.toggle('on',x===b));renderCards(b.dataset.c)});
+
+/* ---------- EVENTS ---------- */
+const todayIdx=(()=>{const d=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Bangkok'})).getDay();return (d+6)%7})();
+$('#evs').innerHTML=EV.map((e,i)=>`<div class="ev ${i===todayIdx?'today':''}"><img src="${e.i}" alt="${e.n}" loading="lazy"><span class="tm">${i===todayIdx?'Heute · ':''}${e.t}</span><div class="c"><div class="day">${e.d}</div><h4>${e.n}</h4><p>${e.p}</p></div></div>`).join('');
+const evs=$('#evs');
+$('#evL').onclick=()=>evs.scrollBy({left:-360,behavior:'smooth'});
+$('#evR').onclick=()=>evs.scrollBy({left:360,behavior:'smooth'});
+setTimeout(()=>{const t=evs.children[todayIdx];if(t)evs.scrollLeft=Math.max(0,t.offsetLeft-evs.offsetLeft-20)},500);
+
+/* ---------- GALLERY ---------- */
+$('#mason').innerHTML=GAL.map(([f,c])=>`<figure class="reveal"><img src="img/${f}.webp" alt="${c}" loading="lazy"><figcaption>${c}</figcaption></figure>`).join('');
+$('#mason').addEventListener('click',e=>{const im=e.target.closest('figure')?.querySelector('img');if(!im)return;$('#lb img').src=im.src;$('#lb').classList.add('open')});
+$('#lb').onclick=()=>$('#lb').classList.remove('open');
+
+/* ---------- REVIEWS ---------- */
+const rvH=RV.map(r=>`<div class="rv"><div class="st">★★★★★</div><p>„${r[2]}"</p><div class="who"><span class="av" style="background:${r[3]}">${r[0][0]}</span><div><b>${r[0]}</b><br><small style="opacity:.6">${r[1]}</small></div></div></div>`).join('');
+$('#rtrack').innerHTML=rvH+rvH;
+
+/* ---------- FAQ ---------- */
+$('#qas').innerHTML=FAQ.map(q=>`<div class="qa reveal"><button>${q[0]}<i></i></button><div class="ans"><div><p>${q[1]}</p></div></div></div>`).join('');
+$('#qas').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const qa=b.parentElement;const o=qa.classList.contains('open');$$('.qa').forEach(x=>x.classList.remove('open'));if(!o)qa.classList.add('open')});
+
+/* ---------- HOURS / LIVE ---------- */
+const H=[['Montag','11:00 – 02:00'],['Dienstag','11:00 – 02:00'],['Mittwoch','11:00 – 02:00'],['Donnerstag','11:00 – 02:00'],['Freitag','11:00 – 03:00'],['Samstag','11:00 – 03:00'],['Sonntag','10:00 – 01:00']];
+$('#hours').innerHTML=H.map((h,i)=>`<span class="${i===todayIdx?'now':''}">${h[0]}${i===todayIdx?' (heute)':''}</span><span class="${i===todayIdx?'now':''}">${h[1]}</span>`).join('');
+function liveStatus(){
+  const bk=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Bangkok'}));
+  const h=bk.getHours()+bk.getMinutes()/60;const open=h>=11||h<2;
+  const tt=bk.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
+  const txt=open?`Jetzt geöffnet · ${tt} Uhr in Thailand`:`Geschlossen · öffnet um 11:00 (${tt} Uhr vor Ort)`;
+  $('#liveTxt').textContent=txt;$('#openTxt').textContent=txt;
+  $('#pulse').classList.toggle('off',!open);$('#pulse2').classList.toggle('off',!open);
+}
+liveStatus();setInterval(liveStatus,30000);
+
+/* ---------- REVEAL & COUNTERS ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+$$('.reveal').forEach(el=>io.observe(el));
+renderCards('sig');
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;cio.unobserve(e.target);const el=e.target,to=+el.dataset.count;const from=to>1000?to-60:0;const s=performance.now();
+  (function f(n){const k=Math.min(1,(n-s)/1600),v=Math.round(from+(to-from)*(1-Math.pow(1-k,3)));el.textContent=v;if(k<1)requestAnimationFrame(f)})(s)}),{threshold:.5});
+$$('[data-count]').forEach(el=>cio.observe(el));
+
+/* ---------- SIGNATURE SCENE ---------- */
+const lerp=(a,b,t)=>a+(b-a)*t, cl=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)), seg=(p,a,b)=>cl((p-a)/(b-a));
+const hex=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const mix=(a,b,t)=>{const A=hex(a),B=hex(b);return'rgb('+A.map((v,i)=>Math.round(lerp(v,B[i],t))).join(',')+')'};
+const mix3=(c,p)=>p<.5?mix(c[0],c[1],p*2):mix(c[1],c[2],(p-.5)*2);
+const SKY=[['#5ab6e8','#ff8a4c','#1a1240'],['#bfe6f5','#ffb36b','#3a1f4f'],['#fff1c9','#ffd27a','#ff7a5c']];
+const SEA=[['#1fb5a8','#d26a4a','#1a2440'],['#0a5a66','#5a2a3a','#0a0d1c']];
+const sig=$('#sig'),steps=$$('.sig .step');
+const ph3=$$('.sig .ph3');
+function sigUpdate(){
+  const r=sig.getBoundingClientRect(),total=sig.offsetHeight-innerHeight;
+  const p=cl(-r.top/total);window.__sigP=p;
+  $('#sigBar').style.width=p*100+'%';
+  ph3[1].style.opacity=seg(p,.25,.5);ph3[2].style.opacity=seg(p,.68,.9);
+  const si=p<.12?0:p<.32?1:p<.52?2:p<.72?3:4;
+  steps.forEach((s,i)=>s.classList.toggle('on',i===si));
+}
+
+/* ---------- SCROLL LOOP ---------- */
+const parImgs=$$('[data-par]');const heroImg=$('#heroImg');
+let ticking=false;
+function onScroll(){
+  if(ticking)return;ticking=true;
+  requestAnimationFrame(()=>{
+    const y=scrollY;hd.classList.toggle('solid',y>60);
+    if(y<innerHeight*1.2)heroImg.style.transform=`translateY(${y*.35}px) scale(${1+y*.0002})`;
+    parImgs.forEach(im=>{const r=im.parentElement.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;im.style.transform=`translateY(${(r.top-innerHeight/2)*-+im.dataset.par}px)`});
+    sigUpdate();ticking=false;
+  });
+}
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
+heroImg.style.animation='none';heroImg.style.transition='transform .1s linear';
+
+/* ---------- CURSOR ---------- */
+const cur=$('#cursor');
+addEventListener('pointermove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+document.addEventListener('pointerover',e=>{cur.classList.toggle('big',!!e.target.closest('a,button,.mason figure,.card'))});
+
+/* ---------- CART ---------- */
+let cart={};
+try{cart=JSON.parse(localStorage.getItem('sb_cart')||'{}')||{}}catch(e){cart={}}
+for(const k in cart)if(!P[k])delete cart[k];
+const save=()=>{try{localStorage.setItem('sb_cart',JSON.stringify(cart))}catch(e){}};
+const count=()=>Object.values(cart).reduce((a,b)=>a+b,0);
+const subtotal=()=>Object.entries(cart).reduce((a,[k,q])=>a+P[k].p*q,0);
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('on');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('on'),2200)}
+function renderCart(){
+  $('#cartN').textContent=count();
+  const dl=$('#dl');
+  if(!count()){dl.innerHTML=`<div class="empty"><svg viewBox="0 0 100 100"><use href="#logo"/></svg><p><b>Noch leer hier.</b><br>Zeit für den ersten Drink?</p><a class="btn btn-y" style="margin-top:18px" href="#menu" id="emptyGo">Zur Karte</a></div>`;
+    $('#emptyGo').onclick=closeDrawer;}
+  else dl.innerHTML=Object.entries(cart).map(([k,q])=>`<div class="ci"><img src="${P[k].img}" alt=""><div><h5>${P[k].n}</h5><div class="u">${fmt(P[k].p)} / Stk.</div><div class="qty"><button data-q="-1" data-k="${k}" aria-label="weniger">−</button><span>${q}</span><button data-q="1" data-k="${k}" aria-label="mehr">+</button></div><button class="rm" data-rm="${k}">Entfernen</button></div><div class="lt">${fmt(P[k].p*q)}</div></div>`).join('');
+  const s=subtotal(),sv=Math.round(s*.1);
+  $('#sub').textContent=fmt(s);$('#svc').textContent=fmt(sv);$('#tot').textContent=fmt(s+sv);
+  $('#toCo').disabled=!count();
+}
+function add(k,src){
+  cart[k]=(cart[k]||0)+1;save();
+  if(src){
+    const a=src.getBoundingClientRect(),b=$('#cartBtn').getBoundingClientRect();
+    const f=document.createElement('div');f.className='flyer';document.body.appendChild(f);
+    const x0=a.left+a.width/2,y0=a.top+a.height/2,x1=b.left+b.width/2,y1=b.top+b.height/2;
+    f.animate([{transform:`translate(${x0-11}px,${y0-11}px) scale(1)`},{transform:`translate(${(x0+x1)/2-11}px,${Math.min(y0,y1)-120}px) scale(1.4)`,offset:.5},{transform:`translate(${x1-11}px,${y1-11}px) scale(.3)`}],{duration:750,easing:'cubic-bezier(.5,0,.3,1)'}).onfinish=()=>{f.remove();$('#cartBtn').classList.remove('bump');void $('#cartBtn').offsetWidth;$('#cartBtn').classList.add('bump');renderCart()};
+    if(src.classList.contains('add')){src.classList.add('ok');src.textContent='✓';setTimeout(()=>{src.classList.remove('ok');src.textContent='+'},1100)}
+  }else renderCart();
+  toast(`${P[k].n} hinzugefügt`);
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-add]');if(b){e.preventDefault();add(b.dataset.add,b)}});
+$('#dl').addEventListener('click',e=>{
+  const q=e.target.closest('[data-q]'),r=e.target.closest('[data-rm]');
+  if(q){const k=q.dataset.k;cart[k]+= +q.dataset.q;if(cart[k]<=0)delete cart[k];save();renderCart()}
+  if(r){delete cart[r.dataset.rm];save();renderCart()}
+});
+function openDrawer(){$('#drawer').classList.add('on');$('#scrim').classList.add('on')}
+function closeDrawer(){$('#drawer').classList.remove('on');$('#scrim').classList.remove('on')}
+$('#cartBtn').onclick=openDrawer;$('#dClose').onclick=closeDrawer;$('#scrim').onclick=()=>{closeDrawer();closeCo()};
+renderCart();
+
+/* ---------- CHECKOUT ---------- */
+const co=$('#co'),M=$('#coM');let st=0,data={pay:'card'};
+const hasRes=()=>Object.keys(cart).some(k=>P[k].c==='res');
+function stepper(n){return `<div class="stepper">${[0,1,2].map(i=>`<i class="${i<=n?'on':''}"></i>`).join('')}</div>`}
+function closeCo(){co.classList.remove('on')}
+function openCo(){closeDrawer();st=0;drawCo();co.classList.add('on')}
+$('#toCo').onclick=openCo;
+co.addEventListener('click',e=>{if(e.target===co)closeCo()});
+function val(form){let ok=true;form.querySelectorAll('[required]').forEach(i=>{const bad=!i.value.trim()||(i.type==='email'&&!/^\S+@\S+\.\S+$/.test(i.value));i.classList.toggle('err',bad);if(bad)ok=false});return ok}
+function drawCo(){
+  const s=subtotal(),tot=s+Math.round(s*.1);
+  if(st===0){
+    const minD=new Date().toISOString().slice(0,10);
+    M.innerHTML=`<button class="xb" style="position:absolute;right:20px;top:20px" id="coX">×</button>
+    <div class="eyebrow" style="color:var(--sun)">Schritt 1 von 3</div><h3>Wohin damit?</h3>${stepper(0)}
+    <form id="f1" class="g2" novalidate>
+      <div class="fld full"><label>Name</label><input name="name" required value="${data.name||''}"></div>
+      <div class="fld"><label>E-Mail</label><input name="mail" type="email" required value="${data.mail||''}"></div>
+      <div class="fld"><label>WhatsApp / Tel.</label><input name="tel" value="${data.tel||''}" placeholder="+66 …"></div>
+      <div class="fld"><label>Lieferung</label><select name="where">${['An meine Liege / Tisch','Abholen an der Bar'].map(o=>`<option ${data.where===o?'selected':''}>${o}</option>`).join('')}</select></div>
+      <div class="fld"><label>Liegen- / Tisch-Nr.</label><input name="spot" value="${data.spot||''}" placeholder="z. B. B12"></div>
+      ${hasRes()?`<div class="fld"><label>Datum Reservierung</label><input type="date" name="date" required min="${minD}" value="${data.date||minD}"></div><div class="fld"><label>Personen</label><input type="number" name="ppl" min="1" value="${data.ppl||2}"></div>`:''}
+      <div class="fld full"><label>Wünsche</label><textarea name="note" rows="2" placeholder="Weniger süß, extra Eis …">${data.note||''}</textarea></div>
+    </form>
+    <div class="coact"><button class="btn back" id="coB">Abbrechen</button><button class="btn go" id="coN">Weiter zur Zahlung →</button></div>`;
+    $('#coX').onclick=closeCo;$('#coB').onclick=closeCo;
+    $('#coN').onclick=()=>{const f=$('#f1');if(!val(f))return toast('Bitte Pflichtfelder ausfüllen');new FormData(f).forEach((v,k)=>data[k]=v);st=1;drawCo()};
+  }
+  if(st===1){
+    M.innerHTML=`<button class="xb" style="position:absolute;right:20px;top:20px" id="coX">×</button>
+    <div class="eyebrow" style="color:var(--sun)">Schritt 2 von 3</div><h3>Bezahlen</h3>${stepper(1)}
+    <div class="pays">
+      <input type="radio" name="pay" id="pc" value="card" ${data.pay==='card'?'checked':''}><label for="pc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Karte</label>
+      <input type="radio" name="pay" id="pq" value="qr" ${data.pay==='qr'?'checked':''}><label for="pq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM20 14v7M14 20h3"/></svg>PromptPay</label>
+      <input type="radio" name="pay" id="pb" value="bar" ${data.pay==='bar'?'checked':''}><label for="pb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg>Bar vor Ort</label>
+    </div>
+    <div id="payBox"></div>
+    <div class="sumline"><div class="row"><span>${count()} Artikel</span><span>${fmt(s)}</span></div><div class="row"><span>Service 10 %</span><span>${fmt(Math.round(s*.1))}</span></div><div class="row" style="font-weight:800;font-size:1.05rem;margin:6px 0 0"><span>Gesamt</span><span>${fmt(tot)}</span></div></div>
+    <div class="coact"><button class="btn back" id="coB">← Zurück</button><button class="btn go" id="coN">${fmt(tot)} bezahlen</button></div>`;
+    $('#coX').onclick=closeCo;$('#coB').onclick=()=>{st=0;drawCo()};
+    const drawPay=()=>{
+      const box=$('#payBox');
+      if(data.pay==='card'){box.innerHTML=`<div class="cc"><div style="display:flex;justify-content:space-between;align-items:center"><svg width="34" height="34"><use href="#logo"/></svg><b style="letter-spacing:.15em">TEST CARD</b></div><div class="num" id="ccN">•••• •••• •••• ••••</div><div class="bt"><span id="ccH">${(data.name||'Dein Name').toUpperCase()}</span><span id="ccE">MM/YY</span></div></div>
+        <form id="f2" class="g2" novalidate><div class="fld full"><label>Kartennummer (Test)</label><input id="iN" inputmode="numeric" required placeholder="4242 4242 4242 4242" maxlength="19"></div><div class="fld"><label>Ablauf</label><input id="iE" required placeholder="MM/YY" maxlength="5" inputmode="numeric"></div><div class="fld"><label>CVC</label><input id="iC" required placeholder="123" maxlength="4" inputmode="numeric"></div></form>`;
+        $('#iN').oninput=e=>{let v=e.target.value.replace(/\D/g,'').slice(0,16);e.target.value=v.replace(/(.{4})/g,'$1 ').trim();$('#ccN').textContent=(v+'••••••••••••••••').slice(0,16).replace(/(.{4})/g,'$1 ').trim()};
+        $('#iE').oninput=e=>{let v=e.target.value.replace(/\D/g,'').slice(0,4);if(v.length>2)v=v.slice(0,2)+'/'+v.slice(2);e.target.value=v;$('#ccE').textContent=v||'MM/YY'};
+      }else if(data.pay==='qr'){
+        let q='';const seed=[...String(tot)].reduce((a,c)=>a*31+c.charCodeAt(0),7);let r=seed;
+        for(let y=0;y<21;y++)for(let x=0;x<21;x++){r=(r*1103515245+12345)&0x7fffffff;const fin=(x<7&&y<7)||(x>13&&y<7)||(x<7&&y>13);
+          if(fin){const cx=x>13?x-14:x,cy=y>13?y-14:y;if(cx===0||cx===6||cy===0||cy===6||(cx>1&&cx<5&&cy>1&&cy<5))q+=`<rect x="${x}" y="${y}" width="1" height="1"/>`}
+          else if(r%2)q+=`<rect x="${x}" y="${y}" width="1" height="1"/>`}
+        box.innerHTML=`<div class="qr"><svg viewBox="-1 -1 23 23" fill="#2a1a10"><rect x="-1" y="-1" width="23" height="23" fill="#fff"/>${q}</svg><div><b>PromptPay (Demo)</b><p style="font-size:.82rem;opacity:.7;margin-top:6px">Mit deiner Banking-App scannen. Hier ist es nur ein Test-QR – klick einfach auf „Bezahlen“.</p></div></div>`;
+      }else box.innerHTML=`<div class="qr" style="display:block"><b>Bar vor Ort</b><p style="font-size:.85rem;opacity:.7;margin-top:6px">Du zahlst in Baht direkt bei der Lieferung bzw. an der Bar.</p></div>`;
+    };
+    drawPay();
+    $$('input[name=pay]').forEach(r=>r.onchange=()=>{data.pay=r.value;drawPay()});
+    $('#coN').onclick=()=>{
+      if(data.pay==='card'){const f=$('#f2');if(!val(f))return toast('Bitte Testkarte eingeben');if($('#iN').value.replace(/\D/g,'').length<12){$('#iN').classList.add('err');return toast('Kartennummer zu kurz')}}
+      st=2;drawCo();
+    };
+  }
+  if(st===2){
+    M.innerHTML=`<div class="proc"><div class="spin"></div><b>Zahlung wird geprüft …</b><p style="font-size:.8rem;opacity:.6;margin-top:6px">Testmodus – es wird nichts abgebucht.</p></div>`;
+    setTimeout(()=>{
+      const no='SB-'+Math.random().toString(36).slice(2,7).toUpperCase();
+      const eta=data.where==='Abholen an der Bar'?'an der Bar abholbereit in ca. 8 Minuten':`an ${data.spot?('Platz '+data.spot):'deinen Platz'} in ca. 8 Minuten`;
+      M.innerHTML=`<div class="done">${stepper(2)}
+        <svg class="ck" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="#5fe08a" stroke-width="6"/><path d="M32 52 L45 64 L69 38" fill="none" stroke="#5fe08a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Khop khun krap, ${(data.name||'').split(' ')[0]}!</h3>
+        <div class="ordno">${no}</div>
+        <p>Deine Bestellung über <b>${fmt(tot)}</b> ist eingegangen – ${eta}.${hasRes()?`<br>Reservierung für den <b>${new Date(data.date).toLocaleDateString('de-DE')}</b> bestätigt.`:''}</p>
+        <p style="font-size:.78rem;opacity:.6;margin-top:10px">Demo-Bestellung: Es wurde nichts bezahlt und nichts verschickt.</p>
+        <div class="coact"><button class="btn go" id="coDone">Zurück zum Strand</button></div></div>`;
+      $('#coDone').onclick=()=>{closeCo();scrollTo({top:0,behavior:'smooth'})};
+      cart={};save();renderCart();confetti();
+    },1800);
+  }
+}
+function confetti(){
+  const cols=['#ffd23f','#ff7a3d','#ff5e7e','#1fb5a8','#f6e7c8'];
+  for(let i=0;i<70;i++){
+    const d=document.createElement('div');d.className='conf';
+    const s=6+Math.random()*10,banana=Math.random()<.25;
+    d.style.cssText=`left:${Math.random()*100}vw;width:${s}px;height:${banana?s*2:s*.6}px;background:${banana?'#ffd23f':cols[i%5]};border-radius:${banana?'50% 50% 50% 50% / 80% 80% 20% 20%':'2px'}`;
+    document.body.appendChild(d);
+    d.animate([{transform:`translateY(0) rotate(0)`},{transform:`translate(${(Math.random()-.5)*200}px,${innerHeight+80}px) rotate(${Math.random()*900}deg)`}],{duration:2200+Math.random()*1800,easing:'cubic-bezier(.2,.6,.4,1)'}).onfinish=()=>d.remove();
+  }
+}
+
+/* ---------- CONTACT ---------- */
+$('#cform').addEventListener('submit',e=>{e.preventDefault();if(!val(e.target))return toast('Bitte Name & E-Mail angeben');e.target.style.display='none';$('#sent').style.display='block'});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCo();closeDrawer();$('#lb').classList.remove('open')}});
+})();
+</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+import {RoundedBoxGeometry} from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+const cv=document.getElementById('gl3'), sec=document.getElementById('sig');
+let R;
+try{R=new THREE.WebGLRenderer({canvas:cv,antialias:true,powerPreference:'high-performance'})}catch(e){console.warn('no webgl');}
+if(R){
+R.setPixelRatio(Math.min(devicePixelRatio,2));
+R.toneMapping=THREE.ACESFilmicToneMapping;R.outputColorSpace=THREE.SRGBColorSpace;
+R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;
+const scene=new THREE.Scene();
+const cam=new THREE.PerspectiveCamera(30,1,.1,100);
+const pm=new THREE.PMREMGenerator(R);
+scene.environment=pm.fromScene(new RoomEnvironment(),.04).texture;
+
+const cl=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)), seg=(p,a,b)=>cl((p-a)/(b-a)), lerp=(a,b,t)=>a+(b-a)*t;
+const ease=t=>1-Math.pow(1-t,3);
+const outBack=t=>{const c=1.9;return 1+(c+1)*Math.pow(t-1,3)+c*Math.pow(t-1,2)};
+const bounce=t=>{const n=7.5625,d=2.75;if(t<1/d)return n*t*t;if(t<2/d)return n*(t-=1.5/d)*t+.75;if(t<2.5/d)return n*(t-=2.25/d)*t+.9375;return n*(t-=2.625/d)*t+.984375};
+const tl=new THREE.TextureLoader();
+
+/* ---- background: real photos crossfaded on a canvas texture ---- */
+const bgC=document.createElement('canvas'),bx=bgC.getContext('2d');
+const bgTex=new THREE.CanvasTexture(bgC);bgTex.colorSpace=THREE.SRGBColorSpace;
+const bg=new THREE.Mesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({map:bgTex,toneMapped:false,depthWrite:false}));
+bg.renderOrder=-1;scene.add(bg);
+let bgDirty=true;
+const bgImgs=['img/bg_day.webp','img/stilt.webp','img/night.webp'].map(s=>{const i=new Image();i.onload=()=>bgDirty=true;i.src=s;return i});
+function cover(img,w,h,z,oy){if(!img.complete||!img.naturalWidth)return;const s=Math.max(w/img.naturalWidth,h/img.naturalHeight)*z;const iw=img.naturalWidth*s,ih=img.naturalHeight*s;bx.drawImage(img,(w-iw)/2,(h-ih)/2+oy,iw,ih)}
+let lastBgP=-1;
+function drawBg(p){
+  if(!bgDirty&&Math.abs(p-lastBgP)<.002)return;bgDirty=false;lastBgP=p;
+  const w=bgC.width,h=bgC.height,z=1.06+p*.05;
+  bx.globalAlpha=1;bx.filter='blur(2px)';
+  cover(bgImgs[0],w,h,z,-h*.04);
+  bx.globalAlpha=seg(p,.25,.5);if(bx.globalAlpha>0)cover(bgImgs[1],w,h,z,-h*.02);
+  bx.globalAlpha=seg(p,.68,.9);if(bx.globalAlpha>0)cover(bgImgs[2],w,h,z,0);
+  bx.globalAlpha=1;bx.filter='none';
+  bgTex.needsUpdate=true;
+}
+
+/* ---- bar counter (real wood) ---- */
+const wood=tl.load('img/wood.webp');wood.colorSpace=THREE.SRGBColorSpace;wood.wrapS=wood.wrapT=THREE.RepeatWrapping;wood.repeat.set(3,2);wood.anisotropy=8;
+const table=new THREE.Mesh(new THREE.PlaneGeometry(14,7),new THREE.MeshPhysicalMaterial({map:wood,roughness:.42,clearcoat:.6,clearcoatRoughness:.25,envMapIntensity:.5}));
+table.rotation.x=-Math.PI/2;table.position.set(0,0,-.6);table.receiveShadow=true;scene.add(table);
+// counter front edge
+const edge=new THREE.Mesh(new THREE.BoxGeometry(14,.5,.12),new THREE.MeshStandardMaterial({map:wood,roughness:.5,color:0x9a7a5a}));edge.position.set(0,-.25,2.9);scene.add(edge);
+
+/* ---- glass ---- */
+const G=new THREE.Group();scene.add(G);
+const Y0=.19, YT=2.0;
+const rin=y=>.52+(.685-.52)*(y-.2)/1.8, rout=y=>.55+(.72-.55)*(y-.08)/1.92;
+const gp=[[0,0],[.5,0],[.535,.025],[.55,.08],[.72,2.0],[.718,2.022],[.703,2.03],[.687,2.012],[.52,.2],[0,.17]].map(a=>new THREE.Vector2(a[0],a[1]));
+const glassMat=new THREE.MeshPhysicalMaterial({color:0xffffff,roughness:.03,transmission:1,thickness:.15,ior:1.5,clearcoat:1,clearcoatRoughness:.03,specularIntensity:1,envMapIntensity:1.4});
+const glass=new THREE.Mesh(new THREE.LatheGeometry(gp,128),glassMat);glass.castShadow=true;G.add(glass);
+glass.renderOrder=2;
+
+/* ---- liquid with real layer blending via vertex colors ---- */
+const cols={g:new THREE.Color('#b3123a'),b:new THREE.Color('#ffe08a'),m:new THREE.Color('#ff8c1a')};
+const liqMat=new THREE.MeshPhysicalMaterial({vertexColors:true,roughness:.22,envMapIntensity:.7,clearcoat:.35,clearcoatRoughness:.2,sheen:.5,sheenRoughness:.4,sheenColor:new THREE.Color('#ffe2a0'),emissive:new THREE.Color('#ff6a10'),emissiveIntensity:.06});
+const liq=new THREE.Mesh(new THREE.BufferGeometry(),liqMat);liq.castShadow=true;G.add(liq);liq.visible=false;
+const smooth=(e0,e1,x)=>{const t=cl((x-e0)/(e1-e0));return t*t*(3-2*t)};
+let lastL='';
+function buildLiquid(a,b,g){ // heights of banana, mango, grenadine
+  const key=[a,b,g].map(v=>v.toFixed(3)).join();if(key===lastL)return;lastL=key;
+  const H=a+b+g;liq.visible=H>.01;if(!liq.visible)return;
+  const top=Y0+H,pts=[new THREE.Vector2(0,Y0)];const N=40;
+  for(let i=0;i<=N;i++){const y=Y0+H*i/N;pts.push(new THREE.Vector2(rin(Math.max(y,.2))-.007,y))}
+  pts.push(new THREE.Vector2(0,top));
+  const geo=new THREE.LatheGeometry(pts,72);const pos=geo.attributes.position,c=new Float32Array(pos.count*3),tmp=new THREE.Color();
+  const e1=Y0+g,e2=Y0+g+a,bw=.09;
+  for(let i=0;i<pos.count;i++){const y=pos.getY(i);
+    tmp.copy(cols.g).lerp(cols.b,smooth(e1-bw,e1+bw,y)).lerp(cols.m,smooth(e2-bw,e2+bw,y)*(b>0?1:0));
+    if(g<=0)tmp.copy(cols.b).lerp(cols.m,smooth(e2-bw,e2+bw,y)*(b>0?1:0));
+    c.set([tmp.r,tmp.g,tmp.b],i*3)}
+  geo.setAttribute('color',new THREE.BufferAttribute(c,3));
+  liq.geometry.dispose();liq.geometry=geo;
+}
+
+/* ---- ice ---- */
+const iceMat=new THREE.MeshPhysicalMaterial({color:0xf3f9ff,roughness:.28,metalness:0,envMapIntensity:1.5,clearcoat:1,clearcoatRoughness:.08,sheen:1,sheenColor:new THREE.Color('#ffffff'),emissive:new THREE.Color('#cfe6ff'),emissiveIntensity:.12});
+const ices=[[-.18,.12,.4],[.2,-.05,-.5],[0,.22,.9]].map(([x,z,r])=>{const m=new THREE.Mesh(new RoundedBoxGeometry(.32,.3,.32,4,.07),iceMat);m.userData={x,z,r};m.visible=false;G.add(m);return m});
+
+/* ---- bubbles ---- */
+const BN=46,bub=new THREE.InstancedMesh(new THREE.SphereGeometry(1,8,6),new THREE.MeshStandardMaterial({color:0xfff6e0,roughness:.1,emissive:0xffffff,emissiveIntensity:.15}),BN);
+const bd=[...Array(BN)].map(()=>({a:Math.random()*6.28,r:Math.random()*.4,s:.15+Math.random()*.35,o:Math.random(),z:.006+Math.random()*.012}));G.add(bub);
+
+/* ---- condensation droplets ---- */
+const DN=340,drop=new THREE.InstancedMesh(new THREE.SphereGeometry(1,10,8),new THREE.MeshPhysicalMaterial({color:0xffffff,roughness:0,transmission:1,thickness:.02,ior:1.33,envMapIntensity:1.6}),DN);
+const dd=[...Array(DN)].map(()=>{const y=.25+Math.random()*1.65,a=(Math.random()-.5)*Math.PI*1.3,s=.006+Math.pow(Math.random(),3)*.026;return{y,a,s}});G.add(drop);
+
+/* ---- straw ---- */
+const sc=document.createElement('canvas');sc.width=64;sc.height=512;const sx=sc.getContext('2d');sx.fillStyle='#fff';sx.fillRect(0,0,64,512);sx.fillStyle='#ff4f7b';for(let y=-64;y<560;y+=48){sx.beginPath();sx.moveTo(0,y);sx.lineTo(64,y+30);sx.lineTo(64,y+54);sx.lineTo(0,y+24);sx.fill()}
+const stT=new THREE.CanvasTexture(sc);stT.colorSpace=THREE.SRGBColorSpace;
+const straw=new THREE.Mesh(new THREE.CylinderGeometry(.042,.042,2.9,28,1,true),new THREE.MeshPhysicalMaterial({map:stT,roughness:.35,clearcoat:.6,side:THREE.DoubleSide}));
+straw.castShadow=true;G.add(straw);
+
+/* ---- banana slice ---- */
+const bc=document.createElement('canvas');bc.width=bc.height=256;const b2=bc.getContext('2d');
+let rg=b2.createRadialGradient(128,128,10,128,128,128);rg.addColorStop(0,'#f6e6a6');rg.addColorStop(.62,'#fbf0c4');rg.addColorStop(.86,'#f2df98');rg.addColorStop(.9,'#e7c64c');rg.addColorStop(1,'#c99a22');
+b2.fillStyle=rg;b2.beginPath();b2.arc(128,128,128,0,7);b2.fill();
+b2.fillStyle='rgba(214,190,120,.55)';for(let i=0;i<3;i++){b2.beginPath();b2.ellipse(128+Math.cos(i*2.09)*22,128+Math.sin(i*2.09)*22,18,8,i*2.09,0,7);b2.fill()}
+b2.fillStyle='#4a3216';for(let i=0;i<9;i++){const a=i*.7,r=14+(i%3)*9;b2.beginPath();b2.arc(128+Math.cos(a)*r,128+Math.sin(a)*r,2.6,0,7);b2.fill()}
+for(let i=0;i<500;i++){b2.fillStyle=`rgba(255,255,255,${Math.random()*.12})`;b2.fillRect(Math.random()*256,Math.random()*256,2,2)}
+const bT=new THREE.CanvasTexture(bc);bT.colorSpace=THREE.SRGBColorSpace;
+const bFace=new THREE.MeshPhysicalMaterial({map:bT,roughness:.55,sheen:.6,sheenColor:new THREE.Color('#fff2c0')});
+const slice=new THREE.Mesh(new THREE.CylinderGeometry(.27,.27,.08,56),[new THREE.MeshStandardMaterial({color:0xd8b03a,roughness:.6}),bFace,bFace]);
+slice.rotation.x=Math.PI/2;slice.castShadow=true;const sliceG=new THREE.Group();sliceG.add(slice);G.add(sliceG);
+
+/* ---- paper umbrella ---- */
+const uc=document.createElement('canvas');uc.width=uc.height=256;const u2=uc.getContext('2d');
+for(let i=0;i<12;i++){u2.fillStyle=i%2?'#18a99c':'#ffd23f';u2.beginPath();u2.moveTo(128,128);u2.arc(128,128,181,i*Math.PI/6,(i+1)*Math.PI/6);u2.fill()}
+const uT=new THREE.CanvasTexture(uc);uT.colorSpace=THREE.SRGBColorSpace;
+const umbG=new THREE.Group();
+const can=new THREE.Mesh(new THREE.ConeGeometry(.55,.2,12,1,true),new THREE.MeshStandardMaterial({map:uT,roughness:.85,side:THREE.DoubleSide}));
+can.geometry.attributes.uv.array.forEach((v,i,a)=>{});
+// planar UV for radial stripes
+{const g=can.geometry,p=g.attributes.position,uv=g.attributes.uv;for(let i=0;i<p.count;i++){uv.setXY(i,.5+p.getX(i)/1.2,.5+p.getZ(i)/1.2)}uv.needsUpdate=true}
+can.position.y=1.0;can.castShadow=true;
+const stick=new THREE.Mesh(new THREE.CylinderGeometry(.012,.012,1.1,8),new THREE.MeshStandardMaterial({color:0xc9a06a,roughness:.7}));stick.position.y=.5;
+umbG.add(can,stick);G.add(umbG);
+
+/* ---- shadow + caustic glow on the counter ---- */
+const rc=document.createElement('canvas');rc.width=rc.height=128;const r2=rc.getContext('2d');let rr=r2.createRadialGradient(64,64,0,64,64,64);rr.addColorStop(0,'rgba(255,255,255,1)');rr.addColorStop(1,'rgba(255,255,255,0)');r2.fillStyle=rr;r2.fillRect(0,0,128,128);
+const radT=new THREE.CanvasTexture(rc);
+const ao=new THREE.Mesh(new THREE.PlaneGeometry(1.8,1.8),new THREE.MeshBasicMaterial({map:radT,color:0x000000,transparent:true,opacity:.6,depthWrite:false}));ao.rotation.x=-Math.PI/2;ao.position.y=.003;G.add(ao);
+const caus=new THREE.Mesh(new THREE.PlaneGeometry(1.7,1.1),new THREE.MeshBasicMaterial({map:radT,color:0xff8c1a,transparent:true,opacity:0,blending:THREE.AdditiveBlending,depthWrite:false}));caus.rotation.x=-Math.PI/2;caus.position.set(-.55,.004,.55);G.add(caus);
+
+/* ---- lights ---- */
+const sun=new THREE.DirectionalLight(0xffffff,2.4);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);sun.shadow.camera.left=-3;sun.shadow.camera.right=3;sun.shadow.camera.top=4;sun.shadow.camera.bottom=-2;sun.shadow.radius=6;sun.shadow.bias=-.0005;scene.add(sun,sun.target);
+const amb=new THREE.HemisphereLight(0xbfe6ff,0x6b4a2a,.6);scene.add(amb);
+const barLight=new THREE.PointLight(0xffb36b,0,8,1.6);barLight.position.set(-2,2.5,2);scene.add(barLight);
+const rim=new THREE.PointLight(0xffffff,0,10,1.2);rim.position.set(2.5,2.6,-2);scene.add(rim);
+const cDay=new THREE.Color('#fff3df'),cSet=new THREE.Color('#ff8a3c'),cNight=new THREE.Color('#7186ff');
+
+/* ---- layout ---- */
+let mobile=false,camZ=7,camY=1.25,gx=0;
+function resize(){
+  const w=sec.clientWidth,h=innerHeight;R.setSize(w,h,false);cam.aspect=w/h;mobile=w<900;
+  if(mobile){camZ=9.6;camY=2.15;cam.fov=30}else{camZ=7.2;camY=1.3;cam.fov=30}
+  cam.updateProjectionMatrix();
+  const D=20+camZ,bh=2*D*Math.tan(THREE.MathUtils.degToRad(cam.fov/2))*1.08;
+  bg.scale.set(bh*cam.aspect,bh,1);bg.position.set(0,camY,-20);
+  const vh=2*camZ*Math.tan(THREE.MathUtils.degToRad(cam.fov/2)),vw=vh*cam.aspect;
+  gx=mobile?0:vw*.2;
+  const k=Math.min(1.5,1280/Math.max(w,h));bgC.width=Math.round(w*k);bgC.height=Math.round(h*k);bgDirty=true;
+}
+addEventListener('resize',resize);resize();
+
+/* ---- animate ---- */
+let visible=false,first=true;
+new IntersectionObserver(e=>{visible=e[0].isIntersecting},{rootMargin:'200px'}).observe(sec);
+const dm=new THREE.Object3D(),clock=new THREE.Clock();
+function frame(){
+  requestAnimationFrame(frame);
+  if(!visible&&!first)return;
+  const t=clock.getElapsedTime(),p=window.__sigP??0;
+  drawBg(p);
+  // camera
+  cam.position.set(Math.sin(t*.25)*.06,camY+Math.sin(t*.4)*.02,camZ-seg(p,0,1)*.5);cam.lookAt(0,camY,-20);
+  G.position.x=gx;G.rotation.y=-.35+p*.9;
+  // light: day -> sunset -> night
+  const s1=seg(p,.2,.5),s2=seg(p,.65,.92);
+  sun.color.copy(cDay).lerp(cSet,s1).lerp(cNight,s2);
+  sun.intensity=lerp(lerp(2.6,2.2,s1),.5,s2);
+  sun.position.set(gx+lerp(3,4.5,s1),lerp(6,2.2,s1),lerp(3,-4,s1));sun.target.position.set(gx,0,0);
+  amb.intensity=lerp(.7,.15,s2);amb.color.copy(new THREE.Color('#bfe6ff')).lerp(new THREE.Color('#ffb07a'),s1).lerp(new THREE.Color('#3a3f7a'),s2);
+  barLight.intensity=lerp(0,14,s2);rim.intensity=lerp(0,10,s1)*(1-s2*.5);rim.color.copy(cSet).lerp(new THREE.Color('#ffd8a0'),s2);
+  R.toneMappingExposure=lerp(1.05,.9,s2);
+  [glassMat,iceMat].forEach(m=>m.envMapIntensity=lerp(1.4,.5,s2));liqMat.envMapIntensity=lerp(.7,.3,s2);
+  // liquid
+  const a=seg(p,.12,.32)*.55, b=seg(p,.32,.52)*.55, g=ease(seg(p,.52,.7))*.4;
+  buildLiquid(a,b,g);const top=Y0+a+b+g;
+  caus.material.opacity=cl((a+b+g)/1.5)*lerp(.55,.3,s2);caus.material.color.set(g>.05?'#ff6a3d':'#ffb020');
+  // ice
+  ices.forEach((m,i)=>{const k=seg(p,.3+i*.025,.38+i*.025);m.visible=k>0;if(!m.visible)return;
+    const fy=Math.max(top-.12,Y0+.15)+Math.sin(t*1.3+i*2)*.012;
+    m.position.set(m.userData.x,lerp(3.4,fy,bounce(k)),m.userData.z);m.rotation.set(m.userData.r+t*.03,m.userData.r*2+k*1.5,.2*i)});
+  // bubbles
+  bd.forEach((q,i)=>{const H=top-Y0;if(H<.1){dm.scale.setScalar(0)}else{const y=Y0+.05+((q.o+t*q.s)%1)*(H-.08);const rr=Math.min(q.r,rin(y)-.06);dm.position.set(Math.cos(q.a)*rr,y,Math.sin(q.a)*rr);dm.scale.setScalar(q.z)}dm.updateMatrix();bub.setMatrixAt(i,dm.matrix)});bub.instanceMatrix.needsUpdate=true;
+  // condensation
+  const cond=seg(p,.35,.62);
+  dd.forEach((q,i)=>{const r=rout(q.y)+q.s*.35;dm.position.set(Math.sin(q.a)*r,q.y-(q.s>.02?(t*.01*(i%5))%0.05:0),Math.cos(q.a)*r);dm.lookAt(0,q.y,0);dm.scale.set(q.s*cond,q.s*cond*1.15,q.s*cond*.45);dm.updateMatrix();drop.setMatrixAt(i,dm.matrix)});drop.instanceMatrix.needsUpdate=true;
+  // straw
+  const st=ease(seg(p,.7,.76));straw.visible=st>0;straw.position.set(.16+.25*(1-st),lerp(3.8,1.42,st),-.05);straw.rotation.set(.12,0,-.24);
+  // banana slice on rim
+  const sl=seg(p,.73,.8);sliceG.visible=sl>0;sliceG.position.set(-.69,lerp(3.6,1.98,bounce(sl)),.08);sliceG.rotation.set(0,.25,lerp(-1.2,.12,ease(sl)));
+  // umbrella
+  const u=seg(p,.8,.9);umbG.visible=u>0;umbG.position.set(.2,top-.25,.1);umbG.rotation.set(-.15,0,-.42);const us=u<1?Math.max(0,outBack(u)):1;umbG.scale.set(us,us,us);
+  R.render(scene,cam);
+  if(first){first=false;cv.classList.add('on')}
+}
+frame();
+}
+</script>
+
+</body>
+</html>
