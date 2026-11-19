@@ -7,4 +7,4 @@ Demo-Website einer fiktiven Strandbar in Thailand (Koh Phangan).
 - Karte mit Test-Warenkorb und Checkout (keine echte Zahlung)
 - Fotos: Unsplash (Unsplash-Lizenz)
 
-Live: https://noahhoppert596-sudo.github.io/strada-banana-/
+Live: https://noahhoppert596-sudo.github.io/Strada-banana-/
