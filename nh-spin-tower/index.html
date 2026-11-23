@@ -160,6 +160,13 @@ section{position:relative}
 
 #intro{padding:clamp(90px,14vw,180px) 0 clamp(60px,8vw,110px)}
 #intro .big{font-family:var(--serif);font-weight:300;font-size:clamp(30px,4.6vw,66px);line-height:1.12;max-width:1100px}
+.introgrid{display:grid;grid-template-columns:1.3fr .7fr;gap:clamp(24px,5vw,70px);align-items:center}
+.realpic{border-radius:20px;overflow:hidden;background:#ddd;position:relative}
+.realpic img{width:100%;max-height:520px;object-fit:cover}
+.realpic figcaption{font-size:11px;color:var(--ink2);padding:8px 10px;background:#fff}
+.realpic a{color:inherit}
+.wcard .sauna{display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,#e9c79a,#8a5a35 70%,#4a2f1c);color:#fff;font-family:var(--serif);font-size:44px;letter-spacing:.2em}
+@media (max-width:860px){.introgrid{grid-template-columns:1fr}.realpic img{max-height:420px}}
 #intro .big .dim{color:rgba(21,23,29,.18);transition:color .2s}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:clamp(50px,8vw,100px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stats div{background:var(--cream);padding:28px 18px}
@@ -415,7 +422,7 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
     <g id="lt"><rect x="13" y="6" width="20" height="4" rx="1"/><rect x="13" y="14" width="20" height="4" rx="1"/><rect x="13" y="22" width="20" height="4" rx="1"/><rect x="13" y="30" width="20" height="4" rx="1"/><rect x="13" y="38" width="20" height="4" rx="1"/></g>
   </svg>
   <div class="mark"></div>
-  <div class="sub">NH Collection · Frankfurt</div>
+  <div class="sub">NH Collection · Frankfurt · Konzept</div>
   <div class="pct">0</div>
   <div class="bar"><i></i></div>
 </div>
@@ -440,8 +447,8 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
     <li><a href="#hero" style="transition-delay:.15s"><small>01</small>Der Tower</a></li>
     <li><a href="#spin" style="transition-delay:.2s"><small>02</small>Architektur</a></li>
     <li><a href="#rooms" style="transition-delay:.25s"><small>03</small>Zimmer &amp; Suiten</a></li>
-    <li><a href="#dining" style="transition-delay:.3s"><small>04</small>Restaurant &amp; Bar</a></li>
-    <li><a href="#well" style="transition-delay:.35s"><small>05</small>Spa &amp; Fitness</a></li>
+    <li><a href="#dining" style="transition-delay:.3s"><small>04</small>Restaurant &amp; Bars</a></li>
+    <li><a href="#well" style="transition-delay:.35s"><small>05</small>Fitness &amp; Tagungen</a></li>
     <li><a href="#loc" style="transition-delay:.4s"><small>06</small>Lage</a></li>
     <li><a href="#contact" style="transition-delay:.45s"><small>07</small>Kontakt</a></li>
   </ul>
@@ -454,9 +461,9 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
   <canvas id="towerCanvas" aria-label="3D-Modell des Spin Tower – Etage wählen"></canvas>
   <div class="card" id="floorCard">
     <h2>Wähle deine<br>Etage</h2>
-    <p class="lead">Fahre mit der Maus über den Tower, um eine Etage zu wählen – oder nutze die Pfeile. Dann tritt durch das Glas ein.</p>
+    <p class="lead">Das Hotel liegt im Erdgeschoss bis Etage 20. Fahre über den Tower oder nutze die Pfeile – dann tritt durch das Glas ein.</p>
     <div class="lvl">
-      <small>Etage</small><b id="lvlNum">21</b>
+      <small>Etage</small><b id="lvlNum">14</b>
       <div class="steps"><button id="lvlUp" aria-label="Etage höher"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 8l4-4 4 4" stroke="#fff" stroke-width="1.6" fill="none"/></svg></button><button id="lvlDn" aria-label="Etage tiefer"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" stroke="#fff" stroke-width="1.6" fill="none"/></svg></button></div>
     </div>
     <div class="typebox swap" id="typeBox">
@@ -464,7 +471,7 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
       <div class="meta" id="lvlMeta">30 m² · Kingsize-Bett · Blick auf die Skyline</div>
       <div class="price" id="lvlPrice">ab <b>189 €</b> / Nacht</div>
     </div>
-    <button class="pill blue go" id="enterBtn">Etage 21 betreten</button>
+    <button class="pill blue go" id="enterBtn">Etage 14 betreten</button>
   </div>
   <div class="demo-tag">Konzept-Demo · kein offizielles Angebot</div>
   <div class="hint">Scrollen<i></i></div>
@@ -473,13 +480,16 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
 <!-- INTRO -->
 <section id="intro">
   <div class="wrap">
-    <div class="eyebrow">Willkommen im Europaviertel</div>
-    <p class="big" id="introBig">Ein Hotel, das sich dreht. Jede Etage ist ein paar Grad gegen die nächste versetzt – deshalb sieht dein Fenster auf eine Skyline, die kein anderes Zimmer genau so zeigt.</p>
+    <div class="eyebrow">Güterplatz 1 · Europaviertel</div>
+    <div class="introgrid">
+      <p class="big" id="introBig">Ein Hotel in einem der markantesten neuen Hochhäuser Frankfurts. 414 Zimmer auf den unteren 20 Etagen des Spin Tower, direkt zwischen Messe und Hauptbahnhof.</p>
+      <figure class="realpic reveal"><img src="img/tower_real.webp" alt="Der Spin Tower in Frankfurt, Luftaufnahme" loading="lazy"><figcaption>Der echte Spin Tower · Foto: Dr. Thomas Liptak, <a href="https://commons.wikimedia.org/wiki/File:Frankfurt,_The_Spin_(cropped).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" target="_blank" rel="noopener">CC BY-SA 4.0</a></figcaption></figure>
+    </div>
     <div class="stats">
-      <div><b data-count="36">0</b><span>Etagen</span></div>
-      <div><b data-count="312">0</b><span>Zimmer &amp; Suiten</span></div>
-      <div><b data-count="135" data-suf="°">0</b><span>Drehung bis zur Krone</span></div>
-      <div><b data-count="5" data-suf=" Min.">0</b><span>zu Fuß zur Messe</span></div>
+      <div><b data-count="414">0</b><span>Zimmer &amp; Suiten</span></div>
+      <div><b data-count="20">0</b><span>Hotel-Etagen</span></div>
+      <div><b data-count="31">0</b><span>Etagen im ganzen Turm</span></div>
+      <div><b data-count="600" data-suf=" m">0</b><span>zum Hauptbahnhof</span></div>
     </div>
   </div>
 </section>
@@ -490,11 +500,11 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
     <canvas id="spinCanvas"></canvas>
     <div class="prog"><i id="spinProg"></i></div>
     <div class="copy">
-      <div class="step on" data-s="0"><div class="n">01 — FUNDAMENT</div><h3>Etage für Etage nach oben.</h3><p>Auf einem gläsernen Sockel mit Lobby, Restaurant und Bar stapeln sich 36 Geschosse in den Frankfurter Himmel.</p></div>
-      <div class="step" data-s="1"><div class="n">02 — DIE DREHUNG</div><h3>Jede Etage ein paar Grad weiter.</h3><p>Von unten nach oben dreht sich der Grundriss um insgesamt 135°. So entstehen Ecken mit Panoramablick und Fassaden, die mit dem Licht spielen.</p></div>
-      <div class="step" data-s="2"><div class="n">03 — DAS LICHT</div><h3>Wenn es dunkel wird, leuchtet er.</h3><p>Abends wird der Tower zur Laterne des Europaviertels – mit der Sky Lounge als Krone.</p></div>
+      <div class="step on" data-s="0"><div class="n">01 — DAS HOTEL</div><h3>Erdgeschoss bis Etage 20.</h3><p>Unten Lobby, Restaurant und Bar, auf Etage 3 die Oaks Bar mit Terrasse, darüber 17 Zimmeretagen – ganz oben die Suiten-Etage.</p></div>
+      <div class="step" data-s="1"><div class="n">02 — DER TURM</div><h3>31 Geschosse, über 120 Meter.</h3><p>Über dem Hotel liegen Büroetagen. Entworfen hat den Turm das Büro Hadi Teherani, fertig wurde er 2023.</p></div>
+      <div class="step" data-s="2"><div class="n">03 — DER SPIN</div><h3>Oben dreht er sich weg.</h3><p>Der obere Teil sitzt verdreht auf dem Schaft – daher der Name. Das Modell hier ist eine vereinfachte Interpretation.</p></div>
     </div>
-    <div class="gauge"><span>Etage</span><b id="gFloor">00</b><div class="deg" id="gDeg">Drehung 0°</div></div>
+    <div class="gauge"><span>Etage</span><b id="gFloor">EG</b><div class="deg" id="gDeg">Hotel-Etage</div></div>
   </div>
 </section>
 
@@ -503,7 +513,7 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
   <div class="wrap">
     <div class="rhead">
       <div><div class="eyebrow">Zimmer &amp; Suiten</div><h2 class="h2 split">Schlafen über <em>der Stadt.</em></h2></div>
-      <p class="lead2" style="max-width:420px">Vier Kategorien, alle mit bodentiefen Fenstern, Regendusche, Nespresso und schnellem WLAN. Je höher, desto weiter der Blick.</p>
+      <p class="lead2" style="max-width:420px">414 Zimmer auf 17 Etagen, gestaltet mit Anklängen an New York, dazu eine komplette Suiten-Etage auf Etage 20. Kategorienamen, Größen und Preise sind hier Beispiele.</p>
     </div>
     <div class="rgrid" id="rgrid"></div>
   </div>
@@ -529,32 +539,31 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
 <!-- DINING -->
 <section id="dining">
   <div class="wrap">
-    <div class="eyebrow">Restaurant &amp; Bar</div>
+    <div class="eyebrow">Restaurant &amp; Bars</div>
     <h2 class="h2 split">Essen, trinken, <em>bleiben.</em></h2>
     <div class="dgrid">
-      <div class="dimg"><img src="img/restaurant.webp" alt="Restaurant mit warmem Licht" loading="lazy" data-par></div>
+      <div class="dimg"><img src="img/restaurant.webp" alt="Restaurant mit warmem Licht (Symbolbild)" loading="lazy" data-par></div>
       <div class="dtext reveal">
-        <h3>Restaurant „Güterplatz“</h3>
-        <p>Mediterran-frankfurterische Küche im Erdgeschoss: morgens ein großes Frühstücksbuffet, mittags Business-Lunch, abends Saisonales vom Grill.</p>
+        <h3>Restaurant &amp; Lobby-Bar</h3>
+        <p>Im Erdgeschoss: Küche mit frischen, regionalen Zutaten, dazu Lobby-Lounge und Bar. Morgens gibt es ein Frühstücksbuffet mit vegetarischen, veganen und glutenfreien Optionen, für Frühaufsteher ein Earlybird-Frühstück und ein Kinderfrühstück.</p>
         <ul class="menu">
-          <li><div>Grüne Soße neu gedacht<span>Sieben Kräuter, Wachtelei, Kartoffel-Espuma</span></div><b>16 €</b></li>
-          <li><div>Rinderfilet vom Grill<span>Pfeffer-Jus, Ofengemüse, Trüffel-Pommes</span></div><b>38 €</b></li>
-          <li><div>Risotto al limone<span>Zitrone, Burrata, geröstete Pinienkerne</span></div><b>24 €</b></li>
-          <li><div>Apfelwein-Tiramisu<span>Mascarpone, Zimt, Espresso</span></div><b>11 €</b></li>
+          <li><div>Frühstücksbuffet<span>Mo–Fr 6:30–10 Uhr · Sa/So 7–12 Uhr</span></div><b>Beispiel 29 €</b></li>
+          <li><div>Earlybird-Frühstück<span>für frühe Abreisen</span></div><b>auf Anfrage</b></li>
+          <li><div>Kinderfrühstück<span>für die Kleinen</span></div><b>auf Anfrage</b></li>
         </ul>
       </div>
     </div>
     <div class="dgrid rev" style="margin-top:clamp(50px,8vw,110px)">
       <div class="dtext reveal">
-        <h3>Bar „Twist“ &amp; Sky Lounge</h3>
-        <p>Unten die Bar mit Kupfertresen und Live-DJ am Freitag, ganz oben die Sky Lounge auf Etage 36 – Signature-Drinks mit Blick bis zum Taunus.</p>
+        <h3>Oaks Bar · Etage 3</h3>
+        <p>Die Bar auf der dritten Etage mit Terrasse – für den Drink nach der Messe mit Blick über die Stadt.</p>
         <ul class="menu">
-          <li><div>The Spin<span>Gin, Bergamotte, Rosmarin, Tonic</span></div><b>15 €</b></li>
-          <li><div>Ebbelwoi Spritz<span>Apfelwein, Aperitivo, Soda, Orange</span></div><b>12 €</b></li>
-          <li><div>Skyline Old Fashioned<span>Bourbon, geräucherter Ahorn, Bitters</span></div><b>17 €</b></li>
+          <li><div>Signature-Cocktails<span>Beispielkarte</span></div><b>ab 14 €</b></li>
+          <li><div>Weine &amp; Apfelwein<span>Beispielkarte</span></div><b>ab 7 €</b></li>
+          <li><div>Bar-Snacks<span>Beispielkarte</span></div><b>ab 9 €</b></li>
         </ul>
       </div>
-      <div class="dimg small"><img src="img/cocktail.webp" alt="Cocktail an der Bar" loading="lazy" data-par></div>
+      <div class="dimg small"><img src="img/cocktail.webp" alt="Cocktail an der Bar (Symbolbild)" loading="lazy" data-par></div>
     </div>
   </div>
 </section>
@@ -562,12 +571,12 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
 <!-- WELLNESS -->
 <section id="well">
   <div class="wrap">
-    <div class="eyebrow">Spa &amp; Fitness · Etage 35</div>
-    <h2 class="h2 split">Runterkommen, <em>ganz oben.</em></h2>
+    <div class="eyebrow">Fitness, Sauna &amp; Tagungen</div>
+    <h2 class="h2 split">Arbeiten, trainieren, <em>abschalten.</em></h2>
     <div class="wgrid">
-      <div class="wcard reveal"><div class="im"><img src="img/spa.webp" alt="Massage im Spa" loading="lazy"></div><div class="t"><h4>Spa &amp; Massagen</h4><p>Sauna mit Skyline-Fenster, Ruheraum und Treatments mit Naturkosmetik.</p><div class="hrs">täglich 7–22 Uhr · Massage ab 85 €</div></div></div>
-      <div class="wcard reveal"><div class="im"><img src="img/gym.webp" alt="Fitnessraum" loading="lazy"></div><div class="t"><h4>Fitness 24/7</h4><p>Cardio, freie Gewichte und Functional-Zone – mit der Zimmerkarte rund um die Uhr.</p><div class="hrs">rund um die Uhr · für Gäste kostenlos</div></div></div>
-      <div class="wcard reveal"><div class="im"><img src="img/events.webp" alt="Festlich gedeckter Eventsaal" loading="lazy"></div><div class="t"><h4>Meetings &amp; Events</h4><p>Sechs Räume auf Etage 3 und 4, Ballsaal für bis zu 280 Gäste, Technik inklusive.</p><div class="hrs">Anfrage über das Kontaktformular</div></div></div>
+      <div class="wcard reveal"><div class="im"><img src="img/gym.webp" alt="Fitnessraum (Symbolbild)" loading="lazy"></div><div class="t"><h4>Gym 24/7</h4><p>Fitnessraum, rund um die Uhr geöffnet.</p><div class="hrs">rund um die Uhr</div></div></div>
+      <div class="wcard reveal"><div class="im sauna"><span>Sauna</span></div><div class="t"><h4>Sauna</h4><p>Zum Aufwärmen und Abschalten nach einem langen Messetag.</p><div class="hrs">Zeiten an der Rezeption</div></div></div>
+      <div class="wcard reveal"><div class="im"><img src="img/events.webp" alt="Festlich gedeckter Saal (Symbolbild)" loading="lazy"></div><div class="t"><h4>Meetings &amp; Events</h4><p>Über 1.000 m² Tagungsfläche mit moderner Technik und eigenen Pausenbereichen.</p><div class="hrs">Anfrage über das Kontaktformular</div></div></div>
     </div>
   </div>
 </section>
@@ -575,8 +584,8 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
 <!-- REVIEWS -->
 <section id="reviews">
   <div class="wrap">
-    <div class="eyebrow">Gästestimmen</div>
-    <div class="score"><b>9,1</b><div><div class="stars">★★★★★</div><small>Durchschnitt aus 1.240 Bewertungen (Beispielwerte)</small></div></div>
+    <div class="eyebrow">Gästestimmen · Beispiele</div>
+    <p class="lead2" style="margin-top:14px">Platzhalter für echte Bewertungen – diese Stimmen sind erfunden und zeigen nur das Layout.</p>
   </div>
   <div class="marq" id="marq"></div>
 </section>
@@ -611,24 +620,24 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
       </div>
       <div class="reveal">
         <ul class="dist">
-          <li><span>Messe Frankfurt</span><b>5 Min. zu Fuß</b></li>
-          <li><span>Hauptbahnhof</span><b>8 Min. mit der Tram</b></li>
-          <li><span>Bankenviertel / Alte Oper</span><b>12 Min.</b></li>
-          <li><span>Römer &amp; Altstadt</span><b>15 Min.</b></li>
-          <li><span>Flughafen FRA</span><b>15 Min. mit dem Auto</b></li>
+          <li><span>Messe Frankfurt</span><b>fußläufig</b></li>
+          <li><span>Hauptbahnhof</span><b>ca. 600 m</b></li>
+          <li><span>Flughafen FRA (S8/S9 oder ICE)</span><b>12–22 Min.</b></li>
+          <li><span>Flughafen FRA (Taxi)</span><b>ca. 20 Min. · ca. 35–40 €</b></li>
+          <li><span>Parken</span><b>Hotelgarage, 60 Plätze</b></li>
         </ul>
         <div class="hours">
-          <h4>Öffnungszeiten</h4>
+          <h4>Zeiten</h4>
           <dl>
-            <dt>Rezeption</dt><dd>rund um die Uhr</dd>
-            <dt>Frühstück</dt><dd>6:30–10:30 · Wochenende bis 11:30</dd>
-            <dt>Restaurant</dt><dd>12–14:30 · 18–23 Uhr</dd>
-            <dt>Bar „Twist“</dt><dd>17–1 Uhr</dd>
-            <dt>Sky Lounge</dt><dd>18–24 · Fr/Sa bis 2 Uhr</dd>
-            <dt>Spa</dt><dd>7–22 Uhr</dd>
+            <dt>Check-in</dt><dd>ab 15 Uhr</dd>
+            <dt>Check-out</dt><dd>bis 12 Uhr</dd>
+            <dt>Frühstück Mo–Fr</dt><dd>6:30–10 Uhr</dd>
+            <dt>Frühstück Sa/So</dt><dd>7–12 Uhr</dd>
+            <dt>Gym</dt><dd>rund um die Uhr</dd>
           </dl>
         </div>
-        <p class="addr"><b>Spin Tower Frankfurt</b><br>Güterplatz · Europaviertel<br>60327 Frankfurt am Main<br><span style="color:var(--ink2);font-size:12px">Adresse, Telefon und Zeiten sind Platzhalter dieser Demo.</span></p>
+        <p class="addr"><b>NH Collection Frankfurt Spin Tower</b><br>Güterplatz 1<br>60327 Frankfurt am Main<br><span style="color:var(--ink2);font-size:12px">Zeiten laut Hotel- und Buchungsseiten, Stand Nov. 2026 – vor der Reise beim Hotel prüfen.</span></p>
+        <figure class="realpic reveal" style="margin-top:22px"><img src="img/skyline_real.webp" alt="Spin Tower mit Grand Tower und Spaces Tower One" loading="lazy"><figcaption>Spin Tower (links) mit Nachbartürmen · Foto: Alexis Jazz, <a href="https://commons.wikimedia.org/wiki/File:Frankfurt,_Germany_-_Spin_Tower,_Grand_Tower,_Spaces_Tower_One.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by/4.0/deed.de" target="_blank" rel="noopener">CC BY 4.0</a></figcaption></figure>
       </div>
     </div>
   </div>
@@ -651,14 +660,14 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
       <form class="cform" id="contactForm">
         <div class="fld"><label for="cName">Name</label><input id="cName" required autocomplete="name"></div>
         <div class="fld"><label for="cMail">E-Mail</label><input id="cMail" type="email" required autocomplete="email"></div>
-        <div class="fld full"><label for="cTopic">Thema</label><select id="cTopic"><option>Zimmerbuchung</option><option>Tisch im Restaurant</option><option>Meeting &amp; Event</option><option>Spa-Termin</option><option>Sonstiges</option></select></div>
+        <div class="fld full"><label for="cTopic">Thema</label><select id="cTopic"><option>Zimmerbuchung</option><option>Tisch im Restaurant</option><option>Meeting &amp; Event</option><option>Oaks Bar</option><option>Sonstiges</option></select></div>
         <div class="fld full"><label for="cMsg">Nachricht</label><textarea id="cMsg" required></textarea></div>
         <div class="full"><button class="pill blue" style="height:48px;padding:0 28px" type="submit">Nachricht senden (Test)</button></div>
       </form>
       <div class="cinfo">
-        <p>Rezeption rund um die Uhr erreichbar. Für Gruppen ab zehn Zimmern und Events melden wir uns innerhalb von 24 Stunden.</p>
-        <div class="big">+49 69 000 000 00<br>hallo@spintower-demo.de</div>
-        <p style="font-size:12px;opacity:.7">Telefonnummer und E-Mail sind Platzhalter. Das Formular verschickt im Testmodus nichts.</p>
+        <p>Fragen zu Zimmern, Tagungen oder einem Tisch in der Oaks Bar? Im Testmodus kannst du das Formular ausprobieren.</p>
+        <div class="big">Echte Reservierungen<br>direkt beim Hotel:<br>+49 69 255 190</div>
+        <p style="font-size:12px;opacity:.7">Diese Seite ist eine Konzept-Demo. Das Formular verschickt im Testmodus nichts.</p>
       </div>
     </div>
   </div>
@@ -668,14 +677,14 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
 <footer>
   <div class="wrap">
     <div class="fgrid2">
-      <div><div class="fb">SPIN TOWER</div><p style="margin-top:12px;max-width:300px">Hotel-Konzept für den Spin Tower im Frankfurter Europaviertel.</p></div>
-      <div><h5>Hotel</h5><a href="#rooms">Zimmer &amp; Suiten</a><a href="#dining">Restaurant &amp; Bar</a><a href="#well">Spa &amp; Fitness</a><a href="#loc">Lage</a></div>
+      <div><div class="fb">SPIN TOWER</div><p style="margin-top:12px;max-width:300px">Website-Konzept für das NH Collection Frankfurt Spin Tower, Güterplatz 1, Frankfurt am Main.</p></div>
+      <div><h5>Hotel</h5><a href="#rooms">Zimmer &amp; Suiten</a><a href="#dining">Restaurant &amp; Bars</a><a href="#well">Fitness &amp; Tagungen</a><a href="#loc">Lage</a></div>
       <div><h5>Service</h5><a href="#book">Buchen</a><a href="#faq">FAQ</a><a href="#contact">Kontakt</a></div>
       <div><h5>Rechtliches</h5><a href="#" data-legal="Impressum">Impressum</a><a href="#" data-legal="Datenschutz">Datenschutz</a><a href="#" data-legal="AGB">AGB</a></div>
     </div>
     <div class="disclaimer">
-      <b style="color:#fff">Konzept-Demo, kein offizielles Angebot.</b> Diese Seite ist ein Gestaltungsentwurf und steht in keiner Verbindung zur NH Hotel Group oder zu Minor Hotels. Zimmer, Preise, Etagenbelegung, Speisekarte, Bewertungen und Kontaktdaten sind frei erfunden. Buchungen laufen im Testmodus, es wird nichts reserviert oder abgebucht. Das 3D-Modell ist eine freie Interpretation, kein Abbild des echten Gebäudes.<br>
-      Fotos: Unsplash (Unsplash-Lizenz) · 3D: Three.js · Animation: GSAP
+      <b style="color:#fff">Konzept-Demo, kein offizielles Angebot.</b> Diese Seite ist ein Gestaltungsentwurf und steht in keiner Verbindung zur NH Hotel Group oder zu Minor Hotels. Eckdaten (Adresse, 414 Zimmer, 20 Hotel-Etagen, Oaks Bar auf Etage 3, Gym, Sauna, Tagungsfläche, Check-in/-out, Anreise) stammen aus öffentlichen Angaben des Hotels und von Buchungsportalen, Stand Nov. 2026. Zimmernamen, Größen, Preise, die genaue Belegung der Etagen, Karten und Gästestimmen sind Beispiele. Buchungen laufen im Testmodus, es wird nichts reserviert oder abgebucht. Das 3D-Modell ist eine vereinfachte Interpretation des Gebäudes.<br>
+      Fotos Spin Tower: Dr. Thomas Liptak (CC BY-SA 4.0) und Alexis Jazz (CC BY 4.0), Wikimedia Commons, verkleinert. Innenaufnahmen sind Symbolbilder von Unsplash (Unsplash-Lizenz), nicht aus dem Hotel. · 3D: Three.js · Animation: GSAP
     </div>
   </div>
 </footer>
@@ -720,34 +729,33 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
 
 <script>
 /* ================= DATA ================= */
-const N_FLOORS = 36;
+/* Etage 0 = Erdgeschoss. Hotel: EG bis Etage 20 · Büros: Etage 21–30 (The Spin hat 31 Geschosse) */
+const N_FLOORS = 31, HOTEL_TOP = 20, TWIST_FROM = 21;
 const TYPES = {
-  lobby:{name:'Restaurant „Güterplatz“',img:'restaurant',kind:'venue',facts:['Erdgeschoss','Frühstück · Lunch · Dinner','bis 23 Uhr'],cta:'Tisch anfragen',topic:'Tisch im Restaurant',
-    hs:[{x:42,y:70,l:'Tische',t:'120 Plätze, Chef’s Table für bis zu 10 Gäste.'},{x:78,y:36,l:'Fensterfront',t:'Bodentiefe Fenster zum Güterplatz.'},{x:20,y:30,l:'Showküche',t:'Grill und Pasta-Station live.'}]},
-  bar:{name:'Bar „Twist“',img:'bar',kind:'venue',facts:['Etage 2','Cocktails & Live-DJ (Fr)','17–1 Uhr'],cta:'Tisch anfragen',topic:'Tisch im Restaurant',
-    hs:[{x:40,y:72,l:'Kupfertresen',t:'16 Plätze direkt an der Bar.'},{x:38,y:30,l:'Backbar',t:'Über 200 Spirituosen, viele aus Hessen.'},{x:80,y:40,l:'Lounge',t:'Sofas für Gruppen bis 12 Personen.'}]},
-  events:{name:'Meeting & Events',img:'events',kind:'venue',facts:['Etage 3–4','6 Räume + Ballsaal','bis 280 Gäste'],cta:'Event anfragen',topic:'Meeting & Event',
-    hs:[{x:50,y:72,l:'Bankett',t:'Runde Tische für Gala-Dinner.'},{x:48,y:16,l:'Kronleuchter',t:'Dimmbares Licht in jeder Szene.'},{x:85,y:45,l:'Technik',t:'Beamer, Mikrofone, Streaming inklusive.'}]},
-  superior:{name:'Superior Zimmer',img:'superior',kind:'room',price:149,size:24,bed:'Queensize-Bett',view:'Blick über das Europaviertel',max:2,
-    hs:[{x:62,y:62,l:'Schlafbereich',t:'Queensize-Bett 160 × 200 mit Kissenmenü.'},{x:22,y:38,l:'Fenster',t:'Bodentief, öffnet nach Westen – Abendsonne.'},{x:88,y:60,l:'Arbeitsplatz',t:'Schreibtisch mit USB-C und Ergonomie-Stuhl.'}]},
-  deluxe:{name:'Deluxe Skyline',img:'deluxe',kind:'room',price:189,size:30,bed:'Kingsize-Bett',view:'Blick auf die Skyline',max:2,
-    hs:[{x:55,y:62,l:'Schlafbereich',t:'Kingsize-Bett 180 × 200, Blackout-Vorhänge.'},{x:40,y:30,l:'Lichtkonzept',t:'Szenen für Arbeiten, Entspannen und Schlafen.'},{x:12,y:42,l:'Aussicht',t:'Ecke mit Blick auf die Bankentürme.'}]},
-  junior:{name:'Junior Suite „Spin“',img:'suite',kind:'room',price:279,size:45,bed:'Kingsize-Bett + Lounge',view:'Panorama-Ecke',max:3,
-    hs:[{x:45,y:70,l:'Schlafbereich',t:'Kingsize-Bett mit Blick direkt in den Himmel.'},{x:62,y:34,l:'Glasbad',t:'Regendusche und freistehende Wanne.'},{x:16,y:42,l:'Panorama',t:'Zwei Fensterfronten über Eck.'},{x:26,y:72,l:'Lounge',t:'Sofa, das zum Gästebett wird.'}]},
-  penthouse:{name:'Penthouse Suite',img:'penthouse',kind:'room',price:690,size:92,bed:'Schlafzimmer + Wohnraum',view:'360° über Frankfurt',max:4,
-    hs:[{x:35,y:70,l:'Wohnbereich',t:'Lounge für acht Personen und Media Room.'},{x:50,y:45,l:'Küche',t:'Pantry mit Weinkühlschrank.'},{x:12,y:40,l:'Aussicht',t:'Blick bis zum Taunus.'},{x:80,y:46,l:'Holzwand',t:'Eiche, Rauchglas und Messing.'}]},
-  spa:{name:'Spa & Fitness',img:'spa',kind:'venue',facts:['Etage 35','Sauna · Massagen · Gym','7–22 Uhr'],cta:'Termin anfragen',topic:'Spa-Termin',
-    hs:[{x:50,y:55,l:'Treatment',t:'Massagen ab 85 €, Day-Spa für Gäste 45 €.'},{x:20,y:30,l:'Ruhe',t:'Ruheraum mit Blick auf die Skyline.'}]},
-  sky:{name:'Sky Lounge',img:'cocktail',kind:'venue',facts:['Etage 36','Signature-Drinks','18–24 Uhr · Fr/Sa bis 2'],cta:'Tisch anfragen',topic:'Tisch im Restaurant',
-    hs:[{x:55,y:50,l:'The Spin',t:'Unser Signature-Drink mit Gin und Bergamotte.'},{x:20,y:25,l:'Terrasse',t:'Offene Terrasse von Mai bis September.'}]}
+  lobby:{name:'Lobby, Restaurant & Lobby-Bar',img:'restaurant',kind:'venue',facts:['Erdgeschoss','Frühstücksbuffet','Lobby-Lounge & Bar'],cta:'Tisch anfragen',topic:'Tisch im Restaurant',
+    hs:[{x:42,y:70,l:'Restaurant',t:'Küche mit frischen, regionalen Zutaten. Morgens Frühstücksbuffet, auch vegetarisch, vegan und glutenfrei.'},{x:78,y:36,l:'Lobby-Lounge',t:'Lounge und Bar direkt im Erdgeschoss.'},{x:20,y:30,l:'Frühstück',t:'Mo–Fr 6:30–10 Uhr, Sa/So 7–12 Uhr (laut Buchungsportal).'}]},
+  events:{name:'Tagungsbereich',img:'events',kind:'venue',facts:['über 1.000 m² Tagungsfläche','moderne Technik','eigene Pausenbereiche'],cta:'Tagung anfragen',topic:'Meeting & Event',
+    hs:[{x:50,y:72,l:'Räume',t:'Über 1.000 m² Tagungsfläche mit moderner Technik.'},{x:85,y:45,l:'Pausen',t:'Separate Pausenbereiche für Tagungsgäste.'}]},
+  oaks:{name:'Oaks Bar & Terrasse',img:'cocktail',kind:'venue',facts:['Etage 3','Terrasse mit Stadtblick','Drinks & Snacks'],cta:'Tisch anfragen',topic:'Tisch im Restaurant',
+    hs:[{x:55,y:50,l:'Drinks',t:'Cocktails und Drinks in der Oaks Bar.'},{x:20,y:25,l:'Terrasse',t:'Die Terrasse auf Etage 3 bietet Blick über die Stadt.'}]},
+  superior:{name:'Superior Zimmer',img:'superior',kind:'room',price:159,size:24,bed:'Doppelbett',view:'Blick über das Europaviertel',max:2,
+    hs:[{x:62,y:62,l:'Schlafbereich',t:'Doppelbett, Design inspiriert von New York.'},{x:22,y:38,l:'Fenster',t:'Raumhohe Verglasung der Fassade.'},{x:88,y:60,l:'Arbeitsplatz',t:'Schreibtisch und schnelles WLAN.'}]},
+  skyline:{name:'Superior Skyline',img:'deluxe',kind:'room',price:189,size:24,bed:'Doppelbett',view:'Blick auf die Skyline',max:2,
+    hs:[{x:55,y:62,l:'Schlafbereich',t:'Doppelbett auf den oberen Hotel-Etagen.'},{x:40,y:30,l:'Licht',t:'Warmes Licht und dunkle Materialien.'},{x:12,y:42,l:'Aussicht',t:'Je höher, desto weiter der Blick auf die Bankentürme.'}]},
+  junior:{name:'Junior Suite',img:'suite',kind:'room',price:299,size:40,bed:'Kingsize-Bett + Sitzbereich',view:'Suiten-Etage',max:3,
+    hs:[{x:45,y:70,l:'Schlafbereich',t:'Großes Bett mit Sitzbereich.'},{x:62,y:34,l:'Bad',t:'Bad mit Regendusche.'},{x:16,y:42,l:'Aussicht',t:'Auf der Suiten-Etage, ganz oben im Hotel.'}]},
+  suite:{name:'Suite',img:'penthouse',kind:'room',price:450,size:60,bed:'Schlafzimmer + Wohnraum',view:'Suiten-Etage',max:4,
+    hs:[{x:35,y:70,l:'Wohnbereich',t:'Eigener Wohnraum mit Lounge.'},{x:12,y:40,l:'Aussicht',t:'Höchste Hotel-Etage mit Blick über Frankfurt.'},{x:80,y:46,l:'Materialien',t:'Holz, Glas und warme Töne.'}]},
+  office:{name:'Büroetagen',img:null,kind:'office',facts:['Etage 21–30','kein Teil des Hotels','Büros im Spin Tower']}
 };
-const ROOM_KEYS = ['superior','deluxe','junior','penthouse'];
+const ROOM_KEYS = ['superior','skyline','junior','suite'];
 function levelType(n){
-  if(n<=1) return 'lobby'; if(n===2) return 'bar'; if(n<=4) return 'events';
-  if(n<=16) return 'superior'; if(n<=26) return 'deluxe'; if(n<=32) return 'junior';
-  if(n<=34) return 'penthouse'; if(n===35) return 'spa'; return 'sky';
+  if(n===0) return 'lobby'; if(n<=2) return 'events'; if(n===3) return 'oaks';
+  if(n<=11) return 'superior'; if(n<=19) return 'skyline'; if(n===20) return 'suite';
+  return 'office';
 }
-const EXTRAS = {breakfast:{l:'Frühstück',p:29,per:'pn'},parking:{l:'Parken',p:32,per:'n'},late:{l:'Late Check-out',p:40,per:'once'},spa:{l:'Day-Spa',p:45,per:'p'}};
+const lvName = n => n===0?'EG':String(n).padStart(2,'0');
+const EXTRAS = {breakfast:{l:'Frühstück',p:29,per:'pn'},parking:{l:'Parken',p:30,per:'n'},late:{l:'Late Check-out',p:40,per:'once'},early:{l:'Early Check-in',p:30,per:'once'}};
 const CITY_TAX = 2;
 const euro = v => v.toLocaleString('de-DE',{minimumFractionDigits:0,maximumFractionDigits:0})+' €';
 </script>
@@ -757,7 +765,7 @@ import * as THREE from 'three';
 const isMobile = () => innerWidth < 760;
 const rand = (a,b)=>a+Math.random()*(b-a);
 
-/* ---------- textures ---------- */
+/* ---------- textures: grünliche Glasfassade mit dunklen Lisenen ---------- */
 function windowTextures(litP){
   const W=512,H=64,cols=32,cw=W/cols;
   const a=document.createElement('canvas');a.width=W;a.height=H;const g=a.getContext('2d');
@@ -766,64 +774,67 @@ function windowTextures(litP){
   for(let c=0;c<cols;c++){
     const x=c*cw, t=c/cols;
     const gr=g.createLinearGradient(0,0,0,H);
-    gr.addColorStop(0,`hsl(${205+Math.sin(t*6.28)*8},${22}%,${58+Math.sin(t*12)*8}%)`);
-    gr.addColorStop(1,`hsl(${24+Math.cos(t*6.28)*6},55%,${70+Math.cos(t*9)*6}%)`);
+    gr.addColorStop(0,`hsl(${168+Math.sin(t*6.28)*6},${18}%,${52+Math.sin(t*12)*7}%)`);
+    gr.addColorStop(1,`hsl(${150+Math.cos(t*6.28)*10},${16}%,${62+Math.cos(t*9)*6}%)`);
     g.fillStyle=gr;g.fillRect(x,0,cw,H);
+    if(Math.random()<.35){g.fillStyle='rgba(30,40,40,.28)';g.fillRect(x+2,8,cw-4,H-14);}
     if(Math.random()<litP){
-      const warm=`hsl(${32+rand(-6,6)},${85}%,${rand(66,78)}%)`;
-      g.fillStyle=warm;g.fillRect(x+1,6,cw-2,H-10);
-      ge.fillStyle=warm;ge.fillRect(x+1,6,cw-2,H-10);
-      if(Math.random()<.5){ g.fillStyle='rgba(60,40,30,.35)';g.fillRect(x+cw*.55,H*.55,cw*.3,H*.4); }
+      const warm=`hsl(${34+rand(-6,6)},${80}%,${rand(64,76)}%)`;
+      g.fillStyle=warm;g.fillRect(x+2,8,cw-4,H-14);
+      ge.fillStyle=warm;ge.fillRect(x+2,8,cw-4,H-14);
     }
-    g.fillStyle='rgba(235,232,228,.95)';g.fillRect(x,0,1.5,H);
+    g.fillStyle='#2b3132';g.fillRect(x,0,2.2,H);
   }
-  g.fillStyle='rgba(245,242,238,1)';g.fillRect(0,0,W,4);
+  g.fillStyle='#2f3536';g.fillRect(0,0,W,6);
   const m=new THREE.CanvasTexture(a), em=new THREE.CanvasTexture(e);
   m.colorSpace=THREE.SRGBColorSpace;em.colorSpace=THREE.SRGBColorSpace;
   m.anisotropy=em.anisotropy=4;
   return {m,em};
 }
 
-/* ---------- tower builder ---------- */
-function buildTower({floors=N_FLOORS, R=4.2, FH=1, twist=Math.PI*0.75, lit=0.4}={}){
+/* ---------- tower builder: quadratischer Turm, oberer Teil verdreht aufgesetzt ---------- */
+function twistProfile(i){ if(i<TWIST_FROM-1) return 0; if(i>=TWIST_FROM+1) return 1; return (i-(TWIST_FROM-2))/3; }
+function buildTower({floors=N_FLOORS, R=4.6, FH=1.08, twist=0.26, lit=0.4}={}){
   const tower=new THREE.Group();
   const variants=[];for(let v=0;v<7;v++)variants.push(windowTextures(lit*rand(.6,1.3)));
-  const slabMat=new THREE.MeshStandardMaterial({color:0xf3eee7,roughness:.55,metalness:.05});
-  const wallGeo=new THREE.CylinderGeometry(R,R,FH*.84,8,1,true);
-  const slabGeo=new THREE.CylinderGeometry(R*1.1,R*1.12,FH*.16,8);
+  const slabMat=new THREE.MeshStandardMaterial({color:0x3a4142,roughness:.6,metalness:.3});
+  const wallGeo=new THREE.CylinderGeometry(R,R,FH*.9,4,1,true);
+  const wallGeoUp=new THREE.CylinderGeometry(R*1.07,R*1.07,FH*.9,4,1,true);
+  const slabGeo=new THREE.CylinderGeometry(R*1.03,R*1.03,FH*.1,4);
+  const slabGeoUp=new THREE.CylinderGeometry(R*1.1,R*1.1,FH*.1,4);
   const podium=new THREE.Group();
-  const pv=windowTextures(.85);
-  const pod=new THREE.Mesh(new THREE.CylinderGeometry(R*1.9,R*1.9,2.3,8,1,true),new THREE.MeshStandardMaterial({map:pv.m,emissiveMap:pv.em,emissive:0xffffff,emissiveIntensity:1.1,roughness:.3,side:THREE.DoubleSide}));
-  pod.position.y=1.15;pod.rotation.y=Math.PI/8;podium.add(pod);
-  const podTop=new THREE.Mesh(new THREE.CylinderGeometry(R*2.0,R*2.0,.25,8),slabMat);podTop.position.y=2.35;podTop.rotation.y=Math.PI/8;podium.add(podTop);
+  const pv=windowTextures(.9);
+  const pod=new THREE.Mesh(new THREE.CylinderGeometry(R*1.55,R*1.55,2.2,4,1,true),new THREE.MeshStandardMaterial({map:pv.m,emissiveMap:pv.em,emissive:0xffffff,emissiveIntensity:1.1,roughness:.3,side:THREE.DoubleSide}));
+  pod.position.y=1.1;pod.rotation.y=Math.PI/4;podium.add(pod);
+  const podTop=new THREE.Mesh(new THREE.CylinderGeometry(R*1.6,R*1.6,.22,4),slabMat);podTop.position.y=2.3;podTop.rotation.y=Math.PI/4;podium.add(podTop);
   tower.add(podium);
-  const list=[];const base=2.5;
+  const list=[];const base=0;
   for(let i=0;i<floors;i++){
     const g=new THREE.Group();
+    const up=i>=TWIST_FROM;
     const v=variants[(i*5+3)%variants.length];
-    const mat=new THREE.MeshStandardMaterial({map:v.m,emissiveMap:v.em,emissive:0xffffff,emissiveIntensity:.95,roughness:.18,metalness:.15,side:THREE.DoubleSide});
-    const wall=new THREE.Mesh(wallGeo,mat);wall.position.y=FH*.5+FH*.08;
-    const slab=new THREE.Mesh(slabGeo,slabMat);slab.position.y=FH*.08;
+    const mat=new THREE.MeshStandardMaterial({map:v.m,emissiveMap:v.em,emissive:0xffffff,emissiveIntensity:up?.55:.95,roughness:.15,metalness:.25,side:THREE.DoubleSide});
+    const wall=new THREE.Mesh(up?wallGeoUp:wallGeo,mat);wall.position.y=FH*.5+FH*.05;
+    const slab=new THREE.Mesh(up?slabGeoUp:slabGeo,slabMat);slab.position.y=FH*.05;
     wall.userData.i=slab.userData.i=i;
     g.add(wall,slab);g.position.y=base+i*FH;
-    const t=i/(floors-1);
-    g.userData={t,rot0:Math.PI/8,y0:base+i*FH};
-    g.rotation.y=Math.PI/8+twist*t;
+    if(i<2)g.visible=false; // EG + 1 stecken im Sockel
+    const t=twistProfile(i);
+    g.userData={t,rot0:Math.PI/4,y0:base+i*FH};
+    g.rotation.y=Math.PI/4+twist*t;
     tower.add(g);
-    list.push({g,wall,slab,mat,em:v.em});
+    list.push({g,wall,slab,mat,em:v.em,podium:i<2});
   }
-  // crown
+  // podium pickables for EG/1
+  list[0].wall=pod;pod.userData.i=0;list[0].mat=pod.material;list[0].em=pv.em;
+  // Dach mit Technikaufbau
   const crown=new THREE.Group();crown.position.y=base+floors*FH;
-  const cs=new THREE.Mesh(slabGeo,slabMat);cs.position.y=.08;crown.add(cs);
-  const ring=new THREE.Mesh(new THREE.CylinderGeometry(R*1.02,R*1.02,2.2,8,1,true),new THREE.MeshStandardMaterial({color:0xe9e2d8,roughness:.4,metalness:.3,side:THREE.DoubleSide,transparent:true,opacity:.55}));
-  ring.position.y=1.2;crown.add(ring);
-  const top=new THREE.Mesh(slabGeo,slabMat);top.position.y=2.3;crown.add(top);
-  const glow=new THREE.Mesh(new THREE.CylinderGeometry(R*.9,R*.9,1.8,8,1,true),new THREE.MeshBasicMaterial({color:0xffcf8a,transparent:true,opacity:.65,side:THREE.DoubleSide}));
-  glow.position.y=1.2;crown.add(glow);
-  const spire=new THREE.Mesh(new THREE.CylinderGeometry(.05,.12,5,6),slabMat);spire.position.y=4.8;crown.add(spire);
-  crown.rotation.y=Math.PI/8+twist;
+  const cs=new THREE.Mesh(slabGeoUp,slabMat);cs.position.y=.05;crown.add(cs);
+  const box=new THREE.Mesh(new THREE.BoxGeometry(R*1.05,1.4,R*1.05),new THREE.MeshStandardMaterial({color:0x8d9493,roughness:.7}));box.position.y=.8;crown.add(box);
+  const rim=new THREE.Mesh(new THREE.CylinderGeometry(R*1.1,R*1.1,.6,4,1,true),new THREE.MeshStandardMaterial({color:0x2f3536,roughness:.5,side:THREE.DoubleSide}));rim.position.y=.35;crown.add(rim);
+  crown.rotation.y=Math.PI/4+twist;
   tower.add(crown);
-  return {tower,floors:list,crown,FH,base,R,twist,height:base+floors*FH+2.4};
+  return {tower,floors:list,crown,FH,base,R,twist,height:base+floors*FH+1.6};
 }
 
 /* =========================== HERO SCENE =========================== */
@@ -892,7 +903,7 @@ scene.add(T.tower);
 
 // highlight ring
 const hlMat=new THREE.MeshBasicMaterial({color:0xffd08a,transparent:true,opacity:0,side:THREE.DoubleSide,depthWrite:false,blending:THREE.AdditiveBlending});
-const hl=new THREE.Mesh(new THREE.CylinderGeometry(T.R*1.07,T.R*1.07,T.FH*.92,8,1,true),hlMat);
+const hl=new THREE.Mesh(new THREE.CylinderGeometry(T.R*1.08,T.R*1.08,T.FH*.95,4,1,true),hlMat);
 scene.add(hl);
 
 /* camera framing */
@@ -902,8 +913,8 @@ let mouse={x:0,y:0,sx:0,sy:0};
 function framing(){
   const w=canvas.clientWidth,h=canvas.clientHeight;
   renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();
-  if(isMobile()){view.dist=w/h<.6?152:125;view.tx=0;view.ty=w/h<.6?33:28;view.camY=34;}
-  else{view.dist=94;view.tx=w/h>1.5?12:8;view.ty=19;view.camY=26;}
+  if(isMobile()){view.dist=w/h<.6?128:108;view.tx=0;view.ty=w/h<.6?8:11;view.camY=22;}
+  else{view.dist=82;view.tx=w/h>1.5?11:7;view.ty=16;view.camY=18;}
 }
 function homeCam(target){
   target=target||cam;
@@ -927,12 +938,12 @@ function setHighlight(i){
     f.mat.emissiveIntensity=on?1.25:.95;
     f.mat.needsUpdate=true;
   });
-  if(i>=0){const g=T.floors[i].g;hl.position.set(0,g.position.y+T.FH*.5+T.FH*.06,0);hl.rotation.y=g.rotation.y;gsap.to(hlMat,{opacity:.55,duration:.25});}
+  if(i>=0){const g=T.floors[i].g;const sc=i<2?1.5:(i>=TWIST_FROM?1.08:1);hl.scale.set(sc,1,sc);hl.position.set(0,g.position.y+T.FH*.55,0);hl.rotation.y=g.rotation.y;gsap.to(hlMat,{opacity:.55,duration:.25});}
 }
 window.__selectLevel=(i,src)=>{
   i=Math.max(0,Math.min(N_FLOORS-1,i));
   if(i===state.sel&&src!=='init')return;
-  state.sel=i;setHighlight(i);updateCard(i+1);
+  state.sel=i;setHighlight(i);updateCard(i);
 };
 canvas.addEventListener('pointermove',e=>{
   const r=canvas.getBoundingClientRect();
@@ -962,7 +973,7 @@ function floorCamTarget(i){
   return {pos:dir.clone().multiplyScalar(T.R+1.6).setY(y+.05),look:new THREE.Vector3(0,y,0)};
 }
 function enterFloor(i){
-  if(state.mode!=='tower')return;
+  if(state.mode!=='tower'||levelType(i)==='office')return;
   state.mode='moving';
   window.__ui.hideCard();
   const tgt=floorCamTarget(i);
@@ -970,7 +981,7 @@ function enterFloor(i){
   tl.to(cam.pos,{x:tgt.pos.x*3.2,y:tgt.pos.y,z:tgt.pos.z*3.2,duration:1.1,ease:'power2.inOut'},0)
     .to(cam.look,{x:0,y:tgt.look.y,z:0,duration:1.1,ease:'power2.inOut'},0)
     .to(cam.pos,{x:tgt.pos.x,y:tgt.pos.y,z:tgt.pos.z,duration:.9,ease:'power3.in'},1.05)
-    .add(()=>window.__ui.openRoom(i+1,true),1.6)
+    .add(()=>window.__ui.openRoom(i,true),1.6)
     .add(()=>{state.mode='room';},2.0);
 }
 window.__enterFloor=enterFloor;
@@ -997,7 +1008,7 @@ window.__assemble=()=>{
   T.crown.position.y+=30;gsap.to(T.crown.position,{y:T.crown.position.y-30,duration:1.5,delay:.25+N_FLOORS*.035,ease:'power3.out'});
   const r=cam.pos.clone();cam.pos.multiplyScalar(1.25);cam.pos.y+=8;
   gsap.to(cam.pos,{x:r.x,y:r.y,z:r.z,duration:3,ease:'power3.out'});
-  setTimeout(()=>window.__selectLevel(20,'init'),1900);
+  setTimeout(()=>window.__selectLevel(14,'init'),1900);
 };
 
 /* ---------- loop ---------- */
@@ -1068,7 +1079,7 @@ function renderSpin(){
   c2.lookAt(look);
   window.__dust.rotation.y=p*1.5;
   sr.render(s2,c2);
-  window.__ui.spinUI(p,Math.round(shown),Math.round(135*tw));
+  window.__ui.spinUI(p,Math.min(N_FLOORS-1,Math.round(shown)),tw);
 }
 window.__setSpin=p=>{spinP=p;};
 loop();
@@ -1117,39 +1128,40 @@ $$('.brand,footer a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.pre
 $$('[data-legal]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();toast(a.dataset.legal+': Platzhalter in dieser Konzept-Demo.');}));
 
 /* ---------- Floor card ---------- */
-let curLevel=21;
+let curLevel=14;
 function typeInfo(n){const k=levelType(n);return {k,T:TYPES[k]};}
 function updateCard(n){
   curLevel=n;const {T}=typeInfo(n);
-  const el=$('#lvlNum');const from=parseInt(el.textContent)||n;
-  const o={v:from};gsap.to(o,{v:n,duration:.35,ease:'power2.out',onUpdate:()=>el.textContent=String(Math.round(o.v)).padStart(2,'0')});
+  const el=$('#lvlNum');const from=el.textContent==='EG'?0:(parseInt(el.textContent)||n);
+  const o={v:from};gsap.to(o,{v:n,duration:.35,ease:'power2.out',onUpdate:()=>el.textContent=lvName(Math.round(o.v))});
   const box=$('#typeBox');
   if(box.dataset.k!==T.name){
     box.classList.add('out');
     setTimeout(()=>{
       $('#lvlType').textContent=T.name;
       $('#lvlMeta').textContent=T.kind==='room'?`${T.size} m² · ${T.bed} · ${T.view}`:T.facts.join(' · ');
-      $('#lvlPrice').innerHTML=T.kind==='room'?`ab <b>${euro(T.price)}</b> / Nacht`:'Für Hotel- und Tagesgäste';
+      $('#lvlPrice').innerHTML=T.kind==='room'?`Beispielpreis ab <b>${euro(T.price)}</b> / Nacht`:T.kind==='office'?'Nicht Teil des Hotels':'Für Hotel- und Tagesgäste';
       box.classList.remove('out');box.dataset.k=T.name;
     },180);
   }
-  $('#enterBtn').textContent=`Etage ${n} betreten`;
+  const off=T.kind==='office';$('#enterBtn').textContent=off?'Büroetage – kein Hotelbereich':(n===0?'Erdgeschoss betreten':`Etage ${n} betreten`);$('#enterBtn').disabled=off;$('#enterBtn').style.opacity=off?.45:1;
 }
 window.updateCard=updateCard;
-$('#lvlUp').onclick=()=>window.__selectLevel(curLevel);
-$('#lvlDn').onclick=()=>window.__selectLevel(curLevel-2);
-$('#enterBtn').onclick=()=>window.__enterFloor(curLevel-1);
+$('#lvlUp').onclick=()=>window.__selectLevel(curLevel+1);
+$('#lvlDn').onclick=()=>window.__selectLevel(curLevel-1);
+$('#enterBtn').onclick=()=>window.__enterFloor(curLevel);
 
 /* ---------- Room view ---------- */
 const room=$('#room');let roomLevel=21,roomFromTower=false,zoomed=-1,kb=null;
-function setRoomContent(n){
-  roomLevel=n;const {k,T}=typeInfo(n);
+let roomKey=null;
+function setRoomContent(n,key){
+  roomLevel=n;roomKey=key||levelType(n);const k=roomKey,T=TYPES[k];
   const img=$('#roomImg');img.src='img/'+T.img+'.webp';img.alt=T.name;
-  $('#rLevel').textContent=n===1?'Erdgeschoss':'Etage '+n;
-  $('#rLv').textContent=String(n).padStart(2,'0');
+  $('#rLevel').textContent=n===0?'Erdgeschoss':'Etage '+n;
+  $('#rLv').textContent=lvName(n);
   $('#rName').textContent=T.name;
   $('#rFacts').innerHTML=(T.kind==='room'?[`${T.size} m²`,T.bed,T.view,`bis ${T.max} Gäste`]:T.facts).map(f=>`<span>${f}</span>`).join('');
-  $('#rFrom').innerHTML=T.kind==='room'?`ab<b>${euro(T.price)}</b>pro Nacht`:'';
+  $('#rFrom').innerHTML=T.kind==='room'?`Beispielpreis ab<b>${euro(T.price)}</b>pro Nacht`:'';
   $('#rBook').textContent=T.kind==='room'?'Dieses Zimmer buchen':T.cta;
   $('#rBook').dataset.k=k;
   $('#roomLabel').textContent='● '+T.hs[0].l;
@@ -1166,7 +1178,7 @@ function resetZoom(instant){
   gsap.to('#hsLayer',{opacity:1,duration:.4});
 }
 function hotspot(i){
-  const T=typeInfo(roomLevel).T,h=T.hs[i];
+  const T=TYPES[roomKey],h=T.hs[i];
   if(zoomed===i){resetZoom();return;}
   zoomed=i;kb&&kb.kill();
   $$('.hs').forEach((b,k)=>b.classList.toggle('active',k===i));
@@ -1181,8 +1193,8 @@ function hotspot(i){
 }
 $('#bubble').onclick=()=>resetZoom();
 $('#room .imgwrap').addEventListener('click',()=>{if(zoomed>=0)resetZoom();});
-function openRoom(n,fromTower){
-  roomFromTower=!!fromTower;setRoomContent(n);
+function openRoom(n,fromTower,key){
+  roomFromTower=!!fromTower;setRoomContent(n,key);
   room.classList.add('on');room.setAttribute('aria-hidden','false');
   body.classList.add('inroom','lock');topBar.classList.remove('solid');
   if(fromTower){
@@ -1200,7 +1212,7 @@ function closeRoom(instant){
   const done=()=>{room.classList.remove('on');room.setAttribute('aria-hidden','true');kb&&kb.kill();};
   body.classList.remove('inroom','lock');
   if(roomFromTower&&!instant){
-    window.__syncSel(roomLevel-1);updateCard(roomLevel);
+    window.__syncSel(roomLevel);updateCard(roomLevel);
     gsap.to('#flash',{opacity:.9,duration:.35,onComplete:()=>{gsap.set(room,{opacity:0});gsap.set('#flash',{opacity:0});done();window.__leaveRoom();}});
   }else{
     gsap.to(room,{opacity:0,duration:instant?0:.5,onComplete:()=>{done();if(roomFromTower)window.__leaveRoom();}});
@@ -1209,7 +1221,7 @@ function closeRoom(instant){
 $('#backBtn').onclick=()=>closeRoom();$('#rBack2').onclick=()=>closeRoom();
 addEventListener('keydown',e=>{if(e.key==='Escape'){if($('#modal').classList.contains('on'))closeModal();else if($('#drawer').classList.contains('on'))closeDrawer();else closeRoom();}});
 function stepRoom(d){
-  const n=Math.max(1,Math.min(N_FLOORS,roomLevel+d));if(n===roomLevel)return;
+  const n=Math.max(0,Math.min(HOTEL_TOP,roomLevel+d));if(n===roomLevel)return;
   gsap.to('#roomImg',{opacity:0,y:d>0?40:-40,duration:.3,onComplete:()=>{setRoomContent(n);gsap.fromTo('#roomImg',{opacity:0,y:d>0?-40:40},{opacity:1,y:0,duration:.5});}});
 }
 $('#rUp').onclick=()=>stepRoom(1);$('#rDn').onclick=()=>stepRoom(-1);
@@ -1222,8 +1234,8 @@ window.__ui={
   hideCard:()=>gsap.to('#floorCard,.hint,.demo-tag',{opacity:0,y:20,duration:.5,pointerEvents:'none'}),
   showCard:()=>gsap.to('#floorCard,.hint,.demo-tag',{opacity:1,y:0,duration:.7,pointerEvents:'auto'}),
   openRoom,
-  spinUI:(p,f,deg)=>{
-    $('#gFloor').textContent=String(f).padStart(2,'0');$('#gDeg').textContent='Drehung '+deg+'°';
+  spinUI:(p,f,tw)=>{
+    $('#gFloor').textContent=lvName(f);$('#gDeg').textContent=f<=HOTEL_TOP?'Hotel-Etage':(tw>.5?'Büros · Turmspitze verdreht':'Büroetage');
     gsap.set('#spinProg',{scaleX:p});
     const s=p<.33?0:p<.68?1:2;$$('#spin .step').forEach(el=>el.classList.toggle('on',+el.dataset.s===s));
   }
@@ -1262,20 +1274,20 @@ function bindReveals(scope){
 $$('[data-par]').forEach(img=>gsap.fromTo(img,{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:img.parentElement,start:'top bottom',end:'bottom top',scrub:true}}));
 
 /* ---------- Rooms grid ---------- */
-const ROOM_TAGS={superior:'Etage 5–16',deluxe:'Etage 17–26',junior:'Etage 27–32',penthouse:'Etage 33–34'};
-const ROOM_LV={superior:10,deluxe:21,junior:30,penthouse:34};
+const ROOM_TAGS={superior:'Etage 4–11',skyline:'Etage 12–19',junior:'Etage 20 · Suiten',suite:'Etage 20 · Suiten'};
+const ROOM_LV={superior:8,skyline:15,junior:20,suite:20};
 $('#rgrid').innerHTML=ROOM_KEYS.map(k=>{const T=TYPES[k];return `
   <article class="rcard reveal" data-k="${k}">
     <img src="img/${T.img}.webp" alt="${T.name}" loading="lazy">
     <span class="tag">${ROOM_TAGS[k]}</span>
     <div class="body">
       <div><h3>${T.name}</h3><div class="f">${T.size} m² · ${T.bed} · bis ${T.max} Gäste</div></div>
-      <div><div class="pr">ab<b>${euro(T.price)}</b>pro Nacht</div>
+      <div><div class="pr">Beispiel ab<b>${euro(T.price)}</b>pro Nacht</div>
       <div class="btns"><button class="pill ghost" data-view="${k}">Ansehen</button><button class="pill blue" data-add="${k}">Buchen</button></div></div>
     </div>
   </article>`;}).join('');
 $$('#rgrid .rcard').forEach(c=>{
-  c.addEventListener('click',e=>{if(e.target.closest('[data-add]'))return;openRoom(ROOM_LV[c.dataset.k],false);});
+  c.addEventListener('click',e=>{if(e.target.closest('[data-add]'))return;openRoom(ROOM_LV[c.dataset.k],false,c.dataset.k);});
   c.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const r=c.getBoundingClientRect();gsap.to(c,{rotateY:((e.clientX-r.left)/r.width-.5)*5,rotateX:-((e.clientY-r.top)/r.height-.5)*5,transformPerspective:900,duration:.5});});
   c.addEventListener('pointerleave',()=>gsap.to(c,{rotateX:0,rotateY:0,duration:.6}));
 });
@@ -1310,14 +1322,14 @@ function itemTotal(it){
   if(it.ex.breakfast)s+=EXTRAS.breakfast.p*it.guests*it.nights;
   if(it.ex.parking)s+=EXTRAS.parking.p*it.nights;
   if(it.ex.late)s+=EXTRAS.late.p;
-  if(it.ex.spa)s+=EXTRAS.spa.p*it.guests;
+  if(it.ex.early)s+=EXTRAS.early.p;
   return s;
 }
 const fmtDate=s=>new Date(s).toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'});
 const addDays=(s,n)=>{const d=new Date(s);d.setDate(d.getDate()+n);return iso(d);};
 function addToCart(k,opt={}){
   const T=TYPES[k];
-  cart.push({id:Date.now()+Math.random(),k,checkin:opt.checkin||$('#bIn').value,nights:opt.nights||2,guests:Math.min(T.max,opt.guests||2),ex:{breakfast:true,parking:false,late:false,spa:false}});
+  cart.push({id:Date.now()+Math.random(),k,checkin:opt.checkin||$('#bIn').value,nights:opt.nights||2,guests:Math.min(T.max,opt.guests||2),ex:{breakfast:true,parking:false,late:false,early:false}});
   save();renderCart();toast(T.name+' zur Buchung hinzugefügt');
   gsap.fromTo('#cartBtn',{scale:1.25},{scale:1,duration:.6,ease:'elastic.out(1,.4)'});
 }
@@ -1333,7 +1345,7 @@ function renderCart(){
         <div class="ctr"><span>Nächte</span><div><button data-a="n-">−</button><b>${it.nights}</b><button data-a="n+">+</button></div></div>
         <div class="ctr"><span>Gäste</span><div><button data-a="g-">−</button><b>${it.guests}</b><button data-a="g+">+</button></div></div>
       </div>
-      <div class="ex">${Object.entries(EXTRAS).map(([ek,E])=>`<label><input type="checkbox" data-ex="${ek}" ${it.ex[ek]?'checked':''}>${E.l} <span style="color:var(--ink2)">+${E.p} €${E.per==='pn'?'/P./N.':E.per==='n'?'/N.':E.per==='p'?'/P.':''}</span></label>`).join('')}</div>
+      <div class="ex">${Object.entries(EXTRAS).map(([ek,E])=>`<label><input type="checkbox" data-ex="${ek}" ${it.ex[ek]?'checked':''}>${E.l} <span style="color:var(--ink2)">+${E.p} €${E.per==='pn'?'/P./N.':E.per==='n'?'/N.':''}</span></label>`).join('')}</div>
       <div class="sum"><span>Zimmer + Extras</span><b>${euro(itemTotal(it))}</b></div>
     </div>`;}).join('');
   const t=totals();
@@ -1397,27 +1409,25 @@ function checkout(){
 
 /* ---------- Reviews ---------- */
 const REV=[
-  ['Zimmer auf Etage 24, und der Blick auf die Skyline war unglaublich. Das Bett war top.','Miriam, Hamburg · Geschäftsreise'],
-  ['Fünf Minuten zur Messe, das Frühstück war besser als in jedem Messehotel bisher.','Jonas, München · Messe'],
-  ['Die Sky Lounge zum Sonnenuntergang ist ein Muss. Der „Spin“-Drink sowieso.','Alessia, Mailand · Wochenende'],
-  ['Superschnelles Check-in, sehr freundlich, ruhige Zimmer trotz Stadtlage.','Thomas, Köln · Dienstreise'],
-  ['Die Junior Suite mit dem Glasbad – wir wollten gar nicht mehr raus.','Lea & Sam, Wien · Kurzurlaub'],
-  ['Event mit 150 Leuten im Ballsaal, Technik und Catering liefen perfekt.','Katrin, Frankfurt · Firmenevent'],
-  ['Gym rund um die Uhr, Sauna mit Skyline-Fenster. Genau das braucht man nach der Messe.','David, Zürich · Messe'],
-  ['Kinderbett war schon da, das Team hat an alles gedacht.','Familie Öztürk, Berlin · Städtetrip']
+  ['Zimmer auf Etage 17, abends die Skyline vor dem Fenster. Sehr ruhig geschlafen.','Beispielgast · Geschäftsreise'],
+  ['Zur Messe zu Fuß, zum Hauptbahnhof auch. Lage ist unschlagbar.','Beispielgast · Messe'],
+  ['Die Oaks Bar auf der Terrasse war genau richtig für den Abend.','Beispielgast · Wochenende'],
+  ['Schnelles Check-in, freundliches Team, gutes Frühstücksbuffet.','Beispielgast · Dienstreise'],
+  ['Gym rund um die Uhr und danach in die Sauna – perfekt nach der Messe.','Beispielgast · Messe'],
+  ['Tagung für 60 Leute, Technik und Pausen liefen reibungslos.','Beispielgast · Firmenevent']
 ];
 const mk=REV.map(r=>`<div class="rv"><div class="stars">★★★★★</div><p>„${r[0]}“</p><div class="who">${r[1]}</div></div>`).join('');
 $('#marq').innerHTML=mk+mk;
 
 /* ---------- FAQ ---------- */
 const FAQ=[
-  ['Wann ist Check-in und Check-out?','Check-in ab 15 Uhr, Check-out bis 12 Uhr. Early Check-in und Late Check-out (bis 16 Uhr, 40 €) nach Verfügbarkeit.'],
-  ['Gibt es Parkplätze?','Ja, in der Tiefgarage unter dem Tower mit E-Ladesäulen, 32 € pro Nacht.'],
-  ['Sind Haustiere erlaubt?','Hunde sind willkommen, 25 € pro Nacht inklusive Napf und Decke.'],
-  ['Wie komme ich zur Messe?','Zu Fuß sind es etwa fünf Minuten. Zu großen Messen fährt zusätzlich ein Shuttle.'],
-  ['Kann ich kostenlos stornieren?','Bei flexiblen Raten bis 48 Stunden vor Anreise. Spar-Raten sind nicht stornierbar.'],
-  ['Ist das Hotel barrierefrei?','Ja. Es gibt stufenlose Zugänge, Aufzüge auf alle Etagen und rollstuhlgerechte Zimmer in jeder Kategorie.'],
-  ['Ist das die offizielle Website des Hotels?','Nein. Diese Seite ist eine Konzept-Demo. Zimmer, Preise und Daten sind erfunden, Buchungen laufen nur im Testmodus.']
+  ['Wann ist Check-in und Check-out?','Check-in ab 15 Uhr, Check-out bis 12 Uhr (laut Hotel).'],
+  ['Gibt es Parkplätze?','Ja, das Hotel betreibt eine eigene Garage mit 60 Plätzen. Preis bitte beim Hotel erfragen – im Warenkorb dieser Demo steht ein Beispielpreis.'],
+  ['Wie komme ich vom Flughafen?','Mit der S-Bahn (S8/S9) oder dem ICE zum Hauptbahnhof in 12–22 Minuten, von dort sind es rund 600 m. Ein Taxi braucht etwa 20 Minuten und kostet ca. 35–40 €.'],
+  ['Wie weit ist die Messe?','Die Messe Frankfurt ist zu Fuß erreichbar.'],
+  ['Gibt es Frühstück?','Ja, ein Buffet mit vegetarischen, veganen und glutenfreien Optionen, außerdem Earlybird- und Kinderfrühstück. Laut Buchungsportal Mo–Fr 6:30–10 Uhr, am Wochenende 7–12 Uhr.'],
+  ['Auf welchen Etagen liegt das Hotel?','Im Erdgeschoss bis Etage 20. Die Zimmer verteilen sich auf 17 Etagen, ganz oben liegt eine Suiten-Etage. Darüber sind Büros.'],
+  ['Ist das die offizielle Website des Hotels?','Nein. Diese Seite ist eine Konzept-Demo ohne Verbindung zur NH Hotel Group. Echte Buchungen nur direkt beim Hotel (+49 69 255 190).']
 ];
 $('#faqList').innerHTML=FAQ.map(f=>`<div class="q"><button>${f[0]}<i></i></button><div class="a"><p>${f[1]}</p></div></div>`).join('');
 $$('.q').forEach(q=>q.querySelector('button').onclick=()=>{
