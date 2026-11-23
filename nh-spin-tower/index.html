@@ -165,7 +165,20 @@ section{position:relative}
 .realpic img{width:100%;max-height:520px;object-fit:cover}
 .realpic figcaption{font-size:11px;color:var(--ink2);padding:8px 10px;background:#fff}
 .realpic a{color:inherit}
-.wcard .sauna{display:grid;place-items:center;background:radial-gradient(circle at 30% 30%,#e9c79a,#8a5a35 70%,#4a2f1c);color:#fff;font-family:var(--serif);font-size:44px;letter-spacing:.2em}
+.gal{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:clamp(40px,6vw,70px);padding-bottom:8px;scrollbar-width:thin}
+.gal figure{flex:none;width:min(420px,78vw);scroll-snap-align:start;border-radius:18px;overflow:hidden;position:relative}
+.gal img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform 1s}
+.gal figure:hover img{transform:scale(1.05)}
+.gal figcaption,.strip figcaption{position:absolute;left:12px;bottom:12px;font-size:12px;color:#fff;background:rgba(0,0,0,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:5px 10px;border-radius:999px}
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:clamp(40px,6vw,70px)}
+.strip figure{position:relative;border-radius:18px;overflow:hidden}
+.strip img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.rooms-list{margin-top:40px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px 22px;overflow-x:auto}
+.rooms-list h4{font-family:var(--serif);font-size:24px;font-weight:500}
+.rooms-list table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13.5px;min-width:480px}
+.rooms-list th{text-align:left;font-weight:500;color:var(--ink2);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:8px 6px;border-bottom:1px solid var(--line)}
+.rooms-list td{padding:10px 6px;border-bottom:1px solid var(--line)}
+@media (max-width:760px){.strip{grid-template-columns:1fr}}
 @media (max-width:860px){.introgrid{grid-template-columns:1fr}.realpic img{max-height:420px}}
 #intro .big .dim{color:rgba(21,23,29,.18);transition:color .2s}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-top:clamp(50px,8vw,100px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -463,7 +476,7 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
     <h2>Wähle deine<br>Etage</h2>
     <p class="lead">Das Hotel liegt im Erdgeschoss bis Etage 20. Fahre über den Tower oder nutze die Pfeile – dann tritt durch das Glas ein.</p>
     <div class="lvl">
-      <small>Etage</small><b id="lvlNum">14</b>
+      <small>Etage</small><b id="lvlNum">18</b>
       <div class="steps"><button id="lvlUp" aria-label="Etage höher"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 8l4-4 4 4" stroke="#fff" stroke-width="1.6" fill="none"/></svg></button><button id="lvlDn" aria-label="Etage tiefer"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" stroke="#fff" stroke-width="1.6" fill="none"/></svg></button></div>
     </div>
     <div class="typebox swap" id="typeBox">
@@ -471,7 +484,7 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
       <div class="meta" id="lvlMeta">30 m² · Kingsize-Bett · Blick auf die Skyline</div>
       <div class="price" id="lvlPrice">ab <b>189 €</b> / Nacht</div>
     </div>
-    <button class="pill blue go" id="enterBtn">Etage 14 betreten</button>
+    <button class="pill blue go" id="enterBtn">Etage 18 betreten</button>
   </div>
   <div class="demo-tag">Konzept-Demo · kein offizielles Angebot</div>
   <div class="hint">Scrollen<i></i></div>
@@ -482,14 +495,21 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
   <div class="wrap">
     <div class="eyebrow">Güterplatz 1 · Europaviertel</div>
     <div class="introgrid">
-      <p class="big" id="introBig">Ein Hotel in einem der markantesten neuen Hochhäuser Frankfurts. 414 Zimmer auf den unteren 20 Etagen des Spin Tower, direkt zwischen Messe und Hauptbahnhof.</p>
+      <p class="big" id="introBig">Inspiriert von neuen Perspektiven. 414 Zimmer und Suiten auf den unteren 20 Etagen des Spin Tower – an der Kreuzung von Messe, Banken- und Europaviertel.</p>
       <figure class="realpic reveal"><img src="img/tower_real.webp" alt="Der Spin Tower in Frankfurt, Luftaufnahme" loading="lazy"><figcaption>Der echte Spin Tower · Foto: Dr. Thomas Liptak, <a href="https://commons.wikimedia.org/wiki/File:Frankfurt,_The_Spin_(cropped).jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de" target="_blank" rel="noopener">CC BY-SA 4.0</a></figcaption></figure>
+    </div>
+    <div class="gal" id="gal">
+      <figure><img src="img/nh_lobby.webp" alt="Lobby des Hotels" loading="lazy"><figcaption>Lobby · 11 m hoch</figcaption></figure>
+      <figure><img src="img/nh_stairs.webp" alt="Grand Staircase" loading="lazy"><figcaption>Grand Staircase</figcaption></figure>
+      <figure><img src="img/nh_view.webp" alt="Blick vom Hotel auf die Skyline" loading="lazy"><figcaption>Blick auf die Skyline</figcaption></figure>
+      <figure><img src="img/nh_terrace.webp" alt="Terrasse der Oaks Bar" loading="lazy"><figcaption>Oaks Bar · Terrasse</figcaption></figure>
+      <figure><img src="img/nh_executive.webp" alt="Executive-Suite" loading="lazy"><figcaption>Executive-Suite · Etage 20</figcaption></figure>
     </div>
     <div class="stats">
       <div><b data-count="414">0</b><span>Zimmer &amp; Suiten</span></div>
       <div><b data-count="20">0</b><span>Hotel-Etagen</span></div>
-      <div><b data-count="31">0</b><span>Etagen im ganzen Turm</span></div>
-      <div><b data-count="600" data-suf=" m">0</b><span>zum Hauptbahnhof</span></div>
+      <div><b data-count="11" data-suf=" m">0</b><span>hohe Lobby</span></div>
+      <div><b data-count="1500" data-suf=" m²">0</b><span>Tagungsfläche</span></div>
     </div>
   </div>
 </section>
@@ -500,9 +520,9 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
     <canvas id="spinCanvas"></canvas>
     <div class="prog"><i id="spinProg"></i></div>
     <div class="copy">
-      <div class="step on" data-s="0"><div class="n">01 — DAS HOTEL</div><h3>Erdgeschoss bis Etage 20.</h3><p>Unten Lobby, Restaurant und Bar, auf Etage 3 die Oaks Bar mit Terrasse, darüber 17 Zimmeretagen – ganz oben die Suiten-Etage.</p></div>
-      <div class="step" data-s="1"><div class="n">02 — DER TURM</div><h3>31 Geschosse, über 120 Meter.</h3><p>Über dem Hotel liegen Büroetagen. Entworfen hat den Turm das Büro Hadi Teherani, fertig wurde er 2023.</p></div>
-      <div class="step" data-s="2"><div class="n">03 — DER SPIN</div><h3>Oben dreht er sich weg.</h3><p>Der obere Teil sitzt verdreht auf dem Schaft – daher der Name. Das Modell hier ist eine vereinfachte Interpretation.</p></div>
+      <div class="step on" data-s="0"><div class="n">01 — DAS HOTEL</div><h3>Erdgeschoss bis Etage 20.</h3><p>Unten Lobby, Lobby Lounge und Restaurant The Spin, auf Etage 1–3 elf Tagungsräume, auf Etage 3 die Oaks Bar mit Terrasse, darüber die Zimmer – ganz oben der Executive Floor.</p></div>
+      <div class="step" data-s="1"><div class="n">02 — DER TURM</div><h3>121 Meter, Doppelfassade.</h3><p>Über dem Hotel liegen Büroetagen. Den Turm entwarf Hadi Teherani, das Interior stammt vom Büro Rafael de la Hoz. Eröffnet 2023.</p></div>
+      <div class="step" data-s="2"><div class="n">03 — DER SPIN</div><h3>Oben dreht er sich weg.</h3><p>Die Grundrisse der obersten Geschosse sind leicht rotiert – so trennen sie sich optisch ab und geben dem Turm seinen Namen. Das Modell ist vereinfacht.</p></div>
     </div>
     <div class="gauge"><span>Etage</span><b id="gFloor">EG</b><div class="deg" id="gDeg">Hotel-Etage</div></div>
   </div>
@@ -513,7 +533,7 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
   <div class="wrap">
     <div class="rhead">
       <div><div class="eyebrow">Zimmer &amp; Suiten</div><h2 class="h2 split">Schlafen über <em>der Stadt.</em></h2></div>
-      <p class="lead2" style="max-width:420px">414 Zimmer auf 17 Etagen, gestaltet mit Anklängen an New York, dazu eine komplette Suiten-Etage auf Etage 20. Kategorienamen, Größen und Preise sind hier Beispiele.</p>
+      <p class="lead2" style="max-width:420px">414 Zimmer und Suiten im urbanen Stil New Yorker Eleganz: bodentiefe Fenster, Regendusche, Nespresso, LED-Smart-TV, kostenloses WLAN. Ganz oben der Executive Floor auf Etage 20. Kategorien und Größen laut Hotel, Preise sind Beispiele. Außerdem gibt es 2 Suiten (55–64 m²) und ein Familienzimmer mit Verbindungstür (49 m²).</p>
     </div>
     <div class="rgrid" id="rgrid"></div>
   </div>
@@ -542,28 +562,33 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
     <div class="eyebrow">Restaurant &amp; Bars</div>
     <h2 class="h2 split">Essen, trinken, <em>bleiben.</em></h2>
     <div class="dgrid">
-      <div class="dimg"><img src="img/restaurant.webp" alt="Restaurant mit warmem Licht (Symbolbild)" loading="lazy" data-par></div>
+      <div class="dimg"><img src="img/nh_restaurant.webp" alt="Restaurant The Spin" loading="lazy" data-par></div>
       <div class="dtext reveal">
-        <h3>Restaurant &amp; Lobby-Bar</h3>
-        <p>Im Erdgeschoss: Küche mit frischen, regionalen Zutaten, dazu Lobby-Lounge und Bar. Morgens gibt es ein Frühstücksbuffet mit vegetarischen, veganen und glutenfreien Optionen, für Frühaufsteher ein Earlybird-Frühstück und ein Kinderfrühstück.</p>
+        <h3>Restaurant The Spin</h3>
+        <p>150 Plätze in modernem Interieur im Erdgeschoss. Regionale und typisch deutsche Spezialitäten – mittags und abends à la carte oder als Buffet. Morgens reichhaltiges Frühstück, für Frühaufsteher das Early-Bird-Frühstück.</p>
         <ul class="menu">
-          <li><div>Frühstücksbuffet<span>Mo–Fr 6:30–10 Uhr · Sa/So 7–12 Uhr</span></div><b>Beispiel 29 €</b></li>
-          <li><div>Earlybird-Frühstück<span>für frühe Abreisen</span></div><b>auf Anfrage</b></li>
-          <li><div>Kinderfrühstück<span>für die Kleinen</span></div><b>auf Anfrage</b></li>
+          <li><div>Frühstücksbuffet<span>Mo–Fr 6:30–10 Uhr · Sa/So 7–12 Uhr</span></div><b>täglich</b></li>
+          <li><div>Lunch &amp; Dinner<span>à la carte oder Buffet</span></div><b>mittags · abends</b></li>
+          <li><div>Lobby Lounge<span>Snacks &amp; Kuchen, abends Treffpunkt · 50 Plätze</span></div><b>Erdgeschoss</b></li>
         </ul>
       </div>
     </div>
     <div class="dgrid rev" style="margin-top:clamp(50px,8vw,110px)">
       <div class="dtext reveal">
         <h3>Oaks Bar · Etage 3</h3>
-        <p>Die Bar auf der dritten Etage mit Terrasse – für den Drink nach der Messe mit Blick über die Stadt.</p>
+        <p>Elegante Bar mit weitläufiger Terrasse und Blick auf die Frankfurter Skyline. Internationale Küche, große Auswahl an Drinks – und am Wochenende auch Treffpunkt der Frankfurter Clubkultur.</p>
         <ul class="menu">
-          <li><div>Signature-Cocktails<span>Beispielkarte</span></div><b>ab 14 €</b></li>
-          <li><div>Weine &amp; Apfelwein<span>Beispielkarte</span></div><b>ab 7 €</b></li>
-          <li><div>Bar-Snacks<span>Beispielkarte</span></div><b>ab 9 €</b></li>
+          <li><div>Bar<span>bis 150 Gäste</span></div><b>Etage 3</b></li>
+          <li><div>Bar + Terrasse<span>bis 200 Gäste</span></div><b>Events</b></li>
+          <li><div>Mit Raum „Petronas Towers“<span>bis 250 Gäste</span></div><b>auf Anfrage</b></li>
         </ul>
       </div>
-      <div class="dimg small"><img src="img/cocktail.webp" alt="Cocktail an der Bar (Symbolbild)" loading="lazy" data-par></div>
+      <div class="dimg small"><img src="img/nh_terrace.webp" alt="Terrasse der Oaks Bar mit Skyline" loading="lazy" data-par></div>
+    </div>
+    <div class="strip reveal">
+      <figure><img src="img/nh_dish.webp" alt="Gericht im Restaurant The Spin" loading="lazy"><figcaption>Beef Bimi · The Spin</figcaption></figure>
+      <figure><img src="img/nh_cocktail.webp" alt="Cocktail in der Oaks Bar" loading="lazy"><figcaption>Drinks · Oaks Bar</figcaption></figure>
+      <figure><img src="img/nh_party.webp" alt="Party in der Oaks Bar" loading="lazy"><figcaption>Wochenende · Oaks Bar</figcaption></figure>
     </div>
   </div>
 </section>
@@ -574,9 +599,21 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
     <div class="eyebrow">Fitness, Sauna &amp; Tagungen</div>
     <h2 class="h2 split">Arbeiten, trainieren, <em>abschalten.</em></h2>
     <div class="wgrid">
-      <div class="wcard reveal"><div class="im"><img src="img/gym.webp" alt="Fitnessraum (Symbolbild)" loading="lazy"></div><div class="t"><h4>Gym 24/7</h4><p>Fitnessraum, rund um die Uhr geöffnet.</p><div class="hrs">rund um die Uhr</div></div></div>
-      <div class="wcard reveal"><div class="im sauna"><span>Sauna</span></div><div class="t"><h4>Sauna</h4><p>Zum Aufwärmen und Abschalten nach einem langen Messetag.</p><div class="hrs">Zeiten an der Rezeption</div></div></div>
-      <div class="wcard reveal"><div class="im"><img src="img/events.webp" alt="Festlich gedeckter Saal (Symbolbild)" loading="lazy"></div><div class="t"><h4>Meetings &amp; Events</h4><p>Über 1.000 m² Tagungsfläche mit moderner Technik und eigenen Pausenbereichen.</p><div class="hrs">Anfrage über das Kontaktformular</div></div></div>
+      <div class="wcard reveal"><div class="im"><img src="img/nh_gym.webp" alt="Fitnessbereich des Hotels" loading="lazy"></div><div class="t"><h4>Fitness 24/7</h4><p>Rund um die Uhr geöffnet, mit großzügiger Ausstattung an Geräten und Equipment. Dazu eine Sauna zum Abschalten.</p><div class="hrs">Gym rund um die Uhr · Sauna</div></div></div>
+      <div class="wcard reveal"><div class="im"><img src="img/nh_meeting.webp" alt="Tagungsraum mit Skyline-Blick" loading="lazy"></div><div class="t"><h4>11 Tagungsräume</h4><p>1.500 m² auf 3 Etagen, alle mit Tageslicht, kombinierbar und mit modernster Technik – live, hybrid oder virtuell.</p><div class="hrs">größter Raum: Empire State + Chrysler, 186 m²</div></div></div>
+      <div class="wcard reveal"><div class="im"><img src="img/nh_stairs.webp" alt="Grand Staircase in der Lobby" loading="lazy"></div><div class="t"><h4>Grand Staircase</h4><p>Die große Treppe in der 11 m hohen Lobby – mit Sitzstufen für Remote Work und kurze Meetings.</p><div class="hrs">Lobby · Erdgeschoss</div></div></div>
+    </div>
+    <div class="rooms-list reveal">
+      <h4>Tagungsräume</h4>
+      <table>
+        <tr><th>Raum</th><th>Etage</th><th>m²</th><th>Empfang</th><th>Theater</th></tr>
+        <tr><td>Empire State + Chrysler</td><td>1</td><td>186</td><td>180</td><td>150</td></tr>
+        <tr><td>Europaturm + Messeturm</td><td>2</td><td>152,3</td><td>150</td><td>110</td></tr>
+        <tr><td>Petronas Towers</td><td>3</td><td>148</td><td>100</td><td>96</td></tr>
+        <tr><td>Burj Khalifa + Cayan Tower</td><td>2</td><td>136,5</td><td>140</td><td>90</td></tr>
+        <tr><td>Transamerica Pyramid</td><td>2</td><td>110</td><td>90</td><td>65</td></tr>
+        <tr><td>Shanghai Tower · Taipei 101 · PNB 118</td><td>2</td><td>74–88</td><td>65–70</td><td>60–65</td></tr>
+      </table>
     </div>
   </div>
 </section>
@@ -609,8 +646,8 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
           <path class="route" d="M230 210 C280 230 330 260 390 262" stroke="#c8a46a" stroke-width="3" fill="none" stroke-linecap="round"/>
           <path class="route" d="M230 210 C320 190 430 190 520 195" stroke="#15171d" stroke-width="3" fill="none" stroke-linecap="round"/>
           <g font-family="Inter" font-size="12" fill="#15171d">
-            <circle cx="95" cy="150" r="7" fill="#1e7bf2"/><text x="60" y="132">Messe</text>
-            <circle cx="390" cy="262" r="7" fill="#c8a46a"/><text x="368" y="290">Hauptbahnhof</text>
+            <circle cx="95" cy="150" r="7" fill="#1e7bf2"/><text x="40" y="132">Messe · 600 m</text>
+            <circle cx="390" cy="262" r="7" fill="#c8a46a"/><text x="368" y="290">Hauptbahnhof · 700 m</text>
             <circle cx="520" cy="195" r="7" fill="#15171d"/><text x="478" y="178">Bankenviertel</text>
           </g>
           <circle cx="230" cy="210" r="14" fill="#1e7bf2" class="pulse"/>
@@ -620,11 +657,12 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
       </div>
       <div class="reveal">
         <ul class="dist">
-          <li><span>Messe Frankfurt</span><b>fußläufig</b></li>
-          <li><span>Hauptbahnhof</span><b>ca. 600 m</b></li>
-          <li><span>Flughafen FRA (S8/S9 oder ICE)</span><b>12–22 Min.</b></li>
-          <li><span>Flughafen FRA (Taxi)</span><b>ca. 20 Min. · ca. 35–40 €</b></li>
-          <li><span>Parken</span><b>Hotelgarage, 60 Plätze</b></li>
+          <li><span>Messe Frankfurt</span><b>600 m · 7 Min. zu Fuß</b></li>
+          <li><span>Hauptbahnhof</span><b>700 m · 9 Min. zu Fuß</b></li>
+          <li><span>Römer</span><b>2,1 km · 11 Min. Tram</b></li>
+          <li><span>Flughafen FRA</span><b>15 km · 15 Min. Auto</b></li>
+          <li><span>Tram 11/16 · Bus 64/M46</span><b>25 m</b></li>
+          <li><span>U-Bahn Festhalle/Messe</span><b>370 m</b></li>
         </ul>
         <div class="hours">
           <h4>Zeiten</h4>
@@ -634,6 +672,7 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
             <dt>Frühstück Mo–Fr</dt><dd>6:30–10 Uhr</dd>
             <dt>Frühstück Sa/So</dt><dd>7–12 Uhr</dd>
             <dt>Gym</dt><dd>rund um die Uhr</dd>
+            <dt>Parken</dt><dd>Garage + 6 E-Ladestationen</dd>
           </dl>
         </div>
         <p class="addr"><b>NH Collection Frankfurt Spin Tower</b><br>Güterplatz 1<br>60327 Frankfurt am Main<br><span style="color:var(--ink2);font-size:12px">Zeiten laut Hotel- und Buchungsseiten, Stand Nov. 2026 – vor der Reise beim Hotel prüfen.</span></p>
@@ -683,8 +722,8 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
       <div><h5>Rechtliches</h5><a href="#" data-legal="Impressum">Impressum</a><a href="#" data-legal="Datenschutz">Datenschutz</a><a href="#" data-legal="AGB">AGB</a></div>
     </div>
     <div class="disclaimer">
-      <b style="color:#fff">Konzept-Demo, kein offizielles Angebot.</b> Diese Seite ist ein Gestaltungsentwurf und steht in keiner Verbindung zur NH Hotel Group oder zu Minor Hotels. Eckdaten (Adresse, 414 Zimmer, 20 Hotel-Etagen, Oaks Bar auf Etage 3, Gym, Sauna, Tagungsfläche, Check-in/-out, Anreise) stammen aus öffentlichen Angaben des Hotels und von Buchungsportalen, Stand Nov. 2026. Zimmernamen, Größen, Preise, die genaue Belegung der Etagen, Karten und Gästestimmen sind Beispiele. Buchungen laufen im Testmodus, es wird nichts reserviert oder abgebucht. Das 3D-Modell ist eine vereinfachte Interpretation des Gebäudes.<br>
-      Fotos Spin Tower: Dr. Thomas Liptak (CC BY-SA 4.0) und Alexis Jazz (CC BY 4.0), Wikimedia Commons, verkleinert. Innenaufnahmen sind Symbolbilder von Unsplash (Unsplash-Lizenz), nicht aus dem Hotel. · 3D: Three.js · Animation: GSAP
+      <b style="color:#fff">Konzept-Demo, kein offizielles Angebot.</b> Diese Seite ist ein Gestaltungsentwurf und steht in keiner Verbindung zur NH Hotel Group oder zu Minor Hotels. Eckdaten (Adresse, Zimmerkategorien und -größen, Restaurants, Tagungsräume, Services, Anreise) stammen aus dem öffentlichen Hotel-Factsheet und von den Hotel- und Buchungsseiten, Stand Nov. 2026. Preise, die genaue Zuordnung der Zimmerkategorien zu Etagen 4–19 und die Gästestimmen sind Beispiele. Buchungen laufen im Testmodus, es wird nichts reserviert oder abgebucht. Das 3D-Modell ist eine vereinfachte Interpretation des Gebäudes.<br>
+      Hotelfotos: © NH Hotel Group / Minor Hotels, aus dem öffentlichen Hotel-Factsheet – Verwendung nur zu Präsentationszwecken. Außenfotos Spin Tower: Dr. Thomas Liptak (CC BY-SA 4.0) und Alexis Jazz (CC BY 4.0), Wikimedia Commons, verkleinert. · 3D: Three.js · Animation: GSAP
     </div>
   </div>
 </footer>
@@ -732,26 +771,28 @@ footer .fb{font-family:var(--serif);color:#fff;font-size:24px;letter-spacing:.35
 /* Etage 0 = Erdgeschoss. Hotel: EG bis Etage 20 · Büros: Etage 21–30 (The Spin hat 31 Geschosse) */
 const N_FLOORS = 31, HOTEL_TOP = 20, TWIST_FROM = 21;
 const TYPES = {
-  lobby:{name:'Lobby, Restaurant & Lobby-Bar',img:'restaurant',kind:'venue',facts:['Erdgeschoss','Frühstücksbuffet','Lobby-Lounge & Bar'],cta:'Tisch anfragen',topic:'Tisch im Restaurant',
-    hs:[{x:42,y:70,l:'Restaurant',t:'Küche mit frischen, regionalen Zutaten. Morgens Frühstücksbuffet, auch vegetarisch, vegan und glutenfrei.'},{x:78,y:36,l:'Lobby-Lounge',t:'Lounge und Bar direkt im Erdgeschoss.'},{x:20,y:30,l:'Frühstück',t:'Mo–Fr 6:30–10 Uhr, Sa/So 7–12 Uhr (laut Buchungsportal).'}]},
-  events:{name:'Tagungsbereich',img:'events',kind:'venue',facts:['über 1.000 m² Tagungsfläche','moderne Technik','eigene Pausenbereiche'],cta:'Tagung anfragen',topic:'Meeting & Event',
-    hs:[{x:50,y:72,l:'Räume',t:'Über 1.000 m² Tagungsfläche mit moderner Technik.'},{x:85,y:45,l:'Pausen',t:'Separate Pausenbereiche für Tagungsgäste.'}]},
-  oaks:{name:'Oaks Bar & Terrasse',img:'cocktail',kind:'venue',facts:['Etage 3','Terrasse mit Stadtblick','Drinks & Snacks'],cta:'Tisch anfragen',topic:'Tisch im Restaurant',
-    hs:[{x:55,y:50,l:'Drinks',t:'Cocktails und Drinks in der Oaks Bar.'},{x:20,y:25,l:'Terrasse',t:'Die Terrasse auf Etage 3 bietet Blick über die Stadt.'}]},
-  superior:{name:'Superior Zimmer',img:'superior',kind:'room',price:159,size:24,bed:'Doppelbett',view:'Blick über das Europaviertel',max:2,
-    hs:[{x:62,y:62,l:'Schlafbereich',t:'Doppelbett, Design inspiriert von New York.'},{x:22,y:38,l:'Fenster',t:'Raumhohe Verglasung der Fassade.'},{x:88,y:60,l:'Arbeitsplatz',t:'Schreibtisch und schnelles WLAN.'}]},
-  skyline:{name:'Superior Skyline',img:'deluxe',kind:'room',price:189,size:24,bed:'Doppelbett',view:'Blick auf die Skyline',max:2,
-    hs:[{x:55,y:62,l:'Schlafbereich',t:'Doppelbett auf den oberen Hotel-Etagen.'},{x:40,y:30,l:'Licht',t:'Warmes Licht und dunkle Materialien.'},{x:12,y:42,l:'Aussicht',t:'Je höher, desto weiter der Blick auf die Bankentürme.'}]},
-  junior:{name:'Junior Suite',img:'suite',kind:'room',price:299,size:40,bed:'Kingsize-Bett + Sitzbereich',view:'Suiten-Etage',max:3,
-    hs:[{x:45,y:70,l:'Schlafbereich',t:'Großes Bett mit Sitzbereich.'},{x:62,y:34,l:'Bad',t:'Bad mit Regendusche.'},{x:16,y:42,l:'Aussicht',t:'Auf der Suiten-Etage, ganz oben im Hotel.'}]},
-  suite:{name:'Suite',img:'penthouse',kind:'room',price:450,size:60,bed:'Schlafzimmer + Wohnraum',view:'Suiten-Etage',max:4,
-    hs:[{x:35,y:70,l:'Wohnbereich',t:'Eigener Wohnraum mit Lounge.'},{x:12,y:40,l:'Aussicht',t:'Höchste Hotel-Etage mit Blick über Frankfurt.'},{x:80,y:46,l:'Materialien',t:'Holz, Glas und warme Töne.'}]},
+  lobby:{name:'Lobby, Lobby Lounge & Restaurant The Spin',img:'nh_lobby',kind:'venue',facts:['Erdgeschoss','11 m hohe Lobby','Restaurant mit 150 Plätzen'],cta:'Tisch anfragen',topic:'Tisch im Restaurant',
+    hs:[{x:12,y:35,l:'11 m Lobby',t:'Die elf Meter hohe Lobby mit Glasfassade – Treffpunkt und Arbeitsplatz.'},{x:55,y:75,l:'Lobby Lounge',t:'Tagsüber Snacks und Kuchen, abends Treffpunkt. Platz für 50 Personen.'},{x:80,y:45,l:'Grand Staircase',t:'Große Treppe mit Sitzstufen – für kurze Meetings oder zum Verweilen.'}]},
+  events:{name:'Tagungsetage',img:'nh_meeting',kind:'venue',facts:['11 Räume auf 3 Etagen','1.500 m²','Tageslicht in allen Räumen'],cta:'Tagung anfragen',topic:'Meeting & Event',
+    hs:[{x:55,y:72,l:'Räume',t:'Alle Räume sind nach Wolkenkratzern benannt: Empire State, Chrysler, Burj Khalifa, Messeturm …'},{x:30,y:30,l:'Tageslicht',t:'Raumhöhe 3,9 m, bodentiefe Fenster.'},{x:85,y:50,l:'Kombinierbar',t:'Empire State + Chrysler: 186 m², bis 180 Personen Empfang.'}]},
+  oaks:{name:'Oaks Bar & Terrasse',img:'nh_oaks',kind:'venue',facts:['Etage 3','Terrasse mit Skyline-Blick','bis 200 Gäste'],cta:'Tisch anfragen',topic:'Oaks Bar',
+    hs:[{x:40,y:75,l:'Lounge',t:'Internationale Küche und raffinierte Drinks.'},{x:25,y:30,l:'Skyline',t:'Blick direkt auf die Frankfurter Bankentürme.'},{x:85,y:40,l:'Terrasse',t:'Weitläufige Terrasse – am Wochenende auch Treffpunkt der Clubkultur.'}]},
+  superior:{name:'Superior-Zimmer',img:'nh_superior',kind:'room',price:159,size:21,bed:'Doppelbett',view:'bodentiefe Fenster',max:2,count:353,
+    hs:[{x:70,y:65,l:'Bett',t:'Exklusiv für NH Collection entworfene Matratzen und Kissenauswahl.'},{x:40,y:35,l:'Fenster',t:'Bodentiefe Fenster mit Blick über die Stadt.'},{x:25,y:70,l:'Sitzecke',t:'Nespresso, Minibar, Safe und LED-Smart-TV.'}]},
+  superiorxl:{name:'Superior-Zimmer XL',img:'nh_superiorxl',kind:'room',price:189,size:28,bed:'Doppelbett',view:'mehr Platz',max:3,count:32,
+    hs:[{x:35,y:70,l:'Bett',t:'Großes Doppelbett, warme Creme- und Brauntöne.'},{x:78,y:35,l:'Aussicht',t:'Blick zwischen die Hochhäuser.'},{x:58,y:30,l:'Bad',t:'Regendusche im Bad.'}]},
+  premium:{name:'Premium-Zimmer',img:'nh_premium',kind:'room',price:229,size:34,bed:'Kingsize-Bett',view:'Skyline-Blick',max:3,count:16,
+    hs:[{x:60,y:70,l:'Bett',t:'Kingsize-Bett im New-York-Stil.'},{x:25,y:35,l:'Skyline',t:'Bodentiefe Fenster Richtung Bankenviertel.'},{x:14,y:72,l:'Sessel',t:'Leseplatz am Fenster.'}]},
+  junior:{name:'Junior-Suite',img:'nh_junior',kind:'room',price:329,size:45,bed:'Kingsize-Bett',view:'freistehende Wanne',max:3,count:8,
+    hs:[{x:12,y:75,l:'Badewanne',t:'Freistehende Wanne direkt am Schlafbereich.'},{x:75,y:45,l:'Regendusche',t:'Begehbare Regendusche.'},{x:15,y:45,l:'Bett',t:'Kingsize-Bett mit Blick nach draußen.'}]},
+  executive:{name:'Executive-Suite',img:'nh_executive',kind:'room',price:690,size:74,bed:'Schlafzimmer + Wohnbereich',view:'Executive Floor, Etage 20',max:4,count:2,
+    hs:[{x:60,y:30,l:'Skyline',t:'Die höchstgelegenen Suiten des Hotels – Panorama über Frankfurt.'},{x:85,y:70,l:'Wohnbereich',t:'Sofa und Lounge im offenen Raum.'},{x:15,y:60,l:'Bett',t:'Kingsize-Bett mit Blick auf die Türme.'}]},
   office:{name:'Büroetagen',img:null,kind:'office',facts:['Etage 21–30','kein Teil des Hotels','Büros im Spin Tower']}
 };
-const ROOM_KEYS = ['superior','skyline','junior','suite'];
+const ROOM_KEYS = ['superior','superiorxl','premium','junior','executive'];
 function levelType(n){
   if(n===0) return 'lobby'; if(n<=2) return 'events'; if(n===3) return 'oaks';
-  if(n<=11) return 'superior'; if(n<=19) return 'skyline'; if(n===20) return 'suite';
+  if(n<=13) return 'superior'; if(n<=16) return 'superiorxl'; if(n<=19) return 'premium'; if(n===20) return 'executive';
   return 'office';
 }
 const lvName = n => n===0?'EG':String(n).padStart(2,'0');
@@ -1008,7 +1049,7 @@ window.__assemble=()=>{
   T.crown.position.y+=30;gsap.to(T.crown.position,{y:T.crown.position.y-30,duration:1.5,delay:.25+N_FLOORS*.035,ease:'power3.out'});
   const r=cam.pos.clone();cam.pos.multiplyScalar(1.25);cam.pos.y+=8;
   gsap.to(cam.pos,{x:r.x,y:r.y,z:r.z,duration:3,ease:'power3.out'});
-  setTimeout(()=>window.__selectLevel(14,'init'),1900);
+  setTimeout(()=>window.__selectLevel(18,'init'),1900);
 };
 
 /* ---------- loop ---------- */
@@ -1128,7 +1169,7 @@ $$('.brand,footer a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.pre
 $$('[data-legal]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();toast(a.dataset.legal+': Platzhalter in dieser Konzept-Demo.');}));
 
 /* ---------- Floor card ---------- */
-let curLevel=14;
+let curLevel=18;
 function typeInfo(n){const k=levelType(n);return {k,T:TYPES[k]};}
 function updateCard(n){
   curLevel=n;const {T}=typeInfo(n);
@@ -1274,8 +1315,8 @@ function bindReveals(scope){
 $$('[data-par]').forEach(img=>gsap.fromTo(img,{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:img.parentElement,start:'top bottom',end:'bottom top',scrub:true}}));
 
 /* ---------- Rooms grid ---------- */
-const ROOM_TAGS={superior:'Etage 4–11',skyline:'Etage 12–19',junior:'Etage 20 · Suiten',suite:'Etage 20 · Suiten'};
-const ROOM_LV={superior:8,skyline:15,junior:20,suite:20};
+const ROOM_TAGS={superior:'353 Zimmer',superiorxl:'32 Zimmer',premium:'16 Zimmer',junior:'8 Suiten',executive:'Executive Floor · Etage 20'};
+const ROOM_LV={superior:8,superiorxl:15,premium:18,junior:20,executive:20};
 $('#rgrid').innerHTML=ROOM_KEYS.map(k=>{const T=TYPES[k];return `
   <article class="rcard reveal" data-k="${k}">
     <img src="img/${T.img}.webp" alt="${T.name}" loading="lazy">
@@ -1306,7 +1347,7 @@ $('#bookForm').addEventListener('submit',e=>{
   const n=nightsBetween($('#bIn').value,$('#bOut').value),g=+$('#bGuests').value,t=$('#bType').value;
   const keys=(t==='all'?ROOM_KEYS:[t]);
   $('#avail').innerHTML=keys.map(k=>{const T=TYPES[k];const ok=g<=T.max;return `
-    <div class="av"><img src="img/${T.img}.webp" alt=""><div><h4>${T.name}</h4><div class="s">${T.size} m² · ${ok?(['noch 3 frei','noch 5 frei','nur noch 1 frei','noch 2 frei'][ROOM_KEYS.indexOf(k)]):'für '+g+' Gäste zu klein'}</div>
+    <div class="av"><img src="img/${T.img}.webp" alt=""><div><h4>${T.name}</h4><div class="s">${T.size} m² · ${ok?(['noch 6 frei','noch 3 frei','noch 2 frei','nur noch 1 frei','auf Anfrage'][ROOM_KEYS.indexOf(k)]):'für '+g+' Gäste zu klein'}</div>
     <div class="t"><div><b>${euro(T.price*n)}</b><small>${n} ${n>1?'Nächte':'Nacht'} · ${g} ${g>1?'Gäste':'Gast'}</small></div>
     <button class="pill ${ok?'blue':'ghost'}" ${ok?'':'disabled style="opacity:.4"'} data-q="${k}">Hinzufügen</button></div></div></div>`;}).join('');
   gsap.to('#avail .av',{opacity:1,y:0,stagger:.08,duration:.6,ease:'power3.out'});
@@ -1422,11 +1463,12 @@ $('#marq').innerHTML=mk+mk;
 /* ---------- FAQ ---------- */
 const FAQ=[
   ['Wann ist Check-in und Check-out?','Check-in ab 15 Uhr, Check-out bis 12 Uhr (laut Hotel).'],
-  ['Gibt es Parkplätze?','Ja, das Hotel betreibt eine eigene Garage mit 60 Plätzen. Preis bitte beim Hotel erfragen – im Warenkorb dieser Demo steht ein Beispielpreis.'],
-  ['Wie komme ich vom Flughafen?','Mit der S-Bahn (S8/S9) oder dem ICE zum Hauptbahnhof in 12–22 Minuten, von dort sind es rund 600 m. Ein Taxi braucht etwa 20 Minuten und kostet ca. 35–40 €.'],
-  ['Wie weit ist die Messe?','Die Messe Frankfurt ist zu Fuß erreichbar.'],
-  ['Gibt es Frühstück?','Ja, ein Buffet mit vegetarischen, veganen und glutenfreien Optionen, außerdem Earlybird- und Kinderfrühstück. Laut Buchungsportal Mo–Fr 6:30–10 Uhr, am Wochenende 7–12 Uhr.'],
-  ['Auf welchen Etagen liegt das Hotel?','Im Erdgeschoss bis Etage 20. Die Zimmer verteilen sich auf 17 Etagen, ganz oben liegt eine Suiten-Etage. Darüber sind Büros.'],
+  ['Gibt es Parkplätze?','Ja, eine hoteleigene Garage mit rund 50–60 Plätzen (Angaben variieren) und 6 Ladestationen für E-Autos. Preis bitte beim Hotel erfragen.'],
+  ['Gibt es Online-Check-in und Late Check-out?','Ja, Online-Check-in/-out mit FASTPASS. Sonntags länger ausschlafen dank Late Check-out.'],
+  ['Wie komme ich vom Flughafen?','Mit S8/S9 oder ICE zum Hauptbahnhof (12–22 Min.), von dort 700 m zu Fuß. Mit dem Auto oder Taxi ca. 15–20 Minuten.'],
+  ['Wie weit ist die Messe?','Etwa 600 m, rund 7 Minuten zu Fuß. Die Festhalle liegt direkt nebenan.'],
+  ['Gibt es Frühstück?','Ja, ein Buffet mit vegetarischen, veganen und glutenfreien Optionen, außerdem Early-Bird- und Kinderfrühstück. Laut Buchungsportal Mo–Fr 6:30–10 Uhr, am Wochenende 7–12 Uhr.'],
+  ['Auf welchen Etagen liegt das Hotel?','Im Erdgeschoss bis Etage 20. Tagungsräume auf Etage 1–3, Oaks Bar auf Etage 3, Zimmer bis Etage 20 – dort der Executive Floor mit den höchsten Suiten. Darüber sind Büros.'],
   ['Ist das die offizielle Website des Hotels?','Nein. Diese Seite ist eine Konzept-Demo ohne Verbindung zur NH Hotel Group. Echte Buchungen nur direkt beim Hotel (+49 69 255 190).']
 ];
 $('#faqList').innerHTML=FAQ.map(f=>`<div class="q"><button>${f[0]}<i></i></button><div class="a"><p>${f[1]}</p></div></div>`).join('');
