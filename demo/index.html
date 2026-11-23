@@ -177,8 +177,8 @@ body.bau .form input,body.bau .form select,body.bau .form textarea{border-radius
 footer{background:var(--dark);color:var(--dark-fg);padding:50px 0 110px;font-size:13px}
 footer .w{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 footer a{opacity:.75}
-#toast{position:fixed;left:50%;top:20px;transform:translate(-50%,-150%);z-index:90;background:var(--fg);color:var(--bg);padding:12px 18px;border-radius:999px;font-size:14px;transition:transform .4s cubic-bezier(.3,1.4,.5,1);max-width:calc(100% - 32px);text-align:center}
-#toast.on{transform:translate(-50%,0)}
+#toast{position:fixed;left:50%;top:20px;transform:translate(-50%,-300%);visibility:hidden;z-index:90;background:var(--fg);color:var(--bg);padding:12px 18px;border-radius:999px;font-size:14px;transition:transform .4s cubic-bezier(.3,1.4,.5,1);max-width:calc(100% - 32px);text-align:center}
+#toast.on{transform:translate(-50%,0);visibility:visible}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.hero .w>*{opacity:1;transform:none}#intro{display:none}}
 </style>
 </head>
