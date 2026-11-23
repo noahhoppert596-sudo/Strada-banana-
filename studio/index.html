@@ -60,7 +60,8 @@ section{padding:100px 0}
 .case h3{font-size:22px}
 .case p{color:var(--muted);font-size:14px;margin-top:6px}
 .case .tag{display:inline-block;margin-top:12px;font-size:12px;color:var(--lime)}
-@media (max-width:900px){.work{grid-template-columns:1fr}}
+@media (max-width:900px){.work,#vorlagen{grid-template-columns:1fr 1fr!important}}
+@media (max-width:560px){.work,#vorlagen{grid-template-columns:1fr!important}}
 
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-top:50px}
 .steps div{background:var(--bg);padding:24px}
@@ -146,7 +147,16 @@ footer .w.legal.on{display:block}
 </div></section>
 
 <section style="padding-top:0"><div class="w">
-  <div class="niches">
+  <div class="eyebrow">Ihre Branche</div>
+  <h2 class="h2" style="font-size:clamp(28px,4vw,48px)">So sähe es für Sie aus.</h2>
+  <p class="sub">Vier Vorlagen zum Ausprobieren – mit Ihrem Namen erstelle ich Ihnen eine eigene Vorschau.</p>
+  <div class="work" style="grid-template-columns:repeat(4,minmax(0,1fr))" id="vorlagen">
+    <a class="case rv" href="../demo/?n=bau&amp;name=Muster%20Bau&amp;ort=Bad%20Hersfeld" target="_blank" rel="noopener"><div class="im"><img src="img/v_bau.webp" alt="Vorlage Bau und Handwerk" loading="lazy"></div><div class="t"><h3>Bau &amp; Handwerk</h3><p>Leistungen, Vorher-Nachher, Anfrage.</p><span class="tag">Vorlage ansehen →</span></div></a>
+    <a class="case rv" href="../demo/?n=gastro&amp;name=Gasthaus%20zur%20Linde&amp;ort=Bad%20Hersfeld" target="_blank" rel="noopener"><div class="im"><img src="img/v_gastro.webp" alt="Vorlage Restaurant" loading="lazy"></div><div class="t"><h3>Restaurant &amp; Bar</h3><p>Speisekarte, Galerie, Reservierung.</p><span class="tag">Vorlage ansehen →</span></div></a>
+    <a class="case rv" href="../demo/?n=hotel&amp;name=Hotel%20am%20Markt&amp;ort=Fulda" target="_blank" rel="noopener"><div class="im"><img src="img/v_hotel.webp" alt="Vorlage Hotel" loading="lazy"></div><div class="t"><h3>Hotel &amp; Pension</h3><p>Zimmer, Ausstattung, Direktbuchung.</p><span class="tag">Vorlage ansehen →</span></div></a>
+    <a class="case rv" href="../demo/?n=beauty&amp;name=Studio%20Schnitt&amp;ort=Fulda" target="_blank" rel="noopener"><div class="im"><img src="img/v_beauty.webp" alt="Vorlage Friseur und Beauty" loading="lazy"></div><div class="t"><h3>Friseur &amp; Beauty</h3><p>Preisliste, Galerie, Online-Termin.</p><span class="tag">Vorlage ansehen →</span></div></a>
+  </div>
+  <div class="niches" style="margin-top:60px">
     <div class="niche rv"><h3>Bau &amp; Handwerk</h3><p>Referenzen, Leistungen, Anfrageformular. Mehr Aufträge statt Telefonbuch.</p></div>
     <div class="niche rv"><h3>Restaurants &amp; Bars</h3><p>Speisekarte am Handy, Fotos, Reservierung. Gäste entscheiden online.</p></div>
     <div class="niche rv"><h3>Hotels &amp; Ferien­wohnungen</h3><p>Direktbuchungen statt Provision an Portale.</p></div>
