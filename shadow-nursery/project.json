@@ -1,0 +1,43 @@
+{
+  "project": "Shadow Nursery – Horror Short (Peter-Pan-inspiriert, Public Domain J. M. Barrie)",
+  "target_length_seconds": 64,
+  "tool": "Google Flow",
+  "rights_note": "Nur Barrie-Original nutzen. KEIN Disney-Look: kein grünes Outfit, kein Federhut, keine Tinker-Bell-Optik.",
+  "style_suffix": "same girl, same nursery, live-action horror film, cinematic 35mm, film grain, desaturated cold blue tones, realistic, 16:9",
+  "characters": {
+    "girl": "girl around 10, brown hair, white Edwardian nightgown",
+    "boy": "small boy around 6, blond messy hair, white nightshirt",
+    "shadow": "tall thin shadow of a boy, unnaturally long fingers, no visible body"
+  },
+  "clips": [
+    { "id": 1, "title": "Das Haus", "duration": 8,
+      "prompt": "Slow drone push-in towards an old Victorian townhouse in foggy London, 1900s, one upstairs window glowing faintly, wet cobblestones, cold moonlight, eerie silence",
+      "sound": "wind, distant church bell, low drone" },
+    { "id": 2, "title": "Kinderzimmer", "duration": 8,
+      "prompt": "Interior of a dim Edwardian nursery at night, three small wooden beds, the girl sleeping, the window slowly creaks open by itself, thin curtains billowing, candle flickers, slow dolly shot",
+      "sound": "window creak, curtains rustling" },
+    { "id": 3, "title": "Der Schatten", "duration": 8,
+      "prompt": "Close-up of nursery wallpaper, the tall thin shadow appears on the wall although nobody is in the room, it tilts its head unnaturally, long fingers, subtle camera shake",
+      "sound": "silence, then a faint child's giggle" },
+    { "id": 4, "title": "Das Flüstern", "duration": 8,
+      "prompt": "The shadow crawls slowly across the wall and ceiling towards the boy's bed, the boy half asleep opens his eyes, the shadow leans over him whispering, cold breath visible, low angle shot",
+      "sound": "whisper: 'Do you want to never grow up?'" },
+    { "id": 5, "title": "Das Nicken", "duration": 8,
+      "prompt": "Extreme close-up of the boy's pale face in moonlight, a dark shadowy hand gently touches his cheek, he slowly nods half asleep, tears in his eyes, shallow depth of field",
+      "sound": "heartbeat, rising strings" },
+    { "id": 6, "title": "Das Verschwinden", "duration": 8,
+      "prompt": "Wide shot of the nursery, the boy is pulled silently upwards out of his bed by the shadow and drifts out of the open window into the foggy night sky, curtains violently flapping, candle blows out",
+      "sound": "rushing wind, sudden silence" },
+    { "id": 7, "title": "Der Morgen", "duration": 8,
+      "prompt": "Grey cold morning light in the nursery, the girl wakes up and looks at the empty bed, messy sheets, a few black feathers on the windowsill, slow push-in on her terrified face, muted colors",
+      "sound": "birds outside, ticking clock" },
+    { "id": 8, "title": "Das Ende", "duration": 8,
+      "prompt": "The girl slowly turns to the wall, now two shadows on the wallpaper, a tall one and a small one shaped like her brother, the small shadow cries and reaches out to her, the tall shadow turns its head towards the camera, smash to black",
+      "sound": "child sobbing, sharp hit, black" }
+  ],
+  "edit_notes": [
+    "Clips in Reihenfolge 1–8 schneiden, harte Schnitte außer 6→7 (Schwarzblende)",
+    "Durchgehend tiefen Drone-Sound unterlegen",
+    "Titelkarte am Ende: 'SHADOW NURSERY'"
+  ]
+}
